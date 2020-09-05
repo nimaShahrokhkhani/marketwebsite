@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './background.jpg';
 import './App.css';
+import axios from './utils/axios';
 
 class App extends React.Component{
 
@@ -10,7 +11,10 @@ class App extends React.Component{
     }
 
     login() {
-        alert('hiii')
+        axios.get(`/login` , {})
+            .then(res =>{
+                alert('hi')
+            }).catch(error => alert(JSON.stringify(error)))
     }
 
     render() {
