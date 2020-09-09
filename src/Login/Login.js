@@ -69,19 +69,18 @@ class Login extends React.Component{
                   <input type="password" placeholder="Password" required="" id="password" value={this.state.password} onChange={this.onChangePassword}/>
                 </div>
                 <div>
-                  <button onClick={this.login} type="button" >login
+                  <button onClick={this.login} type="button" class="btn btn-primary">login
 
                   </button>
 
-                  <a href="#">Lost your password?</a>
-                  <a href="#">Register</a>
+
                 </div>
               </form>
 
             </section>
           </div>
           <div className="imageBackground">
-            <img src={require('../background.jpg')} width="100%" height="100%"/>
+            <img src={require('../background.jpg')} width="100%" height="100%" />
           </div>
         </div>
     );
