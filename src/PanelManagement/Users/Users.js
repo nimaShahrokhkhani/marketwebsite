@@ -14,7 +14,7 @@ class Users extends React.Component{
         return (
             <div>
                 <p>
-                    welcome
+                    users
                 </p>
             </div>
 

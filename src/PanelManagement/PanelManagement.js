@@ -1,26 +1,15 @@
 import React from 'react';
 import './PanelManagement.css';
+import Navigation from './components/Navbar';
+import Routes from './Routes';
 
-class PanelManagement extends React.Component{
-
-    constructor(props) {
-        super(props);
-        this.state = {};
-
-
-    }
-
-    render() {
-        return (
-            <div>
-                <p>
-                    welcome
-                </p>
-            </div>
-
-
+function PanelManagement() {
+    return (
+        <div className="App">
+            <Navigation/>
+            <Routes />
+        </div>
     );
-    }
 }
 
 export default PanelManagement;
