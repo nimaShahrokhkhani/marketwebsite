@@ -1,0 +1,18 @@
+
+{
+  "translations": {
+    "navBar": {
+      "home": "صفحه اصلی",
+      "shop": "محصولات",
+      "events": "اخبار",
+      "ourStory": "درباره ما",
+      "articles": "مقالات",
+      "proCard": "مراکز مجاز فروش",
+      "contact": "تماس با ما"
+    },
+    "topBar": {
+      "userLogin" : "ورود به حساب کاربری",
+      "search": "جستجو"
+    }
+  }
+}

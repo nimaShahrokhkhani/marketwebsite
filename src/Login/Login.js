@@ -51,7 +51,7 @@ class Login extends React.Component{
       password:this.state.password,
     })
         .then(res =>{
-          history.push('/PanelManagement')
+          history.push('/Home')
         }).catch(error => alert(JSON.stringify(error)))
   }
 

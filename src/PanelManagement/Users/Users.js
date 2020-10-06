@@ -14,7 +14,7 @@ import './Users.css';
 
 const DescriptionRenderer = ({ field }) => <textarea {...field} />;
 
-let tasks = [
+let users = [
     {
         id: 1,
         Username: '',
@@ -53,31 +53,31 @@ const getSorter = (data) => {
 };
 
 
-let count = tasks.length;
+let count = users.length;
 const service = {
     fetchItems: (payload) => {
-        let result = Array.from(tasks);
+        let result = Array.from(users);
         result = result.sort(getSorter(payload.sort));
         return Promise.resolve(result);
     },
-    create: (task) => {
+    create: (user) => {
         count += 1;
-        tasks.push({
-            ...task,
+        users.push({
+            ...user,
             id: count,
         });
-        return Promise.resolve(task);
+        return Promise.resolve(user);
     },
     update: (data) => {
-        const task = tasks.find(t => t.id === data.id);
-        task.title = data.title;
-        task.description = data.description;
-        return Promise.resolve(task);
+        const user = users.find(t => t.id === data.id);
+        user.title = data.title;
+        user.description = data.description;
+        return Promise.resolve(user);
     },
     delete: (data) => {
-        const task = tasks.find(t => t.id === data.id);
-        tasks = tasks.filter(t => t.id !== task.id);
-        return Promise.resolve(task);
+        const user = users.find(t => t.id === data.id);
+        users = users.filter(t => t.id !== user.id);
+        return Promise.resolve(user);
     },
 };
 
@@ -88,7 +88,7 @@ const styles = {
 const Users = () => (
     <div style={styles.container}>
         <CRUDTable
-            caption="Tasks"
+            caption="Users"
             fetchItems={payload => service.fetchItems(payload)}
         >
             <Fields>
@@ -134,19 +134,19 @@ const Users = () => (
                 />
             </Fields>
             <CreateForm
-                title="Task Creation"
-                message="Create a new task!"
-                trigger="Create Task"
-                onSubmit={task => service.create(task)}
+                title="User Creation"
+                message="Create a new user!"
+                trigger="Add user"
+                onSubmit={user => service.create(user)}
                 submitText="Create"
                 validate={(values) => {
                     const errors = {};
                     if (!values.title) {
-                        errors.title = 'Please, provide task\'s title';
+                        errors.title = 'Please, provide user\'s title';
                     }
 
                     if (!values.description) {
-                        errors.description = 'Please, provide task\'s description';
+                        errors.description = 'Please, provide user\'s description';
                     }
 
                     return errors;
@@ -154,10 +154,10 @@ const Users = () => (
             />
 
             <UpdateForm
-                title="Task Update Process"
-                message="Update task"
+                title="User Update Process"
+                message="Update user"
                 trigger="Update"
-                onSubmit={task => service.update(task)}
+                onSubmit={user => service.update(user)}
                 submitText="Update"
                 validate={(values) => {
                     const errors = {};
@@ -167,11 +167,11 @@ const Users = () => (
                     }
 
                     if (!values.title) {
-                        errors.title = 'Please, provide task\'s title';
+                        errors.title = 'Please, provide user\'s title';
                     }
 
                     if (!values.description) {
-                        errors.description = 'Please, provide task\'s description';
+                        errors.description = 'Please, provide user\'s description';
                     }
 
                     return errors;
@@ -179,10 +179,10 @@ const Users = () => (
             />
 
             <DeleteForm
-                title="Task Delete Process"
-                message="Are you sure you want to delete the task?"
+                title="User Delete Process"
+                message="Are you sure you want to delete the user?"
                 trigger="Delete"
-                onSubmit={task => service.delete(task)}
+                onSubmit={user => service.delete(user)}
                 submitText="Delete"
                 validate={(values) => {
                     const errors = {};

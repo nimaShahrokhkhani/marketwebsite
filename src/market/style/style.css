@@ -1,0 +1,105 @@
+@charset "UTF-8";
+/* CSS Document */
+/*----- Fonts ----*/
+@font-face{
+	font-family: IRANSans-Light;
+	src:url("../fonts/IRANSans-Light.eot") format('eot'),
+		url("../fonts/IRANSans-Light.woff") format('woff'),
+		url("../fonts/IRANSans-Light.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobile-Black;
+	src:url("../fonts/IRANSansMobile-Black.eot") format('eot'),
+		url("../fonts/IRANSansMobile-Black.woff") format('woff'),
+		url("../fonts/IRANSansMobile-Black.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobile-Bold;
+	src:url("../fonts/IRANSansMobile-Bold.eot") format('eot'),
+		url("../fonts/IRANSansMobile-Bold.woff") format('woff'),
+		url("../fonts/IRANSansMobile-Bold.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobile-Light;
+	src:url("../fonts/IRANSansMobile-Light.eot") format('eot'),
+		url("../fonts/IRANSansMobile-Light.woff") format('woff'),
+		url("../fonts/IRANSansMobile-Light.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobile;
+	src:url("../fonts/IRANSansMobile.eot") format('eot'),
+		url("../fonts/IRANSansMobile.woff") format('woff'),
+		url("../fonts/IRANSansMobile.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobileFaNum-Bold;
+	src:url("../fonts/IRANSansMobileFaNum-Bold.eot") format('eot'),
+		url("../fonts/IRANSansMobileFaNum-Bold.woff") format('woff'),
+		url("../fonts/IRANSansMobileFaNum-Bold.ttf") format('truetype');
+}
+@font-face{
+	font-family: IRANSansMobileFaNum-Light;
+	src:url("../fonts/IRANSansMobileFaNum-Light.eot") format('eot'),
+		url("../fonts/IRANSansMobileFaNum-Light.woff") format('woff'),
+		url("../fonts/IRANSansMobileFaNum-Light.ttf"); format('truetype');
+}
+/*----- General Styles ----*/
+body{
+	background: #000;
+	direction:rtl;
+
+}
+.a{
+	text-decoration: none;
+}
+.a:hover{
+	color:#7A0709;
+}
+.clear{
+	clear:both;
+}
+h1,h2,h3,h4,h5{
+	font-family: IRANSans-Light;
+}
+img{
+	border: 0;
+	max-width: 100%;
+}
+/*----- Main Styles ----*/
+ #main{
+	width: 1000px;
+	margin: 0 auto;
+	background: #fff;
+	box-shadow: -2px -2px 20px #ccc;
+}
+.top-bar{
+	background-color: #021f41;
+	height: 100px;
+	position: relative;
+}
+.action-top-bar ul{
+	margin-right: 40px;
+}
+.action-top-bar-right img{
+	height: 50px;
+	width: 50px;
+	float: right;
+	margin-left: -10px;
+	margin-right: 30px;
+	padding: 25px 0 0 2px;
+}
+.action-top-bar-left img{
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin-left: 30px;
+	margin-right:-10px;
+	padding: 25px 0 0 2px;
+}
+.logo img{
+	margin-right: 300px;
+
+	margin-top: 25px;
+	height: 50px;
+
+}

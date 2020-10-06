@@ -1,0 +1,17 @@
+.btn-space {
+    margin-right: 5px;
+}
+.bg-primary{
+    background-color: black !important;
+}
+.navbar-collapse {
+    justify-content: flex-start !important;
+}
+.navbar-nav {
+    direction: rtl !important;
+    margin-right: 0px !important;
+}
+.navbar-expand {
+    justify-content: flex-end !important;
+    direction: rtl !important;
+}

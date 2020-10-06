@@ -1,0 +1,18 @@
+
+{
+  "translations": {
+    "navBar": {
+      "home": "Home",
+      "shop": "Shop",
+      "events": "Events",
+      "ourStory": "Our Story",
+      "articles": "Articles",
+      "proCard": "Pro Card",
+      "contact": "Contact"
+    },
+    "topBar": {
+      "userLogin" : "login",
+      "search": "search"
+    }
+  }
+}
