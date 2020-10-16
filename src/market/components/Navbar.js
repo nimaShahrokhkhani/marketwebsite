@@ -19,7 +19,7 @@ class Navigation extends React.Component {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Brand href="#home">
                     <img
-                        src={require("../image/hamburgerMenu.png")}
+                        src={require("../image/hamburgerMenu.jpeg")}
                         width="30"
                         height="30"
                         className="d-inline-block align-top"

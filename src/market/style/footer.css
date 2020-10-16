@@ -1,0 +1,270 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: IRANSans-Light;
+    src: url("../fonts/IRANSans-Light.eot") format('eot'),
+    url("../fonts/IRANSans-Light.woff") format('woff'),
+    url("../fonts/IRANSans-Light.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobile-Black;
+    src: url("../fonts/IRANSansMobile-Black.eot") format('eot'),
+    url("../fonts/IRANSansMobile-Black.woff") format('woff'),
+    url("../fonts/IRANSansMobile-Black.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobile-Bold;
+    src: url("../fonts/IRANSansMobile-Bold.eot") format('eot'),
+    url("../fonts/IRANSansMobile-Bold.woff") format('woff'),
+    url("../fonts/IRANSansMobile-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobile-Light;
+    src: url("../fonts/IRANSansMobile-Light.eot") format('eot'),
+    url("../fonts/IRANSansMobile-Light.woff") format('woff'),
+    url("../fonts/IRANSansMobile-Light.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobile;
+    src: url("../fonts/IRANSansMobile.eot") format('eot'),
+    url("../fonts/IRANSansMobile.woff") format('woff'),
+    url("../fonts/IRANSansMobile.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobileFaNum-Bold;
+    src: url("../fonts/IRANSansMobileFaNum-Bold.eot") format('eot'),
+    url("../fonts/IRANSansMobileFaNum-Bold.woff") format('woff'),
+    url("../fonts/IRANSansMobileFaNum-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: IRANSansMobileFaNum-Light;
+    src: url("../fonts/IRANSansMobileFaNum-Light.eot") format('eot'),
+    url("../fonts/IRANSansMobileFaNum-Light.woff") format('woff'),
+    url("../fonts/IRANSansMobileFaNum-Light.ttf") format('truetype');
+}
+
+
+ul {
+    list-style: none
+}
+
+a {
+    text-decoration: none
+}
+
+.generic-anchor {
+    color: lightblue;
+}
+
+.generic-anchor :visited {
+    color: lightblue;
+}
+
+.generic-anchor :hover {
+    color: lightblue;
+}
+
+.flex-rw {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+main {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 10em "Oswald", sans-serif;
+    color: rgb(155, 155, 155);
+    line-height: 1;
+    direction: rtl;
+}
+
+footer {
+    background-image: url("../image/Web-1920-–-2.jpg");
+    margin-top: auto;
+    width: 100%;
+    height: 100%;
+    direction: rtl;
+    position: relative;
+
+}
+
+.brand {
+    margin-right: 40px;
+    margin-top: 10px;
+}
+
+.footer-list-top {
+    width: 25%;
+    text-align: right;
+    padding-top: 50px;
+    margin-top: 50px;
+
+    font-family: IRANSansMobileFaNum-Bold;
+
+}
+
+.footer-list-top > li {
+
+    padding-bottom: 40px;
+    margin-top: 40px;
+    font-family: IRANSansMobileFaNum-Bold;
+    color: white;
+    margin-bottom: 50px;
+}
+
+.footer-list-header1 {
+    padding: 10px 10px 10px 10px;
+    color: #fff;
+    font-family: IRANSansMobileFaNum-Bold;
+    font-size: 30px;
+    margin-top: -20px
+}
+
+.footer-list-top1 {
+    margin-right: -120px;
+    margin-top: 30px;
+}
+
+.footer-list-top1 a {
+    color: white;
+    font-family: IRANSans-Light;
+    font-size: 20px;
+    padding-top: 5px;
+    margin-top: 30px;
+}
+
+.footer-list-top1 a:hover {
+    color: #f6e8ab;
+}
+
+.footer-list-header2 {
+    padding: 10px 0 5px 0;
+    color: black;
+    font-family: IRANSansMobileFaNum-Bold;
+    font-size: 30px;
+}
+
+.footer-list-top2 {
+    margin-right: 100px;
+}
+
+.footer-list-top2 a {
+    color: black;
+    font-family: IRANSans-Light;
+    font-size: 17px;
+}
+
+.footer-list-header3 {
+    padding: 10px 0 5px 0;
+    color: black;
+    font-family: IRANSansMobileFaNum-Bold;
+    font-size: 30px;
+}
+
+.footer-list-top3 {
+    margin-right: 100px;
+}
+
+.footer-list-top3 li {
+    color: black;
+    font-family: IRANSans-Light;
+    font-size: 15px;
+}
+
+.footer-list-anchor {
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.footer-social ul {
+    margin-right: 40px;
+    float: right;
+}
+
+.footer-social img {
+    float: right;
+    margin-left: 5px;
+    padding: 25px 0 0 2px;
+}
+
+.footer-social {
+
+}
+
+.footer-bottom {
+    float: right;
+    color: white;
+    margin-top: 200px;
+    margin-right: -200px;
+}
+
+.searchBox {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: black;
+    height: 40px;
+    border-radius: 50px;
+    padding: 10px;
+    margin-left: -350px;
+    margin-top: 140px;
+}
+
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+    background: black;
+    color: black;
+}
+
+.searchButton {
+    color: white;
+    float: left;
+    border-radius: 50%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: whitesmoke;
+    font-size: 17px;
+    transition: 0.4s;
+    width: 0px;
+
+}
+
+.footer-bottom {
+    font-size: 15px;
+}
+
+@media screen and (max-width: 620px) {
+    .searchBox:hover > .searchInput {
+        width: 150px;
+        padding: 0 6px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .footer-list-header {
+        font-size: 2.2em
+    }
+}
