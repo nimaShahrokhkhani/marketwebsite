@@ -19,7 +19,8 @@ class Market extends React.Component {
         super(props);
         this.state = {
             modalShow: false,
-            value: "fa"
+            value: "fa",
+            changeLanguageMenuActive: false
         }
     }
 
@@ -46,15 +47,22 @@ class Market extends React.Component {
                 <div id="main">
                     <div className="top-bar">
                         <div className="top-start-bar">
-                            <div style={{height: 20}}><a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
-                                                         onClick={() => this.setState({
-                                                             modalShow: true
-                                                         })}>
-                                <p style={{color: 'black', fontSize: 15}}>{t('topBar.userLogin')}</p>
-                                <img style={{width: 20, height: 20, marginLeft: 10}} src={require("./image/user.png")}
-                                     alt="Profile"/></a>
+                            <div style={{display: 'flex', height: 30}}>
+                                <a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
+                                   onClick={() => this.setState({changeLanguageMenuActive: !this.state.changeLanguageMenuActive})}><img
+                                    style={{width: 30, height: 30, marginLeft: 10}} src={require("./image/lang.png")}
+                                    alt="World"/></a>
+                                <NavDropdown disabled={this.state.changeLanguageMenuActive} title=""
+                                             id="collasible-nav-dropdown">
+                                    <NavDropdown.Item onClick={() => this.onLanguageHandle('fa')}
+                                                      href="#action/3.1">fa</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => this.onLanguageHandle('en')}
+                                                      href="#action/3.2">en</NavDropdown.Item>
+                                </NavDropdown>
                             </div>
-                            <div style={{height: 20, marginLeft: 30}}><a
+                        </div>
+                        <div className="top-end-bar">
+                            <div style={{height: 20, marginRight: 30}}><a
                                 style={{alignItems: 'flex-end', display: 'flex'}} href="#">
                                 <MuiThemeProvider>
                                     <div style={style}>
@@ -64,20 +72,13 @@ class Market extends React.Component {
                                 </MuiThemeProvider>
                             </a>
                             </div>
-                        </div>
-                        <div className="top-end-bar">
-                            <div style={{display: 'flex', height: 30}}>
-                                <a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
-                                   onClick={() => this.onLanguageHandle(this.state.value === 'fa' ? 'en' : 'fa')}><img
-                                    style={{width: 30, height: 30, marginLeft: 10}} src={require("./image/lang.png")}
-                                    alt="World"/></a>
-                                <NavDropdown title="" id="collasible-nav-dropdown">
-                                    <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                    <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                    <NavDropdown.Divider/>
-                                    <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                                </NavDropdown>
+                            <div style={{height: 20}}><a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
+                                                         onClick={() => this.setState({
+                                                             modalShow: true
+                                                         })}>
+                                <p style={{color: 'black', fontSize: 15}}>{t('topBar.userLogin')}</p>
+                                <img style={{width: 20, height: 20, marginLeft: 10}} src={require("./image/user.png")}
+                                     alt="Profile"/></a>
                             </div>
                         </div>
                     </div>
@@ -126,9 +127,11 @@ class Market extends React.Component {
                             <h4 class="footer-list-header2">تماس با ما</h4></li>
 
 
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> فروش سینمایی:09124959391</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> فروش
+                            سینمایی:09124959391</a></li>
                         <br/>
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> اعطا نمایندگی:09126954939</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> اعطا
+                            نمایندگی:09126954939</a></li>
                         <br/>
                         <li><img src={require("./image/email.jpg")} alt="Email"/><a href="#"> info@Grimas.ir</a></li>
 
@@ -209,37 +212,53 @@ function MyVerticallyCenteredModal(props) {
         >
 
             <Modal.Body>
-                <div id="myModal" className="modal fade">
-                    <div className="modal-dialog modal-login">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <div className="avatar">
-                                    <img src="/examples/images/avatar.png" alt="Avatar"/>
-                                </div>
-                                <h4 className="modal-title">Member Login</h4>
-                                <button type="button" className="close" data-dismiss="modal"
-                                        aria-hidden="true">&times;</button>
-                            </div>
-                            <div className="modal-body">
-                                <form action="/examples/actions/confirmation.php" method="post">
-                                    <div className="form-group">
+
+                <div className="modalContainer">
+
+                    <div className="modal-login">
+                        <div className="modal-logo">
+                            <img src={require("./image/modal-logo.jpg")} alt="Logo"/>
+                        </div>
+                        <div className="modalContent">
+                            <div className="modalBody">
+
+                                <div className="form-group">
+                                    <div className="input-group">
                                         <input type="text" className="form-control" name="username"
-                                               placeholder="Username" required="required"/>
+                                               placeholder="                               نام کاربری"
+                                               required="required"/>
+                                        <img src={require("./image/message-icon-000000-33.jpg")}
+                                             style={{float: "right"}}/>
+
                                     </div>
-                                    <div className="form-group">
-                                        <input type="password" className="form-control" name="password"
-                                               placeholder="Password" required="required"/>
+                                </div>
+                                <div className="form-group">
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" name="password"
+                                               placeholder="                                رمز عبور"
+                                               required="required"/>
+                                        <img src={require("./image/lock-32.jpg")} style={{float: "right"}}/>
+
                                     </div>
-                                    <div className="form-group">
-                                        <button type="submit"
-                                                className="btn btn-primary btn-lg btn-block login-btn">Login
-                                        </button>
+                                    <div className="remember"><input type="checkbox" value="chk"
+                                                                     style={{float: "inherit"}}/>مرا به خاطر بسپار
                                     </div>
-                                </form>
+
+                                </div>
+                                <div className="forget-psw">
+                                    <a href="#">
+                                        !رمز خود را فراموش کرده ام
+                                    </a>
+                                </div>
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-primary btn-block btn-lg"
+                                            onClick="">ورود
+                                    </button>
+                                </div>
+
+
                             </div>
-                            <div className="modal-footer">
-                                <a href="#">Forgot Password?</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>

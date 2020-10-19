@@ -82,7 +82,7 @@ const service = {
 };
 
 const styles = {
-    container: { margin: 'auto', width: 'fit-content' },
+    container: { margin: 'auto', width: 'fit-content', marginTop: 20 },
 };
 
 const Companies = () => (

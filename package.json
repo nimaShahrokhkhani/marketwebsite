@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "aphrodite": "^2.4.0",
     "axios": "^0.20.0",
-    "bootstrap": "^4.5.2",
+    "bootstrap": "^4.5.3",
     "i18next": "^19.8.0",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-xhr-backend": "^3.2.2",
@@ -20,12 +20,17 @@
     "react-axios": "^2.0.3",
     "react-bootstrap": "^1.3.0",
     "react-crud-table": "0.0.8",
+    "react-csv": "^2.0.3",
     "react-dom": "^16.13.1",
+    "react-fade-in": "^1.1.1",
     "react-i18next": "^11.7.3",
+    "react-loading": "^2.0.3",
+    "react-lottie": "^1.2.3",
     "react-motion": "^0.5.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-tap-event-plugin": "^3.0.3"
+    "react-tap-event-plugin": "^3.0.3",
+    "reactstrap": "^8.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

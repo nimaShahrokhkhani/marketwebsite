@@ -563,3 +563,21 @@ td.rdtYear:hover {
     font-size: 1.2em;
     margin-top: 37px;
 }
+
+
+.AppContainer{
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.table thead th , .table td{
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    text-align: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}

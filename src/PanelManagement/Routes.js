@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 
-import Users from "./Users/Users";
-import Companies from "./Companies/Companies";
-import Products from "./Products/Products";
+import Users from "./Users/UsersManager";
+import Companies from "./Companies/CompaniesScreen";
 import history from '../history';
+import ProductsManager from "./Products/ProductsManager";
 
 export default class Routes extends Component {
     render() {
@@ -13,7 +13,7 @@ export default class Routes extends Component {
                 <Switch>
                     <Route path="/PanelManagement" exact component={Users} />
                     <Route path="/PanelManagement/Companies" component={Companies} />
-                    <Route path="/PanelManagement/Products" component={Products} />
+                    <Route path="/PanelManagement/Products" component={ProductsManager} />
                 </Switch>
             </Router>
         )

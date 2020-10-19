@@ -77,7 +77,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 /*----- General Styles ----*/
 body{
     background: #000;
-    direction:ltr;
     text-align: end;
 
 }
@@ -107,10 +106,9 @@ img{
     background: #ffffff;
 }
 .top-bar{
-    height: 50px;
+    height: 60px;
     width: 100%;
     flex-direction: row;
-    overflow:auto;
 }
 .top-start-bar{
     height: 100%;
@@ -1477,4 +1475,121 @@ img{
 .trigger-btn {
     display: inline-block;
     margin: 100px auto;
+}
+
+
+
+.modalContainer{
+    background-image: url("./image/240_F_326201666_uWqDPuA7pIQq92E2Mia0CBDbOsFaqFgb.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 400px;
+}
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.modal-logo{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-login {
+    width: 300px;
+    margin: 30px auto;
+    float: right;
+}
+.modal-login .modalContent {
+    padding: 20px;
+    border-radius: 10px;
+    border: none;
+}
+.modal-login .modal-header {
+    border-bottom: none;
+    position: relative;
+    justify-content:flex-end;
+}
+.modal-login .close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.modal-login h4 {
+    color: #636363;
+    text-align: right;
+    font-size: 26px;
+    margin-top: 0;
+}
+
+.modal-login .form-group {
+    margin-bottom: 20px;
+}
+.modal-login label {
+    font-weight: normal;
+    font-size: 13px;
+}
+.modal-login .form-control {
+    min-height: 38px;
+    padding-left: 5px;
+    box-shadow: none !important;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
+}
+
+.modal-login .btn {
+    font-size: 16px;
+    font-weight: bold;
+    background: #ff4651;
+    border-radius: 15px;
+    border: none;
+    min-width: 155px;
+    min-height: 35px;
+    outline: none !important;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.forget-psw a{
+    text-decoration: none;
+    float: right;
+    color: black;
+    margin-bottom: 10px;
+}
+.forget-psw a:hover{
+    color: #ff4651;
+}
+.form-group{
+    float:right;
+
+}
+.form-control{
+    float: right;
+}
+.form-control::placeholder {
+    text-align: right;
+}
+
+.input-group img{
+    float:right;
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
+.remember{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    direction: rtl;
+}
+.checkbox{
+    float: inherit;
+}
+.modalBody{
+    display: flex;
+    flex-direction: column;
 }

@@ -7,11 +7,10 @@ const Navigation = (props) => {
     const pathname = props.location.pathname;
     return (
         <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="/PanelManagement">PANEL</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/PanelManagement" active={pathname.startsWith('/PanelManagement')}>Users</Nav.Link>
+                    <Nav.Link href="/PanelManagement" active={pathname.endsWith('/PanelManagement')}>Users</Nav.Link>
                     <Nav.Link href="/PanelManagement/Companies" active={pathname.startsWith('/PanelManagement/Companies')}>Companies</Nav.Link>
                     <Nav.Link href="/PanelManagement/Products" active={pathname.startsWith('/PanelManagement/Products')}>Products</Nav.Link>
                 </Nav>

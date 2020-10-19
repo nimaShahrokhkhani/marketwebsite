@@ -19,11 +19,11 @@ let users = [
         id: 1,
         Username: '',
         Password: '',
-        Role: 'Create an example',
-        BirthDay: 'Create an example',
-        Company: 'Create an example',
-        Email: 'Create an example',
-        PhoneNumber: 'Create an example',
+        Role: '',
+        BirthDay: '',
+        Company: '',
+        Email: '',
+        PhoneNumber: '',
 
     },
 
@@ -82,7 +82,7 @@ const service = {
 };
 
 const styles = {
-    container: { margin: 'auto', width: 'fit-content' },
+    container: { margin: 'auto', width: 'fit-content', marginTop: 20 },
 };
 
 const Users = () => (
