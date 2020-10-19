@@ -13,6 +13,19 @@
     "topBar": {
       "userLogin" : "ورود به حساب کاربری",
       "search": "جستجو"
+    },
+    "footer": {
+      "introduce": "معرفی گریماس",
+      "aboutUs": "درباره ما",
+      "qa": "پرسش و پاسخ",
+      "authorizedSalescenters": "مراکز مجاز فروش",
+      "grimasTrainingGroup": "گروه آموزش گریماس",
+      "contactWithUs": "تماس با ما",
+      "cinematicSales": "فروش سینمایی",
+      "grantingRepresentation": "اعطا نمایندگی",
+      "lastComments": "آخرین نظرات"
+
+
     }
   }
 }
