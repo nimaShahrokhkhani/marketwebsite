@@ -90,6 +90,7 @@ class Market extends React.Component {
     };
 
     renderFooter() {
+        const {t} = this.props;
         return (
             <footer class="flex-rw">
                 <div class="brand">
@@ -100,24 +101,24 @@ class Market extends React.Component {
 
                     <ul class="footer-list-top1">
 
-                        <h4 class="footer-list-header1">معرفی گریماس</h4>
+                        <h4 class="footer-list-header1">{t('footer.introduce')}</h4>
                         <li>
                             <img src={require("./image/Capture.jpg")} alt="point"/>
-                            <a href="#"> درباره ما</a>
+                            <a href="#"> {t('footer.aboutUs')}</a>
                         </li>
                         <br/>
                         <li>
                             <img src={require("./image/Capture.jpg")} alt="point"/>
-                            <a href="#"> پرسش و پاسخ</a>
+                            <a href="#"> {t('footer.qa')}</a>
                         </li>
                         <br/>
                         <li><img src={require("./image/Capture.jpg")} alt="point"/>
-                            <a href="#"> مراکز مجاز فروش</a>
+                            <a href="#">{t('footer.authorizedSalescenters')}</a>
                         </li>
                         <br/>
                         <li>
                             <img src={require("./image/Capture.jpg")} alt="point"/>
-                            <a href="#"> گروه آموزش گریماس </a>
+                            <a href="#"> {t('footer.grimasTrainingGroup')} </a>
                         </li>
 
                     </ul>
@@ -125,14 +126,12 @@ class Market extends React.Component {
                 <ul class="footer-list-top">
                     <ul class="footer-list-top2">
                         <li>
-                            <h4 class="footer-list-header2">تماس با ما</h4></li>
+                            <h4 class="footer-list-header2">{t('footer.contactWithUs')}</h4></li>
 
 
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> فروش
-                            سینمایی:09124959391</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#">{t('footer.cinematicSales')}</a></li>
                         <br/>
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> اعطا
-                            نمایندگی:09126954939</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> {t('footer.grantingRepresentation')}</a></li>
                         <br/>
                         <li><img src={require("./image/email.jpg")} alt="Email"/><a href="#"> info@Grimas.ir</a></li>
 
@@ -141,7 +140,7 @@ class Market extends React.Component {
                 <ul class="footer-list-top">
                     <ul class="footer-list-top3">
                         <li>
-                            <h4 class="footer-list-header3">آخرین نظرات</h4></li>
+                            <h4 class="footer-list-header3">{t('footer.lastComments')}</h4></li>
                         <li>آموزش استفاده از میک آپ</li>
                         <br/>
                         <li>ترند ارایشی سال 2020</li>

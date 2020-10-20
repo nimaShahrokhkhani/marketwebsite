@@ -13,6 +13,17 @@
     "topBar": {
       "userLogin" : "login",
       "search": "search"
+    },
+    "footer": {
+      "introduce": "Inroduce Brand",
+      "aboutUs":"About Us",
+      "qa": "Question And Answer",
+      "authorizedSalescenters": "Authorized Sales Centers",
+      "grimasTrainingGroup": "Grimas Training Group",
+      "contactWithUs": "Contact With Us",
+      "cinematicSales": "Cinemaric Sales",
+      "grantingRepresentation": "Granting Representation",
+      "lastComments":"Last Comments"
     }
   }
 }
