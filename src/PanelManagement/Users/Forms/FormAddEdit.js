@@ -73,7 +73,7 @@ class AddEditForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
+      <Form style={{display: "flex", flexDirection: "column"}} onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
         <FormGroup>
           <Label for="username">Username</Label>
           <Input type="text" name="username" id="username" onChange={this.onChange} value={this.state.username === null ? '' : this.state.username} />

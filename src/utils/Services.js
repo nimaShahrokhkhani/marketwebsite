@@ -1,6 +1,15 @@
 import axios from "./axios";
+import history from "../history";
 
 export default class Services {
+
+    static signIn(requestData) {
+        return axios.post(`/login` , {
+            username: requestData.username,
+            password: requestData.password,
+        })
+    }
+
     static getProductsList(requestData) {
         return axios.get(`/products/list` , requestData)
     }

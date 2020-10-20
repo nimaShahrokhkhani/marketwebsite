@@ -10,6 +10,7 @@ import {NavDropdown} from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SearchBox from '../components/searchBar/SearchBox'
 import makeExpanding from '../components/searchBar/expanding-animation';
+import LoginModal from './components/Modal/LoginModal'
 
 const ExpandingSearchBox = makeExpanding(SearchBox);
 
@@ -184,87 +185,32 @@ class Market extends React.Component {
         )
     }
 
+    onSuccessLogin = (user) => {
+        console.log('userrrrrrrrr:', user)
+    };
+
+    onErrorLogin = (error) => {
+        console.log('userrrrrrrrr:', error)
+    };
+
     render() {
         return (
             <div className="App">
                 {this.renderTopBar()}
                 <Navigation/>
                 <Routes/>
-                <MyVerticallyCenteredModal
+                <LoginModal
                     show={this.state.modalShow}
                     onHide={() => this.setState({
                         modalShow: false
                     })}
+                    onSuccessLogin={this.onSuccessLogin}
+                    onErrorLogin={this.onErrorLogin}
                 />
                 {this.renderFooter()}
             </div>
         );
     }
-}
-
-function MyVerticallyCenteredModal(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-        >
-
-            <Modal.Body>
-
-                <div className="modalContainer">
-
-                    <div className="modal-login">
-                        <div className="modal-logo">
-                            <img src={require("./image/modal-logo.jpg")} alt="Logo"/>
-                        </div>
-                        <div className="modalContent">
-                            <div className="modalBody">
-
-                                <div className="form-group">
-                                    <div className="input-group">
-                                        <input type="text" className="form-control" name="username"
-                                               placeholder="                               نام کاربری"
-                                               required="required"/>
-                                        <img src={require("./image/message-icon-000000-33.jpg")}
-                                             style={{float: "right"}}/>
-
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <div className="input-group">
-                                        <input type="text" className="form-control" name="password"
-                                               placeholder="                                رمز عبور"
-                                               required="required"/>
-                                        <img src={require("./image/lock-32.jpg")} style={{float: "right"}}/>
-
-                                    </div>
-                                    <div className="remember"><input type="checkbox" value="chk"
-                                                                     style={{float: "inherit"}}/>مرا به خاطر بسپار
-                                    </div>
-
-                                </div>
-                                <div className="forget-psw">
-                                    <a href="#">
-                                        !رمز خود را فراموش کرده ام
-                                    </a>
-                                </div>
-                                <div className="form-group">
-                                    <button type="submit" className="btn btn-primary btn-block btn-lg"
-                                            onClick="">ورود
-                                    </button>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </Modal.Body>
-        </Modal>
-    );
 }
 
 export default withTranslation()(Market);

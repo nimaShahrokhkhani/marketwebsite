@@ -74,7 +74,7 @@ class AddEditForm extends React.Component {
 
     render() {
         return (
-            <Form onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
+            <Form style={{display: "flex", flexDirection: "column"}} onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
                 <FormGroup>
                     <Label for="serialNumber">SerialNumber</Label>
                     <Input type="text" name="serialNumber" id="serialNumber" onChange={this.onChange}
