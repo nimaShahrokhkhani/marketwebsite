@@ -11,6 +11,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SearchBox from '../components/searchBar/SearchBox'
 import makeExpanding from '../components/searchBar/expanding-animation';
 import LoginModal from './components/Modal/LoginModal'
+import {connect} from "react-redux";
+import {setUser} from "../components/redux/actions";
 
 const ExpandingSearchBox = makeExpanding(SearchBox);
 
@@ -21,7 +23,8 @@ class Market extends React.Component {
         this.state = {
             modalShow: false,
             value: "fa",
-            changeLanguageMenuActive: false
+            changeLanguageMenuActive: false,
+            userInfoModal: false
         }
     }
 
@@ -73,13 +76,25 @@ class Market extends React.Component {
                                 </MuiThemeProvider>
                             </a>
                             </div>
-                            <div style={{height: 20}}><a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
-                                                         onClick={() => this.setState({
-                                                             modalShow: true
-                                                         })}>
-                                <p style={{color: 'black', fontSize: 15}}>{t('topBar.userLogin')}</p>
-                                <img style={{width: 20, height: 20, marginLeft: 10}} src={require("./image/user.png")}
-                                     alt="Profile"/></a>
+                            <div className="user-info">
+                                <div style={{height: 20}}><a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
+                                                             onClick={
+                                                                 () => !this.props.user ? this.setState({
+                                                                     modalShow: !this.state.modalShow,
+                                                                     userInfoModal: false
+                                                                 }) : this.setState({
+                                                                     modalShow: false,
+                                                                     userInfoModal: !this.state.userInfoModal
+                                                                 })}>
+                                    <p style={{
+                                        color: 'black',
+                                        fontSize: 15
+                                    }}>{this.props.user ? this.props.user.username : t('topBar.userLogin')}</p>
+                                    <img style={{width: 20, height: 20, marginLeft: 10}}
+                                         src={require("./image/user.png")}
+                                         alt="Profile"/></a>
+                                </div>
+                                {this.renderUserInfo()}
                             </div>
                         </div>
                     </div>
@@ -88,6 +103,30 @@ class Market extends React.Component {
             </div>
         );
     };
+
+    renderUserInfo() {
+        if (this.state.userInfoModal) {
+            return (
+                <div className='user-info-container'>
+                    <div>
+                        <section className="user-info-image"/>
+                        <p id="user-username">Mohamad Reaza</p>
+                        <p id="user-email">nima.shahrokhkhani@gmail.com</p>
+                        <section className="user-info-button-container">
+                            <a className="user-info-button">
+                                <p>
+                                    خروج از حساب کاربری
+                                </p>
+                            </a>
+                            <a className="user-info-button">
+                                <p>مدیریت حساب کاربری</p>
+                            </a>
+                        </section>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     renderFooter() {
         const {t} = this.props;
@@ -129,9 +168,11 @@ class Market extends React.Component {
                             <h4 class="footer-list-header2">{t('footer.contactWithUs')}</h4></li>
 
 
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#">{t('footer.cinematicSales')}</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a
+                            href="#">{t('footer.cinematicSales')}</a></li>
                         <br/>
-                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a href="#"> {t('footer.grantingRepresentation')}</a></li>
+                        <li><img src={require("./image/teleph.jpg")} alt="Phone"/><a
+                            href="#"> {t('footer.grantingRepresentation')}</a></li>
                         <br/>
                         <li><img src={require("./image/email.jpg")} alt="Email"/><a href="#"> info@Grimas.ir</a></li>
 
@@ -185,7 +226,12 @@ class Market extends React.Component {
     }
 
     onSuccessLogin = (user) => {
-        console.log('userrrrrrrrr:', user)
+        //console.log('userrrrrrrrr:', user)
+        this.props.setUser(user)
+        this.setState({
+            modalShow: false
+        })
+        //console.log(this.props.user)
     };
 
     onErrorLogin = (error) => {
@@ -212,4 +258,9 @@ class Market extends React.Component {
     }
 }
 
-export default withTranslation()(Market);
+const mapStateToProps = state => {
+    const user = state.user;
+    return {user};
+}
+
+export default connect(mapStateToProps, {setUser})(withTranslation()(Market));
