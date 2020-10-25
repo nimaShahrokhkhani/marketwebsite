@@ -1,0 +1,12 @@
+.newcollection-pic1{
+
+    float: right;
+    margin-right: -100px;
+    margin-bottom: -70px;
+}
+.newcollection-pic2{
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

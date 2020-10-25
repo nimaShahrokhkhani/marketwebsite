@@ -13,6 +13,9 @@ import makeExpanding from '../components/searchBar/expanding-animation';
 import LoginModal from './components/Modal/LoginModal'
 import {connect} from "react-redux";
 import {setUser} from "../components/redux/actions";
+import BestSeller from "./bestSeller/BestSeller";
+import Highlight from "./highlight/Highlight";
+import NewCollection from "./newCollection/NewCollection";
 
 const ExpandingSearchBox = makeExpanding(SearchBox);
 
@@ -241,8 +244,10 @@ class Market extends React.Component {
     render() {
         return (
             <div className="App">
-                {this.renderTopBar()}
-                <Navigation/>
+                <div className="top-content">
+                    {this.renderTopBar()}
+                    <Navigation/>
+                </div>
                 <Routes/>
                 <LoginModal
                     show={this.state.modalShow}

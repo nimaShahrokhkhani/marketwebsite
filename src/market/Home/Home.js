@@ -4,6 +4,10 @@ import ReactDOM from "react-dom";
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import {withTranslation, Trans} from 'react-i18next'
+import BestSeller from "../bestSeller/BestSeller";
+import Highlight from "../highlight/Highlight";
+import NewCollection from "../newCollection/NewCollection";
+import Blog from "../blog/Blog";
 
 class Home extends React.Component {
 
@@ -34,12 +38,16 @@ class Home extends React.Component {
     render() {
         const {t} = this.props
         return (
-            <div>
+            <div style={{marginTop: 116}}>
                 <AwesomeSlider className='awesomeSlider'>
                     <div data-src="/images/slide1.jpg"/>
                     <div data-src="/images/slide2.jpg"/>
                     <div data-src="/images/slide3.jpg"/>
                 </AwesomeSlider>
+                <BestSeller/>
+                <Highlight/>
+                <NewCollection/>
+                <Blog/>
             </div>
         );
     }
