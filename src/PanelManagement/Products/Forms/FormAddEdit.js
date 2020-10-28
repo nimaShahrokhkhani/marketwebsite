@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import Services from "../../../utils/Services";
+import '../Products.css';
 
 class AddEditForm extends React.Component {
     state = {
@@ -13,28 +14,44 @@ class AddEditForm extends React.Component {
         price: '',
         discount: '',
         type: '',
-        dateModify: ''
+        dateModify: '',
+        productCategories: []
     };
 
     onChange = e => {
         this.setState({[e.target.name]: e.target.value})
     };
 
+    onChangeImage = e => {
+        this.setState({[e.target.name]: e.target.files[0]})
+    };
+
     submitFormAdd = e => {
         e.preventDefault();
+        const data = new FormData()
+        data.append('file', this.state.image)
+        data.append('serialNumber', this.state.serialNumber)
+        data.append('name', this.state.name)
+        data.append('company', this.state.company)
+        data.append('description', this.state.description)
+        data.append('price', this.state.price)
+        data.append('discount', this.state.discount)
+        data.append('type', this.state.type)
+        data.append('dateModify', this.state.dateModify)
         let item = {
             serialNumber: this.state.serialNumber,
             name: this.state.name,
             company: this.state.company,
             description: this.state.description,
-            image: this.state.image,
+            image: data,
             price: this.state.price,
             discount: this.state.discount,
             type: this.state.type,
             dateModify: this.state.dateModify
         };
-        Services.insertProduct(item).then((response) => {
-            this.props.addItemToState(item);
+        Services.insertProduct(data).then((response) => {
+            console.log('responsee:', response)
+            this.props.addItemToState(response.data.ops[0]);
             this.props.toggle()
         }).catch((error) => {
             console.log(error)
@@ -65,6 +82,13 @@ class AddEditForm extends React.Component {
     };
 
     componentDidMount() {
+        Services.getProductCategoryList().then((response) => {
+            this.setState({
+                productCategories: response.data
+            });
+        }).catch((error) => {
+            console.log('error', error)
+        });
         // if item exists, populate the state with proper data
         if (this.props.item) {
             const {id, first, last, email, phone, location, hobby} = this.props.item
@@ -97,8 +121,8 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="image">Image</Label>
-                    <Input type="file" name="image" id="image" onChange={this.onChange}
-                           value={this.state.image === null ? '' : this.state.image} placeholder="image, logo"/>
+                    <Input type="file" name="image" id="image" onChange={this.onChangeImage}
+                           defaultValue={this.state.image === null ? '' : this.state.image} placeholder="image, logo"/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="price">Price</Label>
@@ -111,7 +135,12 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="type">Type</Label>
-                    <Input type="text" name="type" id="type" onChange={this.onChange} value={this.state.type}/>
+                    <select name="type" id="type" onChange={this.onChange} value={this.state.type}>
+                        <option value=''>  </option>
+                        {this.state.productCategories && this.state.productCategories.map(function(item){
+                                return <option value={item.type}> {item.type} </option>
+                            })}
+                    </select>
                 </FormGroup>
                 <FormGroup>
                     <Label for="dateModify">DateModify</Label>

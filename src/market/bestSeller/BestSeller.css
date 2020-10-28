@@ -1,6 +1,22 @@
-.Bestseller-pic{
+.Bestseller-pic {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: 130px;
+    width: 80%;
+}
+
+.slider-container {
+    margin-top: 50px;
+}
+
+.block-item h3 {
+    background-color: #1a6fb1;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+    color: #ffffff;
 }

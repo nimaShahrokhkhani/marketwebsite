@@ -31,7 +31,7 @@ class DataTable extends Component {
             <div style={{display: 'flex', flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
               <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}/>
               {' '}
-              <Button color="danger" onClick={() => this.deleteItem(item.id)}>Del</Button>
+              <Button color="danger" onClick={() => this.deleteItem(item.serialNumber)}>Del</Button>
             </div>
           </td>
         </tr>

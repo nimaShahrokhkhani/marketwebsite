@@ -3,11 +3,11 @@ import { Container, Row, Col } from 'reactstrap'
 import ModalForm from './Modals/Modal'
 import DataTable from './Tables/DataTable'
 import { CSVLink } from "react-csv"
-import './Products.css';
+import './ProductCategories.css';
 import Services from "../../utils/Services";
 import ScreenLoading from "../../components/screenLoading/ScreenLoading";
 
-class ProductsManager extends Component {
+class ProductCategoriesManager extends Component {
     state = {
         items: [],
         isLoading: false,
@@ -20,7 +20,7 @@ class ProductsManager extends Component {
             isDone: false
         }, () => {
             setTimeout(() => {
-                Services.getProductsList().then((response) => {
+                Services.getProductCategoryList().then((response) => {
                     this.setState({
                         items: response.data,
                         isLoading: false
@@ -61,9 +61,9 @@ class ProductsManager extends Component {
         this.setState({ items: newArray })
     }
 
-    deleteItemFromState = (id) => {
-        Services.deleteProduct({serialNumber: id}).then((response) => {
-            const updatedItems = this.state.items.filter(item => item.serialNumber !== id)
+    deleteItemFromState = (type) => {
+        Services.deleteProductCategory({type: type}).then((response) => {
+            const updatedItems = this.state.items.filter(item => item.type !== type)
             this.setState({ items: updatedItems })
         }).catch((error) => {
             console.log('error is:', error)
@@ -82,7 +82,7 @@ class ProductsManager extends Component {
                     <Container className="AppContainer">
                         <Row>
                             <Col>
-                                <h1 style={{margin: "20px 0", display: 'flex', fontSize: 30}}>Products</h1>
+                                <h1 style={{margin: "20px 0", display: 'flex', fontSize: 30}}>Product Categories</h1>
                             </Col>
                         </Row>
                         <Row>
@@ -114,4 +114,4 @@ class ProductsManager extends Component {
     }
 }
 
-export default ProductsManager
+export default ProductCategoriesManager

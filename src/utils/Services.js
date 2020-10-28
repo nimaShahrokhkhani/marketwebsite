@@ -18,6 +18,22 @@ export default class Services {
         return axios.post(`/products/insert` , requestData)
     }
 
+    static async deleteProduct(requestData) {
+        return axios.post(`/products/delete` , requestData)
+    }
+
+    static getProductCategoryList(requestData) {
+        return axios.get(`/productCategory/list` , requestData)
+    }
+
+    static async insertProductCategory(requestData) {
+        return axios.post(`/productCategory/insert` , requestData)
+    }
+
+    static async deleteProductCategory(requestData) {
+        return axios.post(`/productCategory/delete` , requestData)
+    }
+
     static getCompaniesList(requestData) {
         return axios.get(`/companies/list` , requestData)
     }
@@ -32,5 +48,9 @@ export default class Services {
 
     static async insertUser(requestData) {
         return axios.post(`/users/insert` , requestData)
+    }
+
+    static async insertUser(requestData) {
+        return axios.get(`/products/download` , requestData)
     }
 }
