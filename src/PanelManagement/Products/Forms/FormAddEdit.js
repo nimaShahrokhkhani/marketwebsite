@@ -2,57 +2,82 @@ import React from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import Services from "../../../utils/Services";
 import '../Products.css';
+import {SketchPicker, CirclePicker} from 'react-color';
 
 class AddEditForm extends React.Component {
-    state = {
-        id: 0,
-        serialNumber: '',
-        name: '',
-        company: '',
-        description: '',
-        image: '',
-        price: '',
-        discount: '',
-        type: '',
-        dateModify: '',
-        productCategories: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: 0,
+            serialNumber: '',
+            name: '',
+            company: '',
+            description: '',
+            image: '',
+            price: '',
+            discount: '',
+            type: '',
+            dateModify: '',
+            comments: [],
+            brand: '',
+            colors: [],
+            totalCount: 0,
+            existCount: 0,
+            rate: [],
+            properties: '',
+            isBestSeller: false,
+            productColor: '#fff',
+            productCategories: []
+        };
+    }
 
     onChange = e => {
         this.setState({[e.target.name]: e.target.value})
+    };
+
+    onChangeIsBestSeller = e => {
+        this.setState({[e.target.name]: e.target.checked})
     };
 
     onChangeImage = e => {
         this.setState({[e.target.name]: e.target.files[0]})
     };
 
+    handleChangeColorComplete = (color) => {
+        this.setState({productColor: color.hex});
+    };
+
+    addToProductColor = () => {
+        this.state.colors.push(this.state.productColor);
+        this.setState({
+            colors: this.state.colors
+        })
+    };
+
     submitFormAdd = e => {
         e.preventDefault();
-        const data = new FormData()
-        data.append('file', this.state.image)
-        data.append('serialNumber', this.state.serialNumber)
-        data.append('name', this.state.name)
-        data.append('company', this.state.company)
-        data.append('description', this.state.description)
-        data.append('price', this.state.price)
-        data.append('discount', this.state.discount)
-        data.append('type', this.state.type)
-        data.append('dateModify', this.state.dateModify)
-        let item = {
-            serialNumber: this.state.serialNumber,
-            name: this.state.name,
-            company: this.state.company,
-            description: this.state.description,
-            image: data,
-            price: this.state.price,
-            discount: this.state.discount,
-            type: this.state.type,
-            dateModify: this.state.dateModify
-        };
+        const data = new FormData();
+        data.append('file', this.state.image);
+        data.append('serialNumber', this.state.serialNumber);
+        data.append('name', this.state.name);
+        data.append('company', this.state.company);
+        data.append('description', this.state.description);
+        data.append('price', this.state.price);
+        data.append('discount', this.state.discount);
+        data.append('type', this.state.type);
+        data.append('dateModify', this.state.dateModify);
+        data.append('comments', this.state.comments);
+        data.append('brand', this.state.brand);
+        data.append('colors', this.state.colors);
+        data.append('totalCount', this.state.totalCount);
+        data.append('existCount', this.state.existCount);
+        data.append('rate', this.state.rate);
+        data.append('properties', this.state.properties);
+        data.append('isBestSeller', this.state.isBestSeller);
         Services.insertProduct(data).then((response) => {
-            console.log('responsee:', response)
-            this.props.addItemToState(response.data.ops[0]);
-            this.props.toggle()
+            console.log('adddddddd',this.props.getItems)
+            this.props.getItems && this.props.getItems();
+            this.props.toggle();
         }).catch((error) => {
             console.log(error)
         });
@@ -60,25 +85,30 @@ class AddEditForm extends React.Component {
 
     submitFormEdit = e => {
         e.preventDefault();
-        let item = [{
-            id: this.state.id,
-            serialNumber: this.state.serialNumber,
-            name: this.state.name,
-            company: this.state.company,
-            description: this.state.description,
-            image: this.state.image,
-            price: this.state.price,
-            discount: this.state.discount,
-            type: this.state.type,
-            dateModify: this.state.dateModify
-        }];
-        if (Array.isArray(item)) {
-            // console.log(item[0])
-            this.props.updateState(item[0])
-            this.props.toggle()
-        } else {
-            console.log('failure')
-        }
+        const data = new FormData();
+        this.state.image && data.append('file', this.state.image);
+        data.append('serialNumber', this.state.serialNumber);
+        data.append('name', this.state.name);
+        data.append('company', this.state.company);
+        data.append('description', this.state.description);
+        data.append('price', this.state.price);
+        data.append('discount', this.state.discount);
+        data.append('type', this.state.type);
+        data.append('dateModify', this.state.dateModify);
+        data.append('comments', this.state.comments);
+        data.append('brand', this.state.brand);
+        data.append('colors', this.state.colors);
+        data.append('totalCount', this.state.totalCount);
+        data.append('existCount', this.state.existCount);
+        data.append('rate', this.state.rate);
+        data.append('properties', this.state.properties);
+        data.append('isBestSeller', this.state.isBestSeller);
+        Services.editProduct(data).then((response) => {
+            this.props.getItems && this.props.getItems();
+            this.props.toggle();
+        }).catch((error) => {
+            console.log(error)
+        });
     };
 
     componentDidMount() {
@@ -91,14 +121,47 @@ class AddEditForm extends React.Component {
         });
         // if item exists, populate the state with proper data
         if (this.props.item) {
-            const {id, first, last, email, phone, location, hobby} = this.props.item
-            this.setState({id, first, last, email, phone, location, hobby})
+            const {
+                serialNumber,
+                name,
+                company,
+                description,
+                image,
+                price,
+                discount,
+                type,
+                dateModify,
+                brand,
+                colors,
+                totalCount,
+                existCount,
+                properties,
+                isBestSeller
+            } = this.props.item;
+            this.setState({
+                serialNumber: serialNumber ? serialNumber : '',
+                name: name ? name : '',
+                company: company ? company : '',
+                description: description ? description : '',
+                image,
+                price: price ? price : 0,
+                discount: discount ? discount : 0,
+                type: type ? type : '',
+                dateModify: dateModify ? dateModify : '',
+                brand: brand ? brand : '',
+                colors: colors ? colors.split(",") : [],
+                totalCount: totalCount ? totalCount : 0,
+                existCount: existCount ? existCount : 0,
+                properties: properties ? properties : '',
+                isBestSeller: isBestSeller ? (isBestSeller === 'true') : false
+            })
         }
     }
 
     render() {
         return (
-            <Form style={{display: "flex", flexDirection: "column"}} onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
+            <Form style={{display: "flex", flexDirection: "column"}}
+                  onSubmit={this.props.item ? this.submitFormEdit : this.submitFormAdd}>
                 <FormGroup>
                     <Label for="serialNumber">SerialNumber</Label>
                     <Input type="text" name="serialNumber" id="serialNumber" onChange={this.onChange}
@@ -126,26 +189,76 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="price">Price</Label>
-                    <Input type="text" name="price" id="price" onChange={this.onChange} value={this.state.price}/>
+                    <Input type="number" name="price" id="price" onChange={this.onChange} value={this.state.price}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="discount">Discount</Label>
-                    <Input type="text" name="discount" id="discount" onChange={this.onChange}
+                    <Input type="number" name="discount" id="discount" onChange={this.onChange}
                            value={this.state.discount}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="type">Type</Label>
                     <select name="type" id="type" onChange={this.onChange} value={this.state.type}>
-                        <option value=''>  </option>
-                        {this.state.productCategories && this.state.productCategories.map(function(item){
-                                return <option value={item.type}> {item.type} </option>
-                            })}
+                        <option value=''/>
+                        {this.state.productCategories && this.state.productCategories.map(function (item) {
+                            return <option value={item.type}> {item.type} </option>
+                        })}
                     </select>
                 </FormGroup>
                 <FormGroup>
                     <Label for="dateModify">DateModify</Label>
                     <Input type="date" name="dateModify" id="dateModify" onChange={this.onChange}
                            value={this.state.dateModify}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="brand">Brand</Label>
+                    <Input type="text" name="brand" id="brand" onChange={this.onChange}
+                           value={this.state.brand}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="colors">Colors</Label>
+                    <div style={{display: 'flex'}}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginRight: 20
+                        }}>
+                            <SketchPicker
+                                color={this.state.productColor}
+                                onChangeComplete={this.handleChangeColorComplete}
+                            />
+                            <Button onClick={this.addToProductColor}>Add Color</Button>
+                        </div>
+                        <div>
+                            {this.state.colors && this.state.colors.length > 0 &&
+                            <CirclePicker
+                                onChange={() => {
+                                    console.log('')
+                                }}
+                                colors={this.state.colors}/>}
+                        </div>
+                    </div>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="totalCount">TotalCount</Label>
+                    <Input type="number" name="totalCount" id="totalCount" onChange={this.onChange}
+                           value={this.state.totalCount}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="existCount">ExistCount</Label>
+                    <Input type="number" name="existCount" id="existCount" onChange={this.onChange}
+                           value={this.state.existCount}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="properties">Properties</Label>
+                    <Input type="text" name="properties" id="properties" onChange={this.onChange}
+                           value={this.state.properties}/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="isBestSeller">IsBestSeller</Label>
+                    <Input style={{position: 'relative', marginLeft: 0}} type="checkbox" name="isBestSeller"
+                           id="isBestSeller" onChange={this.onChangeIsBestSeller}
+                           defaultChecked={this.state.isBestSeller}/>
                 </FormGroup>
                 <Button>Submit</Button>
             </Form>

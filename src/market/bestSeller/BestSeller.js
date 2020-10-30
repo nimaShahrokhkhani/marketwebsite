@@ -15,7 +15,7 @@ class BestSeller extends React.Component {
     }
 
     getItems() {
-        Services.getProductsList().then((response) => {
+        Services.getProductsList({isBestSeller: 'true'}).then((response) => {
             console.log(response.data)
             this.setState({
                 items: response.data,
@@ -27,10 +27,13 @@ class BestSeller extends React.Component {
         });
 
     }
-    componentDidMount(){
+
+    componentDidMount() {
         this.getItems()
     }
+
     render() {
+        const {t} = this.props;
         const settings = {
             dots: false,
             infinite: true,
@@ -45,20 +48,26 @@ class BestSeller extends React.Component {
                 <img src={require("../image/bestSellerTitle.jpg")}/>
                 {this.state.items.length > 0 ?
                     <div className='slider-container'>
-                    <Slider {...settings}>
-                        {
-                            this.state.items.map((product, i) => {
-                                return (
-                                    <div data-index={i} key={i} className='block-item'>
-                                        <h3>{product.name}</h3>
-                                    </div>
-                                )
-                            })
+                        <Slider {...settings}>
+                            {
+                                this.state.items.map((product, i) => {
+                                    return (
+                                        <div data-index={i} key={i} className='block-item'>
+                                            <img width='100px' height='100px'
+                                                 src={Services.getProductImageDownloadUrl(product.image)}/>
+                                            <p className='product-name'>{product.name}</p>
+                                            <div className='price-container'>
+                                                <p className='product-price'>{product.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                <p className='product-currency'>{t('currency')}</p>
+                                            </div>
+                                        </div>
+                                    )
+                                })
 
-                        }
+                            }
 
-                    </Slider>
-                </div>:null}
+                        </Slider>
+                    </div> : null}
             </div>
         );
     }
@@ -70,10 +79,10 @@ function SampleNextArrow(props) {
     return (
         <div
             className={className}
-            style={{...style, display: "block", background: "red"}}
+            style={{...style, display: "block", width: 50, height: 50}}
             onClick={onClick}
         >
-
+            <img src={require("../image/arrow-right.png")}/>
         </div>
     );
 }
@@ -83,9 +92,12 @@ function SamplePrevArrow(props) {
     return (
         <div
             className={className}
-            style={{...style, display: "block", background: "green"}}
+            style={{...style, display: "block", width: 50, height: 50}}
             onClick={onClick}
-        />
+        >
+            <img src={require("../image/arrow-left.png")}/>
+
+        </div>
     );
 }
 

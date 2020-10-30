@@ -10,6 +10,13 @@
     margin-top: 50px;
 }
 
+.block-item {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .block-item h3 {
     background-color: #1a6fb1;
     font-size: 36px;
@@ -19,4 +26,55 @@
     position: relative;
     text-align: center;
     color: #ffffff;
+}
+
+.product-name {
+    font-size: .857rem;
+    line-height: 25px;
+    color: #535353;
+    margin-top: 10px;
+}
+
+.price-container {
+    display: flex;
+    direction: rtl;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.product-price {
+    font-size: 1.143rem;
+    line-height: 1.375;
+    color: #000;
+    font-weight: 700;
+    margin-left: 5px;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.product-currency {
+    font-size: .714rem;
+    line-height: 2.2;
+    font-weight: 400;
+}
+
+.arrow-prev {
+    background-image: url("../image/arrow-left.png");
+}
+
+.arrow-next {
+    background-image: url("../image/arrow-right.png");
+}
+
+.slick-prev:before {
+    content: '' !important;
+}
+
+.slick-next:before {
+    content: '' !important;
+}
+
+.slick-prev {
+    left: -60px !important;
 }

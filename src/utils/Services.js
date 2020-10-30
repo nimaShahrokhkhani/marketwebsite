@@ -3,54 +3,66 @@ import history from "../history";
 
 export default class Services {
 
+    static baseUrl = 'http://localhost:3500/';
+
+    static getProductImageDownloadUrl(fileName){
+      return this.baseUrl + `products/download?fileName=` + fileName;
+    }
+
     static signIn(requestData) {
-        return axios.post(`/login` , {
+        return axios.post(`/login`, {
             username: requestData.username,
             password: requestData.password,
         })
     }
 
     static getProductsList(requestData) {
-        return axios.get(`/products/list` , requestData)
+        return axios.get(`/products/list`, {
+            params: requestData
+        })
     }
 
     static async insertProduct(requestData) {
-        return axios.post(`/products/insert` , requestData)
+        return axios.post(`/products/insert`, requestData)
     }
 
     static async deleteProduct(requestData) {
-        return axios.post(`/products/delete` , requestData)
+        return axios.post(`/products/delete`, requestData)
+    }
+
+    static async editProduct(requestData) {
+        return axios.post(`/products/edit`, requestData)
     }
 
     static getProductCategoryList(requestData) {
-        return axios.get(`/productCategory/list` , requestData)
+        return axios.get(`/productCategory/list`, requestData)
     }
 
     static async insertProductCategory(requestData) {
-        return axios.post(`/productCategory/insert` , requestData)
+        return axios.post(`/productCategory/insert`, requestData)
     }
 
     static async deleteProductCategory(requestData) {
-        return axios.post(`/productCategory/delete` , requestData)
+        return axios.post(`/productCategory/delete`, requestData)
     }
 
     static getCompaniesList(requestData) {
-        return axios.get(`/companies/list` , requestData)
+        return axios.get(`/companies/list`, requestData)
     }
 
     static async insertCompany(requestData) {
-        return axios.post(`/companies/insert` , requestData)
+        return axios.post(`/companies/insert`, requestData)
     }
 
     static getUsersList(requestData) {
-        return axios.get(`/users/list` , requestData)
+        return axios.get(`/users/list`, requestData)
     }
 
     static async insertUser(requestData) {
-        return axios.post(`/users/insert` , requestData)
+        return axios.post(`/users/insert`, requestData)
     }
 
     static async insertUser(requestData) {
-        return axios.get(`/products/download` , requestData)
+        return axios.get(`/products/download`, requestData)
     }
 }

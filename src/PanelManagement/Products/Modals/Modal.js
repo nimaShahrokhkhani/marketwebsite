@@ -49,6 +49,7 @@ class ModalForm extends Component {
           <ModalBody>
             <AddEditForm
               addItemToState={this.props.addItemToState}
+              getItems={this.props.getItems}
               updateState={this.props.updateState}
               toggle={this.toggle}
               item={this.props.item} />

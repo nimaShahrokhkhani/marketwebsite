@@ -1,20 +1,25 @@
-import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import React, {Component} from 'react'
+import {Container, Row, Col} from 'reactstrap'
 import ModalForm from './Modals/Modal'
 import DataTable from './Tables/DataTable'
-import { CSVLink } from "react-csv"
+import {CSVLink} from "react-csv"
 import './Products.css';
 import Services from "../../utils/Services";
 import ScreenLoading from "../../components/screenLoading/ScreenLoading";
 
 class ProductsManager extends Component {
-    state = {
-        items: [],
-        isLoading: false,
-        isDone: true
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            isLoading: false,
+            isDone: true
+        }
     }
 
-    getItems(){
+
+    getItems = () => {
+        console.log('hiiiiiiiiiii')
         this.setState({
             isLoading: true,
             isDone: false
@@ -58,19 +63,19 @@ class ProductsManager extends Component {
             // add the rest of the items to the array from the index after the replaced item
             ...this.state.items.slice(itemIndex + 1)
         ]
-        this.setState({ items: newArray })
+        this.setState({items: newArray})
     }
 
     deleteItemFromState = (id) => {
         Services.deleteProduct({serialNumber: id}).then((response) => {
             const updatedItems = this.state.items.filter(item => item.serialNumber !== id)
-            this.setState({ items: updatedItems })
+            this.setState({items: updatedItems})
         }).catch((error) => {
             console.log('error is:', error)
         });
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getItems()
     }
 
@@ -87,7 +92,9 @@ class ProductsManager extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                <DataTable items={this.state.items} updateState={this.updateState} deleteItemFromState={this.deleteItemFromState} />
+                                <DataTable items={this.state.items} updateState={this.updateState}
+                                           deleteItemFromState={this.deleteItemFromState}
+                                           getItems={this.getItems}/>
                             </Col>
                         </Row>
                         <Row>
@@ -100,7 +107,7 @@ class ProductsManager extends Component {
                                     data={this.state.items}>
                                     Download CSV
                                 </CSVLink>
-                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
+                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState} getItems={this.getItems}/>
                             </Col>
                         </Row>
                     </Container>
