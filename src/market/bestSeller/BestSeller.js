@@ -20,9 +20,7 @@ class BestSeller extends React.Component {
             this.setState({
                 items: response.data,
             });
-
         }).catch((error) => {
-
             console.log('error', error)
         });
 
@@ -38,8 +36,8 @@ class BestSeller extends React.Component {
             dots: false,
             infinite: true,
             speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 4,
+            slidesToScroll: 4,
             nextArrow: <SampleNextArrow/>,
             prevArrow: <SamplePrevArrow/>
         };
@@ -53,7 +51,7 @@ class BestSeller extends React.Component {
                                 this.state.items.map((product, i) => {
                                     return (
                                         <div data-index={i} key={i} className='block-item'>
-                                            <img width='100px' height='100px'
+                                            <img
                                                  src={Services.getProductImageDownloadUrl(product.image)}/>
                                             <p className='product-name'>{product.name}</p>
                                             <div className='price-container'>

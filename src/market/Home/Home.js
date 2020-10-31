@@ -8,6 +8,7 @@ import BestSeller from "../bestSeller/BestSeller";
 import Highlight from "../highlight/Highlight";
 import NewCollection from "../newCollection/NewCollection";
 import Blog from "../blog/Blog";
+import ShopByCategory from "../shopByCategory/ShopByCategory";
 
 class Home extends React.Component {
 
@@ -45,8 +46,9 @@ class Home extends React.Component {
                     <div data-src="/images/slide3.jpg"/>
                 </AwesomeSlider>
                 <BestSeller/>
-                <Highlight/>
+                <ShopByCategory/>
                 <NewCollection/>
+                <Highlight/>
                 <Blog/>
             </div>
         );

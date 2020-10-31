@@ -19,7 +19,6 @@ class ProductsManager extends Component {
 
 
     getItems = () => {
-        console.log('hiiiiiiiiiii')
         this.setState({
             isLoading: true,
             isDone: false

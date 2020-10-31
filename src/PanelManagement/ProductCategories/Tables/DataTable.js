@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
-import {Table, Button} from 'reactstrap';
+import {Table, Button, Input} from 'reactstrap';
 import ModalForm from '../Modals/Modal'
+import Services from "../../../utils/Services";
+import './DataTable.css';
 
 class DataTable extends Component {
 
@@ -17,20 +19,44 @@ class DataTable extends Component {
         const items = this.props.items.map(item => {
             return (
                 <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.type}</td>
-                    <td>{item.description}</td>
-                    <td>{item.moreInformation}</td>
                     <td>
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center"
-                        }}>
-                            <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}/>
-                            {' '}
-                            <Button color="danger" onClick={() => this.deleteItem(item.type)}>Del</Button>
+                        <div className='table-cell'>{item.type}</div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>{item.description}</div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>{item.moreInformation}</div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>{item.image &&
+                        <img width='50px' height='50px'
+                             src={Services.getProductCategoryImageDownloadUrl(item.image)}/>}</div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>
+                            <div>
+                                <Input style={{position: 'relative'}}
+                                       type="checkbox" name="isCandidate"
+                                       id="isCandidate"
+                                       defaultChecked={item.isCandidate ? (item.isCandidate === 'true') : false}
+                                       disabled="disabled"/>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }}>
+                                <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}
+                                           getItems={this.props.getItems}/>
+                                {' '}
+                                <Button color="danger" onClick={() => this.deleteItem(item.type)}>Del</Button>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -41,10 +67,11 @@ class DataTable extends Component {
             <Table responsive hover>
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Type</th>
                     <th>Description</th>
                     <th>MoreInformation</th>
+                    <th>Image</th>
+                    <th>Is Candidate</th>
                     <th>Actions</th>
                 </tr>
                 </thead>

@@ -9,6 +9,10 @@ export default class Services {
       return this.baseUrl + `products/download?fileName=` + fileName;
     }
 
+    static getProductCategoryImageDownloadUrl(fileName){
+      return this.baseUrl + `productCategory/download?fileName=` + fileName;
+    }
+
     static signIn(requestData) {
         return axios.post(`/login`, {
             username: requestData.username,
@@ -18,6 +22,12 @@ export default class Services {
 
     static getProductsList(requestData) {
         return axios.get(`/products/list`, {
+            params: requestData
+        })
+    }
+
+    static getProductsNewCollectionList(requestData) {
+        return axios.get(`/products/newCollection`, {
             params: requestData
         })
     }
@@ -40,6 +50,10 @@ export default class Services {
 
     static async insertProductCategory(requestData) {
         return axios.post(`/productCategory/insert`, requestData)
+    }
+
+    static async editProductCategory(requestData) {
+        return axios.post(`/productCategory/edit`, requestData)
     }
 
     static async deleteProductCategory(requestData) {

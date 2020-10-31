@@ -75,7 +75,6 @@ class AddEditForm extends React.Component {
         data.append('properties', this.state.properties);
         data.append('isBestSeller', this.state.isBestSeller);
         Services.insertProduct(data).then((response) => {
-            console.log('adddddddd',this.props.getItems)
             this.props.getItems && this.props.getItems();
             this.props.toggle();
         }).catch((error) => {
