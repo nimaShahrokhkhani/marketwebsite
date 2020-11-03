@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import React, {Component} from "react";
+import {Router, Switch, Route} from "react-router-dom";
 
 import PanelManagement from "./PanelManagement/PanelManagement";
 import Login from "./Login/Login";
@@ -11,9 +11,9 @@ export default class Routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" component={Market} />
-                    <Route path="/login" exact component={Login} />
-                        <Route path="/PanelManagement" component={PanelManagement} />
+                    <Route path="/Market" component={Market}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/PanelManagement" component={PanelManagement}/>
                 </Switch>
             </Router>
         )

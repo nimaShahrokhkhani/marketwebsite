@@ -23,7 +23,7 @@ class Highlight extends React.Component {
 
     onReadMoreClick = () => {
         this.props.history.push({
-            pathname: '/Highlight',
+            pathname: '/Market/Highlight',
             state: {highlight: this.state.highlight}
         });
     };
