@@ -13,6 +13,14 @@ export default class Services {
       return this.baseUrl + `productCategory/download?fileName=` + fileName;
     }
 
+    static getHighlightImageDownloadUrl(fileName){
+      return this.baseUrl + `highlight/download?fileName=` + fileName;
+    }
+
+    static uploadHighlightImage(requestData){
+        return axios.post(`/highlight/uploadImage`, requestData)
+    }
+
     static signIn(requestData) {
         return axios.post(`/login`, {
             username: requestData.username,
@@ -42,6 +50,24 @@ export default class Services {
 
     static async editProduct(requestData) {
         return axios.post(`/products/edit`, requestData)
+    }
+
+    static getHighlightList(requestData) {
+        return axios.get(`/highlight/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertHighlight(requestData) {
+        return axios.post(`/highlight/insert`, requestData)
+    }
+
+    static async deleteHighlight(requestData) {
+        return axios.post(`/highlight/delete`, requestData)
+    }
+
+    static async editHighlight(requestData) {
+        return axios.post(`/highlight/edit`, requestData)
     }
 
     static getProductCategoryList(requestData) {

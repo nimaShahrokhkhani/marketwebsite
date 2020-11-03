@@ -13,4 +13,29 @@
 
 .highlight-pic3 {
     margin-top: -10px;
+    background-color: #f2f4f7;
+    padding: 20px;
+}
+
+.readMore-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.read-more {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: grab;
+}
+
+.highlight-line {
+    height: 2px;
+    width: 70px;
+    background-color: black;
+    margin-bottom: 10px;
 }

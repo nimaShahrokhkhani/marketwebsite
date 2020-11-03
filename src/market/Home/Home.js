@@ -23,7 +23,7 @@ class Home extends React.Component {
         let newLang = event.target.value;
         this.setState({value: newLang})
         this.props.i18n.changeLanguage(newLang)
-    }
+    };
 
     renderRadioButtons = () => {
         return (
@@ -34,7 +34,7 @@ class Home extends React.Component {
                        checked={this.state.value === 'fa'}
                        type="radio" onChange={(e) => this.onLanguageHandle(e)}/>farsi</div>
         )
-    }
+    };
 
     render() {
         const {t} = this.props
@@ -48,7 +48,7 @@ class Home extends React.Component {
                 <BestSeller/>
                 <ShopByCategory/>
                 <NewCollection/>
-                <Highlight/>
+                <Highlight history={this.props.history}/>
                 <Blog/>
             </div>
         );

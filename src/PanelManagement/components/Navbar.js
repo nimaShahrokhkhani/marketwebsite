@@ -14,6 +14,7 @@ const Navigation = (props) => {
                     <Nav.Link href="/PanelManagement/Companies" active={pathname.startsWith('/PanelManagement/Companies')}>Companies</Nav.Link>
                     <Nav.Link href="/PanelManagement/ProductCategories" active={pathname.startsWith('/PanelManagement/ProductCategories')}>Product Categories</Nav.Link>
                     <Nav.Link href="/PanelManagement/Products" active={pathname.startsWith('/PanelManagement/Products')}>Products</Nav.Link>
+                    <Nav.Link href="/PanelManagement/Highlights" active={pathname.startsWith('/PanelManagement/Highlights')}>Highlights</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
