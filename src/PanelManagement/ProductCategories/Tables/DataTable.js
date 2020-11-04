@@ -12,7 +12,7 @@ class DataTable extends Component {
             this.props.deleteItemFromState(id)
         }
 
-    }
+    };
 
     render() {
 
@@ -21,6 +21,9 @@ class DataTable extends Component {
                 <tr key={item.id}>
                     <td>
                         <div className='table-cell'>{item.type}</div>
+                    </td>
+                    <td>
+                        <div className='table-cell'>{item.subTypes}</div>
                     </td>
                     <td>
                         <div className='table-cell'>{item.description}</div>

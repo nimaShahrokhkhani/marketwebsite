@@ -17,6 +17,7 @@ class AddEditForm extends React.Component {
             price: '',
             discount: '',
             type: '',
+            subType: '',
             dateModify: '',
             comments: [],
             brand: '',
@@ -65,6 +66,7 @@ class AddEditForm extends React.Component {
         data.append('price', this.state.price);
         data.append('discount', this.state.discount);
         data.append('type', this.state.type);
+        data.append('subType', this.state.subType);
         data.append('dateModify', this.state.dateModify);
         data.append('comments', this.state.comments);
         data.append('brand', this.state.brand);
@@ -93,6 +95,7 @@ class AddEditForm extends React.Component {
         data.append('price', this.state.price);
         data.append('discount', this.state.discount);
         data.append('type', this.state.type);
+        data.append('subType', this.state.subType);
         data.append('dateModify', this.state.dateModify);
         data.append('comments', this.state.comments);
         data.append('brand', this.state.brand);
@@ -129,6 +132,7 @@ class AddEditForm extends React.Component {
                 price,
                 discount,
                 type,
+                subType,
                 dateModify,
                 brand,
                 colors,
@@ -146,6 +150,7 @@ class AddEditForm extends React.Component {
                 price: price ? price : 0,
                 discount: discount ? discount : 0,
                 type: type ? type : '',
+                subType: subType ? subType : '',
                 dateModify: dateModify ? dateModify : '',
                 brand: brand ? brand : '',
                 colors: colors ? colors.split(",") : [],
@@ -155,6 +160,16 @@ class AddEditForm extends React.Component {
                 isBestSeller: isBestSeller ? (isBestSeller === 'true') : false
             })
         }
+    }
+
+    getSubTypesFromProductCategory(type) {
+        if (this.state.productCategories && this.state.productCategories.length > 0) {
+            let productCategory = this.state.productCategories.filter(product => product.type === this.state.type);
+            if (productCategory && productCategory.length > 0 && productCategory[0].subTypes) {
+                return productCategory[0].subTypes.split(',')
+            }
+        }
+        return [];
     }
 
     render() {
@@ -204,6 +219,17 @@ class AddEditForm extends React.Component {
                         })}
                     </select>
                 </FormGroup>
+                {this.getSubTypesFromProductCategory(this.state.type).length > 0 &&
+                <FormGroup>
+                    <Label for="subType">Sub Type</Label>
+                    <select name="subType" id="subType" onChange={this.onChange} value={this.state.subType}>
+                        <option value=''/>
+                        {this.getSubTypesFromProductCategory(this.state.type).map(function (item) {
+                            return <option value={item}> {item} </option>
+                        })}
+                    </select>
+                </FormGroup>
+                }
                 <FormGroup>
                     <Label for="dateModify">DateModify</Label>
                     <Input type="date" name="dateModify" id="dateModify" onChange={this.onChange}

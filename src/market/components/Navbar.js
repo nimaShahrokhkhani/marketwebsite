@@ -29,7 +29,7 @@ class Navigation extends React.Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link fill={true} href="/Market" active={pathname.startsWith('/')} >{t('navBar.home')}</Nav.Link>
-                        <Nav.Link fill={true} href="/">{t('navBar.shop')}</Nav.Link>
+                        <Nav.Link fill={true} href="/Market/Products" active={pathname.startsWith('/Market/Products')}>{t('navBar.shop')}</Nav.Link>
                         <Nav.Link fill={true} href="/">{t('navBar.events')}</Nav.Link>
                         <Nav.Link fill={true} href="/">{t('navBar.articles')}</Nav.Link>
                         <Nav.Link fill={true} href="/">{t('navBar.proCard')}</Nav.Link>

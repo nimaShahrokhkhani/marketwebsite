@@ -28,6 +28,7 @@ class DataTable extends Component {
                     <td><div className='table-cell'>{item.price}</div></td>
                     <td><div className='table-cell'>{item.discount}</div></td>
                     <td><div className='table-cell'>{item.type}</div></td>
+                    <td><div className='table-cell'>{item.subType}</div></td>
                     <td><div className='table-cell'>{item.dateModify}</div></td>
                     <td><div className='table-cell'>{item.brand}</div></td>
                     <td><div className='table-cell'>
@@ -77,6 +78,7 @@ class DataTable extends Component {
                     <th>price</th>
                     <th>discount</th>
                     <th>type</th>
+                    <th>subType</th>
                     <th>dateModify</th>
                     <th>brand</th>
                     <th>colors</th>
