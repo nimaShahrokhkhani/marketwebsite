@@ -46,7 +46,6 @@ class AddEditForm extends React.Component {
       description: this.state.description
     }];
     if(Array.isArray(item)) {
-      // console.log(item[0])
       this.props.updateState(item[0])
       this.props.toggle()
     } else {

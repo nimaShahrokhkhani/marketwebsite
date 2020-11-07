@@ -1656,6 +1656,7 @@ hr.solid {
     text-decoration: none;
     text-overflow: ellipsis;
     overflow: hidden;
+    cursor: grab;
 }
 .user-info-image{
     background-image: url("./image/userInfoBg.png");
@@ -1689,4 +1690,13 @@ hr.solid {
     font-stretch: normal;
     font-size: 14px;
     line-height: 19px;
+}
+.products-count {
+    font-family: IRANSansMobileFaNum-Bold;
+    color: red;
+    position: absolute;
+    top: 30px;
+    left: 72px;
+    z-index: 100;
+    font-size: 11px;
 }

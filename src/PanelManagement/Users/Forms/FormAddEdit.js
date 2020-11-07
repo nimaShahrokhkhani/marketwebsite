@@ -55,7 +55,6 @@ class AddEditForm extends React.Component {
       identityNumber: this.state.identityNumber
     }];
     if(Array.isArray(item)) {
-      // console.log(item[0])
       this.props.updateState(item[0])
       this.props.toggle()
     } else {
