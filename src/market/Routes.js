@@ -5,6 +5,7 @@ import HighlightScreen from "./highlightScreen/HighlightScreen";
 import Products from "./products/Products";
 import ProductDetail from "./productDetail/ProductDetail";
 import ShoppingCart from "./shoppingCart/ShoppingCart";
+import ContactUs from "./contactUs/ContactUs.js";
 
 import history from '../history';
 
@@ -18,6 +19,7 @@ export default class Routes extends Component {
                     <Route path="/Market/Products" component={Products} />
                     <Route path="/Market/ProductDetail" component={ProductDetail} />
                     <Route path="/Market/ShoppingCart" component={ShoppingCart} />
+                    <Route path="/Market/ContactUs" component={ContactUs} />
                 </Switch>
             </Router>
         )
