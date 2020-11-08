@@ -43,7 +43,9 @@ class Home extends React.Component {
                 <AwesomeSlider className='awesomeSlider'>
                     <div data-src="/images/slide1.jpg"/>
                     <div data-src="/images/slide2.jpg"/>
-                    <div data-src="/images/slide3.jpg"/>
+                    <div data-src="/images/slide6.jpg"/>
+                    <div data-src="/images/slide4.jpg"/>
+                    <div data-src="/images/slide5.jpg"/>
                 </AwesomeSlider>
                 <BestSeller/>
                 <ShopByCategory/>
