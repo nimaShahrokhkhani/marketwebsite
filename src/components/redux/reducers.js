@@ -11,8 +11,8 @@ function dataReducer(state = {user: {}, products: []}, action) {
     switch (action.type) {
         case SET_STATE:
             return {
-                user: action.state.user ? action.state.user : state.user,
-                products: action.state.products ? action.state.products : state.products
+                user: (action.state && action.state.user) ? action.state.user : (state.user ? state.user : {}),
+                products: (action.state && action.state.products) ? action.state.products : (state.products ? state.products : [])
             };
         case SET_USER:
             result = {
