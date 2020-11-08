@@ -10,7 +10,7 @@ class Blog extends React.Component {
                     <img src={require("../image/blog.jpg")}/>
                 </div>
                 <div className="blog-pic2">
-                    <img src={require("../image/blog1.jpg")}/>
+                    <img src={require("../image/theblog.png")}/>
                 </div>
             </div>
         );
