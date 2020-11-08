@@ -71,12 +71,12 @@ class ShoppingCart extends React.Component {
                                 </div>
 
                                 <div className="quantity">
-                                    <button onClick={() => this.onPlusProductClick(product)} className="plus-btn"
+                                    <button onClick={() => this.onPlusProductClick(product)} className="default-btn plus-btn"
                                             type="button" name="button">
                                         <img src={require("../image/plus.svg")} alt=""/>
                                     </button>
                                     <input className='count' type="text" name="name" value={product.count}/>
-                                    <button onClick={() => this.onMinusProductClick(product)} className="minus-btn"
+                                    <button onClick={() => this.onMinusProductClick(product)} className="default-btn minus-btn"
                                             type="button" name="button">
                                         <img src={require("../image/minus.svg")} alt=""/>
                                     </button>

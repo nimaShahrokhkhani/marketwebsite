@@ -17,6 +17,10 @@ export default class Services {
       return this.baseUrl + `highlight/download?fileName=` + fileName;
     }
 
+    static getEventImageDownloadUrl(fileName){
+      return this.baseUrl + `events/download?fileName=` + fileName;
+    }
+
     static uploadHighlightImage(requestData){
         return axios.post(`/highlight/uploadImage`, requestData)
     }
@@ -56,6 +60,24 @@ export default class Services {
 
     static async editProduct(requestData) {
         return axios.post(`/products/edit`, requestData)
+    }
+
+    static getEventList(requestData) {
+        return axios.get(`/events/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertEvent(requestData) {
+        return axios.post(`/events/insert`, requestData)
+    }
+
+    static async deleteEvent(requestData) {
+        return axios.post(`/events/delete`, requestData)
+    }
+
+    static async editEvent(requestData) {
+        return axios.post(`/events/edit`, requestData)
     }
 
     static getHighlightList(requestData) {

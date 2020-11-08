@@ -7,6 +7,7 @@ import {withTranslation, Trans} from 'react-i18next'
 import BestSeller from "../bestSeller/BestSeller";
 import Highlight from "../highlight/Highlight";
 import NewCollection from "../newCollection/NewCollection";
+import Events from "../events/Events";
 import Blog from "../blog/Blog";
 import ShopByCategory from "../shopByCategory/ShopByCategory";
 
@@ -51,6 +52,7 @@ class Home extends React.Component {
                 <ShopByCategory/>
                 <NewCollection/>
                 <Highlight history={this.props.history}/>
+                <Events/>
                 <Blog/>
             </div>
         );

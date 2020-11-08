@@ -1,0 +1,19 @@
+.event-row {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+
+.event-column {
+    display: flex;
+    flex-direction: row;
+}
+
+.event-column p {
+    font-family: IRANSansMobileFaNum-Light;
+    margin: 0px 5px;
+}
