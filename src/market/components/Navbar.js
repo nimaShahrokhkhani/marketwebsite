@@ -34,7 +34,7 @@ class Navigation extends React.Component {
                         <Nav.Link fill={true} href="/">{t('navBar.articles')}</Nav.Link>
                         <Nav.Link fill={true} href="/">{t('navBar.proCard')}</Nav.Link>
                         <Nav.Link fill={true} href="/">{t('navBar.ourStory')}</Nav.Link>
-                        <Nav.Link fill={true} href="/">{t('navBar.contact')}</Nav.Link>
+                        <Nav.Link fill={true} href="/Market/ContactUs" active={pathname.startsWith('/Market/ContactUs')}>{t('navBar.contact')}</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -1,0 +1,169 @@
+@font-face{
+    font-family: IRANSans-Light;
+    src:url("../fonts/IRANSans-Light.eot")format('eot'),
+    url("../fonts/IRANSans-Light.woff") format('woff'),
+    url("../fonts/IRANSans-Light.ttf") format('truetype');
+}
+@font-face{
+    font-family: IRANSansMobile-Bold;
+    src:url("../fonts/IRANSansMobile-Bold.eot") format('eot'),
+    url("../fonts/IRANSansMobile-Bold.woff") format('woff'),
+    url("../fonts/IRANSansMobile-Bold.ttf") format('truetype');
+}
+
+.body-us{
+    margin-top:115px;
+    width: 100%;
+    height: 100%;
+    background-color: #14213D;
+    position: relative;
+    direction: rtl;
+
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-20px);
+}
+.contact img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact p{
+    text-align: center;
+    color: white;
+    font-family: IRANSans-Light;
+    font-size: 15px;
+
+}
+.contact h1{
+    text-align:center;
+    color: white;
+    font-family: IRANSansMobile-Bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+.h3-us h3{
+    text-align:center;
+    color: white;
+    margin-right: 830px;
+}
+
+
+.container-us {
+    border-radius: 1px;
+    background-color: #13213c;
+    position: relative;
+    margin-right: 900px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateY(-5px);
+}
+.contact1 h2{
+    margin-right: 30px;
+}
+#fname{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+#lname{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+#mobile{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+#email{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+#city{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+#subject{
+    background-color: #dfdbda;
+    color: black;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    width:140%;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-sizing: border-box;
+    margin-top: 2px;
+}
+.contact1{
+    float: right;
+transform: translateY(-190px);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-right: 20px;
+    line-height: 25px;
+    font-size: 20px;
+    font-family:IRANSansMobileFaNum-Bold;
+}
+.contact1 h2{
+    color: white;
+}
+.contactUs-image {
+    transform: translateY(4px)
+}
+.container-us h3{
+    color: white;
+    margin-left: 300px;
+
+}
+#submit{
+    margin-left: 300px;
+}

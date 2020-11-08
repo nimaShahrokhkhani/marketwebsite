@@ -107,7 +107,7 @@ class Market extends React.Component {
                             <div style={{display: 'flex', height: 30}}>
                                 <a style={{alignItems: 'flex-end', display: 'flex'}} href="#"
                                    onClick={() => this.setState({changeLanguageMenuActive: !this.state.changeLanguageMenuActive})}><img
-                                    style={{width: 30, height: 30, marginLeft: 10}} src={require("./image/lang.png")}
+                                    style={{width: 30, height: 30, marginLeft: 25}} src={require("./image/world-lan1.png")}
                                     alt="World"/></a>
                                 <NavDropdown disabled={this.state.changeLanguageMenuActive} title=""
                                              id="collasible-nav-dropdown">
@@ -308,7 +308,6 @@ class Market extends React.Component {
                     onSuccessLogin={this.onSuccessLogin}
                     onErrorLogin={this.onErrorLogin}
                 />
-                {this.renderFooter()}
             </div>
         );
     }
