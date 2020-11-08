@@ -308,6 +308,7 @@ class Market extends React.Component {
                     onSuccessLogin={this.onSuccessLogin}
                     onErrorLogin={this.onErrorLogin}
                 />
+                {this.renderFooter()}
             </div>
         );
     }
