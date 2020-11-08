@@ -22,7 +22,7 @@ class ContactUs extends React.Component {
                         <p>
                             کاربر گرامی در صورت وجود هر گونه سوالی یا ابهامی فرم زیر را تکمیل نموده و یا از طریق شماره
                             های
-                            زیر با ما تماس بگیرید
+                            زیر با ما تماس بگیرید.
                         </p>
                     </div>
 
@@ -30,7 +30,7 @@ class ContactUs extends React.Component {
                         <h3>فرم ارسال پیام</h3>
                         <form action="/action_page.php">
                             <label htmlFor="fname"></label>
-                            <input type="text" id="fname" name="firstname" placeholder="نام.."/><br/>
+                            <input type="text" id="fname" name="firstname" placeholder="نام کاربری .."/><br/>
 
                             <label htmlFor="lname"></label>
                             <input type="text" id="email" name="Email" placeholder="ایمیل.."/>
