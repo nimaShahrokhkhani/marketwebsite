@@ -1,6 +1,7 @@
 import React from 'react';
 import './ContactUs.css';
 import {withTranslation, Trans} from 'react-i18next'
+import {Button} from 'reactstrap';
 
 
 class ContactUs extends React.Component {
@@ -17,7 +18,7 @@ class ContactUs extends React.Component {
             <div className="body-us">
 
                     <div className="contact">
-                        <img  width="400px" height="300px" src={require('../image/map2.jpg')}/>
+                        <img  width="400px" height="400px" src={require('../image/map2.jpg')}/>
                         <h1>تماس با ما</h1>
                         <p>
                             کاربر گرامی در صورت وجود هر گونه سوالی یا ابهامی فرم زیر را تکمیل نموده و یا از طریق شماره
@@ -47,7 +48,7 @@ class ContactUs extends React.Component {
                             <textarea id="subject" name="subject" placeholder="پیام.."
                                       style={{height: 75}}></textarea><br/>
 
-                            <input style={{marginLeft:330}} type="submit" id="Submit" value="ارسال پیغام" />
+                            <Button color="success" style={{marginLeft:330, width: 150}}> ارسال پیغام</Button>
                         </form>
                     </div>
                     <div className="contact1" color="white">

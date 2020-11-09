@@ -58,10 +58,9 @@ class Events extends React.Component {
                                 JSON.parse(event.events).map((event, i) => {
                                     return (
                                         <div data-index={i} key={i} className='event-item-slider'>
-                                            <p className='product-name'>{event.title}</p>
-                                            <p className='product-name'>{event.description}</p>
-                                            <p className='product-name'>{event.date}</p>
-                                            <p className='product-name'>{event.location}</p>
+                                            <p className='event-title'>{event.title}</p>
+                                            <p className='event-description'>{event.description}</p>
+                                            <p className='event-location'>{event.location}</p>
                                         </div>
                                     )
                                 })

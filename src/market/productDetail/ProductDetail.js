@@ -2,14 +2,18 @@ import React from 'react';
 import {withTranslation} from 'react-i18next'
 import './ProductDetail.css';
 import Services from "../../utils/Services";
+import ReactStars from "react-rating-stars-component";
 
 class ProductDetail extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.state = {}
     }
+
+    ratingChanged = (newRating) => {
+        console.log(newRating);
+    };
 
     render() {
         const {t} = this.props;
@@ -18,6 +22,19 @@ class ProductDetail extends React.Component {
             <div className='productDetail-container'>
                 <div className="logo">
                     <img src={require("../image/logo-simple.jpg")}/>
+
+                </div>
+                <div style={{
+                    position: 'absolute',
+                    right: 200,
+                    top: 100
+                }}>
+                    <ReactStars
+                        count={5}
+                        onChange={this.ratingChanged}
+                        size={24}
+                        activeColor="#ffd700"
+                    />
                 </div>
                 <div className="T">
                     <ul>
@@ -34,6 +51,7 @@ class ProductDetail extends React.Component {
                 <div className="productDetail-image">
 
                     <img src={Services.getProductImageDownloadUrl(product.image)}/>
+
                 </div>
                 <div className="text1">
                     <p> {product.name}</p>

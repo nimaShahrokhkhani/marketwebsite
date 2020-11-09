@@ -66,3 +66,23 @@
 .event-slider {
     height: 400px;
 }
+
+.event-title {
+    font-family: IRANSansMobileFaNum-Bold;
+    margin-bottom: 20px;
+}
+
+.event-location {
+    font-family: IRANSansMobileFaNum-Light;
+
+}
+
+.event-date {
+    font-family: IRANSansMobileFaNum-Light;
+
+}
+
+.event-description {
+    font-family: IRANSansMobileFaNum-Light;
+    margin: 10px 0px;
+}
