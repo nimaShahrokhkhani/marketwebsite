@@ -91,7 +91,7 @@ class AddEditForm extends React.Component {
         </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
-          <Input type="email" name="email" id="email" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}  placeholder="image, logo" />
+          <Input type="email" name="email" id="emaill" onChange={this.onChange} value={this.state.email === null ? '' : this.state.email}/>
         </FormGroup>
         <FormGroup>
           <Label for="phoneNumber">PhoneNumber</Label>

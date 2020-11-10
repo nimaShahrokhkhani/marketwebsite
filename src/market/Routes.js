@@ -8,12 +8,14 @@ import ShoppingCart from "./shoppingCart/ShoppingCart";
 import ContactUs from "./contactUs/ContactUs.js";
 
 import history from '../history';
+import ScrollToTop from "./ScrollToTop";
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
-                <Switch>
+                <ScrollToTop>
+                    <Switch>
                     <Route path="/Market" exact component={Home} />
                     <Route path="/Market/Highlight" component={HighlightScreen} />
                     <Route path="/Market/Products" component={Products} />
@@ -21,6 +23,7 @@ export default class Routes extends Component {
                     <Route path="/Market/ShoppingCart" component={ShoppingCart} />
                     <Route path="/Market/ContactUs" component={ContactUs} />
                 </Switch>
+                </ScrollToTop>
             </Router>
         )
     }

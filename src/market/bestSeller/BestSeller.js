@@ -30,6 +30,13 @@ class BestSeller extends React.Component {
         this.getItems()
     }
 
+    onProductClick = (product) => {
+        this.props.history.push({
+            pathname: '/Market/ProductDetail',
+            state: {product: product}
+        });
+    };
+
     render() {
         const {t} = this.props;
         const settings = {
@@ -50,7 +57,7 @@ class BestSeller extends React.Component {
                             {
                                 this.state.items.map((product, i) => {
                                     return (
-                                        <div data-index={i} key={i} className='block-item'>
+                                        <div data-index={i} key={i} className='block-item' onClick={() => this.onProductClick(product)}>
                                             <img
                                                  src={Services.getProductImageDownloadUrl(product.image)}/>
                                             <p className='product-name'>{product.name}</p>

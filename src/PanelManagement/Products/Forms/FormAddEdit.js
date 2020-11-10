@@ -28,7 +28,8 @@ class AddEditForm extends React.Component {
             properties: '',
             isBestSeller: false,
             productColor: '#fff',
-            productCategories: []
+            productCategories: [],
+            brands: []
         };
     }
 
@@ -117,6 +118,14 @@ class AddEditForm extends React.Component {
         Services.getProductCategoryList().then((response) => {
             this.setState({
                 productCategories: response.data
+            });
+        }).catch((error) => {
+            console.log('error', error)
+        });
+
+        Services.getBrandList().then((response) => {
+            this.setState({
+                brands: response.data
             });
         }).catch((error) => {
             console.log('error', error)
@@ -237,8 +246,12 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="brand">Brand</Label>
-                    <Input type="text" name="brand" id="brand" onChange={this.onChange}
-                           value={this.state.brand}/>
+                    <select name="brand" id="brand" onChange={this.onChange} value={this.state.brand}>
+                        <option value=''/>
+                        {this.state.brands && this.state.brands.map(function (item) {
+                            return <option value={item.name}> {item.name} </option>
+                        })}
+                    </select>
                 </FormGroup>
                 <FormGroup>
                     <Label for="colors">Colors</Label>

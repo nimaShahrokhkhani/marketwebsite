@@ -1,0 +1,15 @@
+.subType-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.subType-td, .subType-th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.subType-row:nth-child(even) {
+    background-color: #dddddd;
+}

@@ -48,7 +48,7 @@ class Home extends React.Component {
                     <div data-src="/images/slide4.jpg"/>
                     <div data-src="/images/slide5.jpg"/>
                 </AwesomeSlider>
-                <BestSeller/>
+                <BestSeller history={this.props.history}/>
                 <ShopByCategory/>
                 <NewCollection/>
                 <Highlight history={this.props.history}/>

@@ -5,6 +5,10 @@ export default class Services {
 
     static baseUrl = 'http://localhost:3500/';
 
+    static getBrandImageDownloadUrl(fileName){
+      return this.baseUrl + `brands/download?fileName=` + fileName;
+    }
+
     static getProductImageDownloadUrl(fileName){
       return this.baseUrl + `products/download?fileName=` + fileName;
     }
@@ -130,7 +134,21 @@ export default class Services {
         return axios.post(`/users/insert`, requestData)
     }
 
-    static async insertUser(requestData) {
-        return axios.get(`/products/download`, requestData)
+    static getBrandList(requestData) {
+        return axios.get(`/brands/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertBrand(requestData) {
+        return axios.post(`/brands/insert`, requestData)
+    }
+
+    static async editBrand(requestData) {
+        return axios.post(`/brands/edit`, requestData)
+    }
+
+    static async deleteBrand(requestData) {
+        return axios.post(`/brands/delete`, requestData)
     }
 }
