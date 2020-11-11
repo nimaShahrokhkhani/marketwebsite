@@ -13,33 +13,38 @@ import Collapsible from 'react-collapsible';
 import Slider from '@material-ui/core/Slider';
 import connect from "react-redux/es/connect/connect";
 import {addProduct, setState} from "../../components/redux/actions";
+import Pagination from "react-js-pagination";
 
 class Products extends React.Component {
 
     constructor(props) {
         super(props);
         let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
+        this.totalItemsShowOnScreen = 3;
         this.state = {
             isLoading: false,
             isDone: false,
             productList: [],
+            totalProductsCount: 0,
             brandList: [],
             fromRangeValue: 0,
             toRangeValue: 1000000,
             search: '',
             brand: '',
-            productCategoryList: []
+            productCategoryList: [],
+            activePage: 0
         }
     }
 
-    getItems = () => {
+    getItems = (offset, length) => {
         this.setState({
             isLoading: true,
             isDone: false
         }, () => {
-            Services.getProductsList().then((response) => {
+            Services.getProductsList({offset: offset, length: length}).then((response) => {
                 this.setState({
-                    productList: response.data,
+                    productList: response.data.data,
+                    totalProductsCount: response.data.totalCount,
                     isLoading: false
                 });
                 setTimeout(() => {
@@ -78,7 +83,7 @@ class Products extends React.Component {
                 setTimeout(() => {
                     this.setState({isDone: true});
                 }, 1000);
-            }) : this.getItems();
+            }) : this.getItems(0, this.totalItemsShowOnScreen);
         Services.getBrandList().then(response => {
             this.setState({
                 brandList: response.data
@@ -145,6 +150,14 @@ class Products extends React.Component {
                 });
             })
         }
+    };
+
+    handlePageChange = (pageNumber) => {
+        this.setState({
+            activePage: pageNumber
+        }, () => {
+            this.getItems((pageNumber - 1) * this.totalItemsShowOnScreen, this.totalItemsShowOnScreen);
+        });
     };
 
     onBrandClick = (brandName) => {
@@ -260,12 +273,16 @@ class Products extends React.Component {
                                         </Container>
 
 
-                                        <ul class="pagination">
-                                            <li class="active"><a href="">1</a></li>
-                                            <li><a href="">2</a></li>
-                                            <li><a href="">3</a></li>
-                                            <li><a href="">&raquo;</a></li>
-                                        </ul>
+                                        <div class="products-pagination">
+                                            <Pagination
+                                                hideDisabled
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={3}
+                                                totalItemsCount={this.state.totalProductsCount}
+                                                pageRangeDisplayed={5}
+                                                onChange={this.handlePageChange}
+                                                totalRecords={this.state.totalProductsCount}/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -279,7 +296,8 @@ class Products extends React.Component {
                                                         <Collapsible trigger={
                                                             <div className='category-parent-row'>
                                                                 <p>{productCategory.type}</p>
-                                                                <img width='50px' height='50px' src={Services.getProductCategoryImageDownloadUrl(productCategory.image)}/>
+                                                                <img width='50px' height='50px'
+                                                                     src={Services.getProductCategoryImageDownloadUrl(productCategory.image)}/>
                                                             </div>
                                                         } className='product-category-parent'>
                                                             {

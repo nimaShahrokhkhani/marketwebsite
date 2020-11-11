@@ -83,3 +83,21 @@
     justify-content: center;
     height: 270px;
 }
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.products-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
