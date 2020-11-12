@@ -134,6 +134,14 @@ export default class Services {
         return axios.post(`/users/insert`, requestData)
     }
 
+    static async editUser(requestData) {
+        return axios.post(`/users/edit`, requestData)
+    }
+
+    static async deleteUser(requestData) {
+        return axios.post(`/users/delete`, requestData)
+    }
+
     static getBrandList(requestData) {
         return axios.get(`/brands/list`, {
             params: requestData
