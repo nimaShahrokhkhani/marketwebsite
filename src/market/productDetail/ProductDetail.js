@@ -18,12 +18,33 @@ class ProductDetail extends React.Component {
             color: '#ffffff',
             comment: '',
             product: this.props.location.state.product,
-            comments: JSON.parse(this.props.location.state.product.comments)
+            comments: JSON.parse(this.props.location.state.product.comments),
+            editRating: true,
+            rateValue: this.props.location.state.product.rate
+                ? (JSON.parse(this.props.location.state.product.rate).rateValue / JSON.parse(this.props.location.state.product.rate).rateCount)
+                : 0
         }
+        console.log('product:', JSON.parse(this.props.location.state.product.rate))
+        console.log('product rate:', this.props.location.state.product.rate
+            ? (parseInt(JSON.parse(this.props.location.state.product.rate).rateValue) / parseInt(JSON.parse(this.props.location.state.product.rate).rateCount))
+            : 0)
     }
 
     ratingChanged = (newRating) => {
         console.log(newRating);
+        let newRateValue = this.state.product.rate ? JSON.parse(this.state.product.rate).rateValue + newRating : newRating;
+        let newRateCount = this.state.product.rate ? JSON.parse(this.state.product.rate).rateCount + 1 : 1;
+        const data = new FormData();
+        data.append('serialNumber', this.state.product.serialNumber);
+        data.append('rate', JSON.stringify({rateValue: newRateValue, rateCount: newRateCount}));
+        Services.editProduct(data).then((response) => {
+            this.setState({
+                editRating: false,
+                rateValue: newRateValue / newRateCount
+            })
+        }).catch((error) => {
+            console.log(error)
+        });
     };
 
     onChangeColor = (color, event) => {
@@ -57,7 +78,7 @@ class ProductDetail extends React.Component {
     render() {
         const {t} = this.props;
         const headers = ['ویژگی', 'مشخصات محصول', 'بررسی محصول', 'نظرات کاربران'];
-        let {product, comments} = this.state;
+        let {product, comments, editRating, rateValue} = this.state;
         return (
             <div className='productDetail-container'>
                 <div className="logo">
@@ -83,10 +104,12 @@ class ProductDetail extends React.Component {
                 <div className="text1">
                     <div className='star-container'>
                         <ReactStars
+                            value={rateValue}
                             count={5}
                             onChange={this.ratingChanged}
                             size={24}
                             activeColor="#ffd700"
+                            edit={editRating}
                         />
                     </div>
 

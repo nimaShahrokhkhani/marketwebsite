@@ -30,6 +30,7 @@
     border: #b0b0b0;
     border-style: double;
     margin: 10px;
+    overflow: hidden;
 }
 
 .item-container :hover {

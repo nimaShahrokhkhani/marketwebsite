@@ -6,7 +6,7 @@ import Companies from "./Companies/CompaniesScreen";
 import history from '../history';
 import ProductCategoriesManager from "./ProductCategories/ProductCategoriesManager";
 import ProductsManager from "./Products/ProductsManager";
-import HighlightsManager from "./Highlights/HighlightsManager";
+import HighlightsManager from "./Highlights/HighlightManager";
 import EventsManager from "./Events/EventsManager";
 import BrandManager from "./Brand/BrandManager";
 import BlogManager from "./Blogs/BlogManager";

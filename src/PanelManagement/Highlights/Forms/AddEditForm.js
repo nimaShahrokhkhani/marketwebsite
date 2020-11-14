@@ -1,17 +1,18 @@
 import React, {Component, useMemo, useCallback} from 'react';
-import {convertToRaw, EditorState} from 'draft-js';
+import {convertToRaw, EditorState, convertFromHTML, ContentState} from 'draft-js';
 import {Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import './HighlightManager.css';
-import Services from "../../utils/Services";
+import './AddEditForm.css';
+import Services from "../../../utils/Services";
 import draftToHtml from 'draftjs-to-html';
 import renderHTML from 'react-render-html';
 import Slider from "react-slick/lib";
 import Dropzone from 'react-dropzone'
 import {useDropzone} from 'react-dropzone';
-import {Button} from "reactstrap";
+import {Button, Input} from "reactstrap";
+import htmlToDraft from 'html-to-draftjs';
 
-class HighlightsManager extends Component {
+class AddEditForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +22,9 @@ class HighlightsManager extends Component {
             summeryMarkup: '',
             products: [],
             productsUse: [],
-            previewImageSrc: undefined
+            previewImageSrc: undefined,
+            title: '',
+            id: ''
         };
         this.markup = '';
     }
@@ -36,6 +39,7 @@ class HighlightsManager extends Component {
     };
 
     onSummeryEditorStateChange = (editorState) => {
+        console.log('summeryyyyyyy:', editorState)
         this.setState({
             summeryEditorState: editorState,
             summeryMarkup: draftToHtml(
@@ -66,7 +70,37 @@ class HighlightsManager extends Component {
     }
 
     componentDidMount() {
-        this.getItems()
+        this.getItems();
+        if (this.props.item) {
+            console.log('itemmmmmm:', this.props.item)
+            const summeryBlocksFromHtml = htmlToDraft(this.props.item.summeryContent);
+            const summeryContentState = ContentState.createFromBlockArray(summeryBlocksFromHtml.contentBlocks, summeryBlocksFromHtml.entityMap);
+            const summeryEditorState = EditorState.createWithContent(summeryContentState);
+
+            const contentBlocksFromHtml = htmlToDraft(this.props.item.content);
+            const contentState = ContentState.createFromBlockArray(contentBlocksFromHtml.contentBlocks, contentBlocksFromHtml.entityMap);
+            const contentEditorState = EditorState.createWithContent(contentState);
+            const {
+                id,
+                title,
+                contentImage,
+                products,
+                summeryContent,
+                content
+            } = this.props.item;
+            this.setState({
+                id: id ? id : undefined,
+                title: title ? title : '',
+                previewImageSrc: contentImage ? contentImage : undefined,
+                productsUse: products ? products : [],
+                summeryEditorState: summeryContent ? summeryEditorState : '',
+                editorState: content ? contentEditorState : '',
+                summeryMarkup: draftToHtml(
+                    convertToRaw(summeryEditorState.getCurrentContent())),
+                markup: draftToHtml(
+                    convertToRaw(contentEditorState.getCurrentContent()))
+            })
+        }
     }
 
     onProductClick = (product) => {
@@ -102,17 +136,51 @@ class HighlightsManager extends Component {
     };
 
     onSubmitClick = () => {
+        console.log('iddddddd', this.state.id)
+        if (this.state.id) {
+            this.editHighlight();
+        } else {
+            this.addHighlight();
+        }
+    };
+
+    addHighlight = () => {
         let dataObject = {
             'id': 'highlight' + Math.floor((Math.random() * 10000000000) + 1),
             'contentImage': this.state.previewImageSrc,
+            'title': this.state.title,
             'products': this.state.productsUse,
             'content': this.state.markup,
             'summeryContent': this.state.summeryMarkup
         };
         Services.insertHighlight(dataObject).then(() => {
-            alert('saved successfully!!!')
+            this.props.getItems && this.props.getItems();
+            this.props.toggle()
         }).catch((error) => {
             alert('error!!!')
+        })
+    };
+
+    editHighlight = () => {
+        let dataObject = {
+            'id': this.state.id,
+            'contentImage': this.state.previewImageSrc,
+            'title': this.state.title,
+            'products': this.state.productsUse,
+            'content': this.state.markup,
+            'summeryContent': this.state.summeryMarkup
+        };
+        Services.editHighlight(dataObject).then(() => {
+            this.props.getItems && this.props.getItems();
+            this.props.toggle()
+        }).catch((error) => {
+            alert('error!!!')
+        })
+    };
+
+    onChangeTitle = (e) => {
+        this.setState({
+            title: e.target.value
         })
     };
 
@@ -138,6 +206,8 @@ class HighlightsManager extends Component {
         };
         return (
             <div className='highlight-container'>
+                <p className='choose-product-title'>Title</p>
+                <Input value={this.state.title} onChange={this.onChangeTitle} type="text" id="title" name="title"/><br/>
                 <p className='choose-product-title'>Upload Preview Image</p>
                 {this.state.previewImageSrc ?
                     <div onClick={this.onRemoveHighlightImage} className='highlight-image-container'>
@@ -146,8 +216,8 @@ class HighlightsManager extends Component {
                         }}><img style={{
                             width: 40,
                             height: 40
-                        }} src={require('../../market/image/delete.png')}/></div>
-                        <img width={200} height={200} id="target" src={this.state.previewImageSrc}/>
+                        }} src={require('../../../market/image/delete.png')}/></div>
+                        <img height={200} id="target" src={this.state.previewImageSrc}/>
                     </div> :
 
                     <Dropzone onDrop={this.onDropCallback} accept={'image/*'}>
@@ -155,7 +225,7 @@ class HighlightsManager extends Component {
                             <section className="container">
                                 <div {...getRootProps({className: 'dropzone'})}>
                                     <input {...getInputProps()} />
-                                    <img src={require('../../market/image/upload.png')}/>
+                                    <img src={require('../../../market/image/upload.png')}/>
                                 </div>
                             </section>
                         )}
@@ -237,7 +307,7 @@ class HighlightsManager extends Component {
                                                 }}><img style={{
                                                     width: 40,
                                                     height: 40
-                                                }} src={require('../../market/image/delete.png')}/></div>
+                                                }} src={require('../../../market/image/delete.png')}/></div>
                                                 <img
                                                     src={Services.getProductImageDownloadUrl(product.image)}/>
                                                 <p className='product-name'>{product.name}</p>
@@ -250,7 +320,14 @@ class HighlightsManager extends Component {
                             </Slider>
                         </div>
                     </div> : null}
-                <div style={{width: '100%', display: 'flex', justifyContent: 'center', alighnItems: 'center', marginTop: 20, marginBottom: 20}}>
+                <div style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alighnItems: 'center',
+                    marginTop: 20,
+                    marginBottom: 20
+                }}>
                     <Button
                         color='success'
                         onClick={this.onSubmitClick}>
@@ -270,7 +347,7 @@ function SampleNextArrow(props) {
             style={{...style, display: "block", width: 50, height: 50}}
             onClick={onClick}
         >
-            <img src={require("../../market/image/arrow-right.png")}/>
+            <img src={require("../../../market/image/arrow-right.png")}/>
         </div>
     );
 }
@@ -283,10 +360,10 @@ function SamplePrevArrow(props) {
             style={{...style, display: "block", width: 50, height: 50}}
             onClick={onClick}
         >
-            <img src={require("../../market/image/arrow-left.png")}/>
+            <img src={require("../../../market/image/arrow-left.png")}/>
 
         </div>
     );
 }
 
-export default HighlightsManager;
+export default AddEditForm;
