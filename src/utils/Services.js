@@ -25,8 +25,16 @@ export default class Services {
       return this.baseUrl + `events/download?fileName=` + fileName;
     }
 
+    static getBlogImageDownloadUrl(fileName){
+      return this.baseUrl + `blogs/download?fileName=` + fileName;
+    }
+
     static uploadHighlightImage(requestData){
         return axios.post(`/highlight/uploadImage`, requestData)
+    }
+
+    static uploadBlogImage(requestData){
+        return axios.post(`/blogs/uploadImage`, requestData)
     }
 
     static signIn(requestData) {
@@ -100,6 +108,24 @@ export default class Services {
 
     static async editHighlight(requestData) {
         return axios.post(`/highlight/edit`, requestData)
+    }
+
+    static getBlogList(requestData) {
+        return axios.get(`/blogs/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertBlog(requestData) {
+        return axios.post(`/blogs/insert`, requestData)
+    }
+
+    static async deleteBlog(requestData) {
+        return axios.post(`/blogs/delete`, requestData)
+    }
+
+    static async editBlog(requestData) {
+        return axios.post(`/blogs/edit`, requestData)
     }
 
     static getProductCategoryList(requestData) {

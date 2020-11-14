@@ -25,7 +25,8 @@ class AddEditForm extends React.Component {
             totalCount: 0,
             existCount: 0,
             rate: [],
-            properties: '',
+            properties: [],
+            property: '',
             isBestSeller: false,
             productColor: '#fff',
             productCategories: [],
@@ -165,7 +166,7 @@ class AddEditForm extends React.Component {
                 colors: colors ? colors.split(",") : [],
                 totalCount: totalCount ? totalCount : 0,
                 existCount: existCount ? existCount : 0,
-                properties: properties ? properties : '',
+                properties: properties ? properties.split(",") : [],
                 isBestSeller: isBestSeller ? (isBestSeller === 'true') : false
             })
         }
@@ -180,6 +181,14 @@ class AddEditForm extends React.Component {
         }
         return [];
     }
+
+    onPropertyAddClick = () => {
+        let properties = [...this.state.properties, this.state.property];
+      this.setState({
+          properties: properties,
+          property: ''
+      })
+    };
 
     render() {
         return (
@@ -289,8 +298,16 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="properties">Properties</Label>
-                    <Input type="text" name="properties" id="properties" onChange={this.onChange}
-                           value={this.state.properties}/>
+                    <div style={{display: 'flex'}}>
+                        <Input type="text" name="property" id="property" onChange={this.onChange}
+                               value={this.state.property}/>
+                        <Button onClick={this.onPropertyAddClick}>Add</Button>
+                    </div>
+                    {this.state.properties && this.state.properties.map(function (property) {
+                        return(
+                            <p>{property}</p>
+                        )
+                    })}
                 </FormGroup>
                 <FormGroup>
                     <Label for="isBestSeller">IsBestSeller</Label>
