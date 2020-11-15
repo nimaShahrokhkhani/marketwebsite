@@ -1,4 +1,12 @@
-import {SET_STATE, SET_USER, ADD_PRODUCT, DELETE_PRODUCT, DECREASE_PRODUCT, INCREASE_PRODUCT} from "./actions";
+import {
+    SET_STATE,
+    SET_USER,
+    ADD_PRODUCT,
+    DELETE_PRODUCT,
+    DECREASE_PRODUCT,
+    INCREASE_PRODUCT,
+    DELETE_PRODUCTS
+} from "./actions";
 
 function saveState(state) {
     console.log('set localstorage:', JSON.parse(localStorage.getItem('state')), state);
@@ -41,6 +49,13 @@ function dataReducer(state = {user: {}, products: []}, action) {
             result = {
                 ...state,
                 products: state.products.filter(item => item.value.serialNumber !== action.product.serialNumber)
+            };
+            saveState(result);
+            return result;
+        case DELETE_PRODUCTS:
+            result = {
+                ...state,
+                products: []
             };
             saveState(result);
             return result;

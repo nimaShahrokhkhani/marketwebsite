@@ -3,7 +3,7 @@ import history from "../history";
 
 export default class Services {
 
-    static baseUrl = 'http://localhost:3500/';
+    static baseUrl = 'http://79.127.101.158:3500/';
 
     static getBrandImageDownloadUrl(fileName){
       return this.baseUrl + `brands/download?fileName=` + fileName;
@@ -184,5 +184,23 @@ export default class Services {
 
     static async deleteBrand(requestData) {
         return axios.post(`/brands/delete`, requestData)
+    }
+
+    static getFactorList(requestData) {
+        return axios.get(`/factor/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertFactor(requestData) {
+        return axios.post(`/factor/insert`, requestData)
+    }
+
+    static async editFactor(requestData) {
+        return axios.post(`/factor/edit`, requestData)
+    }
+
+    static async deleteFactor(requestData) {
+        return axios.post(`/factor/delete`, requestData)
     }
 }

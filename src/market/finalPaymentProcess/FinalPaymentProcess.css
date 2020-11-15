@@ -1,0 +1,147 @@
+.baseFinalPayment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.selected-current {
+    border: 1px solid #00bf6f !important;
+    background-color: #effcf4 !important;
+}
+
+.finalPayment-container {
+    background-size: 100% 100%;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    direction: rtl;
+}
+
+.type-pay {
+    background-color: #f9fafb;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 16px;
+    width: 100%;
+}
+
+.payType-container {
+    border-radius: 16px;
+    border: solid 1px #d8d8d8;
+    padding: 32px 64px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 20px 20px;
+    align-items: flex-start;
+}
+
+.payType-subContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px;
+}
+
+.payType-title {
+    font-size: 20px;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.payType-subTitle {
+    font-family: IRANSansMobileFaNum-Bold;
+    margin: 0 5px;
+}
+
+.payType-description {
+    margin: 10px;
+    display: flex;
+}
+
+.payType-description p {
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.transfer-description {
+    padding: 25px;
+    border-radius: 16px;
+    background-color: #f9fafb;
+}
+
+.transfer-description p {
+    font-family: IRANSansMobileFaNum-Light;
+    text-align: right;
+}
+
+.transfer-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+    margin: 20px 20px;
+}
+
+.totalAmount-container {
+    border-radius: 16px;
+    border: solid 1px #d8d8d8;
+    padding: 30px;
+    margin: 20px;
+    width: 100%;
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.totalAmount-container-1 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+    padding: 10px 0px;
+    border-bottom: solid 1px #d8d8d8;
+}
+
+.totalAmount-container-2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+}
+
+.amount-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.transfer-total-title-container {
+    display: flex;
+    flex: 2;
+}
+
+.sub-amount-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.transfer-amount {
+    margin: 0 5px;
+    font-size: 18px;
+}
+
+.transfer-currency {
+    font-size: 13px;
+}
+
+.transfer-total-title-end {
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.transfer-amount-end {
+    margin: 0 5px;
+    font-size: 18px;
+    font-family: IRANSansMobileFaNum-Bold;
+}

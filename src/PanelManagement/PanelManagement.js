@@ -6,8 +6,10 @@ import Routes from './Routes';
 function PanelManagement() {
     return (
         <div className="App">
-            <Navigation/>
-            <Routes />
+            <div className='top-content'>
+                <Navigation/>
+            </div>
+            <Routes/>
         </div>
     );
 }

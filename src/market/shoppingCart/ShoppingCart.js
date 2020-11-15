@@ -2,7 +2,13 @@ import React from 'react';
 import './ShoppingCart.css';
 import {withTranslation} from 'react-i18next';
 import connect from "react-redux/es/connect/connect";
-import {addProduct, deleteProduct, decreaseProduct, increaseProduct} from "../../components/redux/actions";
+import {
+    addProduct,
+    deleteProduct,
+    decreaseProduct,
+    increaseProduct,
+    deleteAllProducts
+} from "../../components/redux/actions";
 import Services from "../../utils/Services";
 import {Button} from 'reactstrap'
 
@@ -29,6 +35,24 @@ class ShoppingCart extends React.Component {
 
     onPlusProductClick = (product) => {
         this.props.increaseProduct(product.value);
+    };
+
+    onContinuePaymentClick = () => {
+        if (this.props.products && this.props.products.length > 0) {
+            if (this.props.user) {
+                this.props.history.push({
+                    pathname: '/Market/ContinuePaymentProcess',
+                    state: {
+                        products: this.props.products,
+                        totalCost: this.totalPrice
+                    }
+                });
+            } else {
+                alert("لطفا وارد سایت شوید!!!")
+            }
+        }
+
+
     };
 
     render() {
@@ -104,7 +128,8 @@ class ShoppingCart extends React.Component {
                         backgroundColor: 'blue',
                         textAlign: 'center',
                         height: 40
-                    }} color="success">ادامه فرآیند خرید</Button>
+                    }} color="success"
+                    onClick={this.onContinuePaymentClick}>ادامه فرآیند خرید</Button>
                 </div>
             </div>
         );
@@ -112,13 +137,15 @@ class ShoppingCart extends React.Component {
 }
 
 const mapStateToProps = state => {
+    const user = state.user;
     const products = state.products;
-    return {products};
+    return {user, products};
 };
 
 export default connect(mapStateToProps, {
     addProduct,
     deleteProduct,
     increaseProduct,
-    decreaseProduct
+    decreaseProduct,
+    deleteAllProducts
 })(withTranslation()(ShoppingCart));
