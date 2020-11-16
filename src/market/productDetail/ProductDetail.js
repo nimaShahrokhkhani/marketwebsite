@@ -18,16 +18,14 @@ class ProductDetail extends React.Component {
             color: '#ffffff',
             comment: '',
             product: this.props.location.state.product,
-            comments: JSON.parse(this.props.location.state.product.comments),
+            comments: this.props.location.state.product.comments ?
+                JSON.parse(this.props.location.state.product.comments) :
+                undefined,
             editRating: true,
             rateValue: this.props.location.state.product.rate
                 ? (JSON.parse(this.props.location.state.product.rate).rateValue / JSON.parse(this.props.location.state.product.rate).rateCount)
                 : 0
         }
-        console.log('product:', JSON.parse(this.props.location.state.product.rate))
-        console.log('product rate:', this.props.location.state.product.rate
-            ? (parseInt(JSON.parse(this.props.location.state.product.rate).rateValue) / parseInt(JSON.parse(this.props.location.state.product.rate).rateCount))
-            : 0)
     }
 
     ratingChanged = (newRating) => {
@@ -53,11 +51,20 @@ class ProductDetail extends React.Component {
 
     onCommentAddClick = () => {
         const data = new FormData();
-        let comments = [...JSON.parse(this.state.product.comments), {
-            username: this.props.user ? this.props.user.username : 'ناشناس',
-            comment: this.state.comment
-        }];
-        this.state.product.comments = comments;
+        let comments = [];
+        if (this.state.product.comments && this.state.product.comments !== '') {
+            comments = [...JSON.parse(this.state.product.comments), {
+                username: this.props.user ? this.props.user.username : 'ناشناس',
+                comment: this.state.comment
+            }];
+        } else {
+            comments = [{
+                username: this.props.user ? this.props.user.username : 'ناشناس',
+                comment: this.state.comment
+            }];
+        }
+
+        this.state.product.comments = JSON.stringify(comments);
         let product = this.state.product;
         data.append('serialNumber', this.state.product.serialNumber);
         data.append('comments', JSON.stringify(comments));
