@@ -51,8 +51,8 @@ class Events extends React.Component {
                 </div>
 
                 <div className='event-container'>
-                    {event.image && <img width='70%' height='400px' src={Services.getEventImageDownloadUrl(event.image)}/>}
-                    {event.events && JSON.parse(event.events).length > 0 ?
+                    {event && event.image && <img width='70%' height='400px' src={Services.getEventImageDownloadUrl(event.image)}/>}
+                    {event && event.events && JSON.parse(event.events).length > 0 ?
                         <AwesomeSlider className='event-slider' organicArrows={false}>
                             {
                                 JSON.parse(event.events).map((event, i) => {

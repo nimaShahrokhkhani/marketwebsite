@@ -24,7 +24,7 @@ class FinalPaymentProcess extends React.Component {
         var currentDateInMilliSec = currentDate.getMilliseconds();
         let {addressObject, paymentType, dayTimeObject, products, totalCost} = this.props.location.state;
         let requestData = {
-            trackingCode: Math.floor((Math.random() * 1000000000) + 1),
+            factorNumber: Math.floor((Math.random() * 1000000000) + 1),
             username: addressObject.username,
             phoneNumber: addressObject.phoneNumber,
             address: addressObject.address,

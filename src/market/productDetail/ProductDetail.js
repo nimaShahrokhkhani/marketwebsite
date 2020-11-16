@@ -7,7 +7,7 @@ import {Tabs, Tab} from 'react-tab-view'
 import {CirclePicker} from "react-color";
 import {Button} from "reactstrap";
 import connect from "react-redux/es/connect/connect";
-import {setUser} from "../../components/redux/actions";
+import {addProduct, setUser} from "../../components/redux/actions";
 
 
 class ProductDetail extends React.Component {
@@ -82,6 +82,10 @@ class ProductDetail extends React.Component {
         this.setState({comment: event.target.value});
     };
 
+    addToShoppingCart = () => {
+        this.props.addProduct(this.state.product)
+    };
+
     render() {
         const {t} = this.props;
         const headers = ['ویژگی', 'مشخصات محصول', 'بررسی محصول', 'نظرات کاربران'];
@@ -105,7 +109,7 @@ class ProductDetail extends React.Component {
                 </div>
                 <div className="productDetail-image">
 
-                    <img src={Services.getProductImageDownloadUrl(product.image)}/>
+                    <img width='300px' src={Services.getProductImageDownloadUrl(product.image)}/>
 
                 </div>
                 <div className="text1">
@@ -139,7 +143,7 @@ class ProductDetail extends React.Component {
                     </div>
                     }
 
-                    <Button color="success" style={{width: 300}}> افزودن به سبد خرید</Button>
+                    <Button onClick={this.addToShoppingCart} color="success" style={{width: 300}}> افزودن به سبد خرید</Button>
 
                 </div>
 
@@ -212,4 +216,4 @@ const mapStateToProps = state => {
     return {user};
 };
 
-export default connect(mapStateToProps, {setUser})(withTranslation()(ProductDetail));
+export default connect(mapStateToProps, {addProduct, setUser})(withTranslation()(ProductDetail));
