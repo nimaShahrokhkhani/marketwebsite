@@ -78,8 +78,9 @@ class LoginModal extends React.Component {
                 registerPhoneNumber: '',
                 registerBirthday: '',
                 registerAddress: ''
+            }, () => {
+                this.props.onHide();
             })
-            this.props.onHide();
         }).catch((error) => {
             console.log(error)
         });
