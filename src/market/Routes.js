@@ -6,6 +6,9 @@ import Products from "./products/Products";
 import ProductDetail from "./productDetail/ProductDetail";
 import ShoppingCart from "./shoppingCart/ShoppingCart";
 import ContactUs from "./contactUs/ContactUs.js";
+import AccountInfo from "./acountInfo/AccountInfo";
+import EditInfo from "./editInfo/EditInfo";
+
 
 import history from '../history';
 
@@ -20,6 +23,11 @@ export default class Routes extends Component {
                     <Route path="/Market/ProductDetail" component={ProductDetail} />
                     <Route path="/Market/ShoppingCart" component={ShoppingCart} />
                     <Route path="/Market/ContactUs" component={ContactUs} />
+                    <Route path="/Market/AccountInfo" component={AccountInfo} />
+                    <Route path="/Market/EditInfo" component={EditInfo} />
+
+
+
                 </Switch>
             </Router>
         )

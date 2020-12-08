@@ -40,7 +40,7 @@ class Home extends React.Component {
     render() {
         const {t} = this.props
         return (
-            <div style={{marginTop: 116}}>
+            <div style={{marginTop: 110}}>
                 <AwesomeSlider className='awesomeSlider'>
                     <div data-src="/images/slide1.jpg"/>
                     <div data-src="/images/slide2.jpg"/>

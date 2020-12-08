@@ -3,7 +3,7 @@ import history from "../history";
 
 export default class Services {
 
-    static baseUrl = 'http://192.168.43.162:3500/';
+    static baseUrl = 'http://79.127.101.158:3500/';
 
     static getProductImageDownloadUrl(fileName){
       return this.baseUrl + `products/download?fileName=` + fileName;
