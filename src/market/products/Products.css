@@ -1,0 +1,103 @@
+.brand-list {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.brand-row {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 10px;
+    cursor: grab;
+}
+
+.brand-row:hover {
+    background-color: #dddddd;
+}
+
+.brand-row p {
+    margin: 0px 10px;
+}
+
+.MuiSlider-valueLabel {
+    left: auto !important;
+}
+
+.PrivateValueLabel-offset-3 {
+    top: -54px !important;
+}
+
+.PrivateValueLabel-circle-4 {
+    width: 52px !important;
+    height: 52px !important;
+}
+
+.Collapsible{
+    padding: 5px 5px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: default;
+}
+
+.collapsible-child{
+    padding: 5px 40px;
+    border-top: 0.1px solid #F7F7F0;
+}
+
+.category-products-list {
+    border: 1px solid #F7F7F0;
+    border-bottom: 0px solid #F7F7F0;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-parent-row {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.category-parent-row p {
+    margin: 0px 10px;
+}
+
+.category-parent-row img {
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.product-brand {
+    font-family: IRANSansMobileFaNum-Bold;
+    color: #4f86f7!important;
+}
+
+.category-block-item {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 270px;
+}
+
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.products-pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

@@ -51,6 +51,7 @@ class ModalForm extends Component {
               addItemToState={this.props.addItemToState}
               updateState={this.props.updateState}
               toggle={this.toggle}
+              getItems={this.props.getItems}
               item={this.props.item} />
           </ModalBody>
         </Modal>

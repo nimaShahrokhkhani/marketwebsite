@@ -5,6 +5,10 @@ export default class Services {
 
     static baseUrl = 'http://79.127.101.158:3500/';
 
+    static getBrandImageDownloadUrl(fileName){
+      return this.baseUrl + `brands/download?fileName=` + fileName;
+    }
+
     static getProductImageDownloadUrl(fileName){
       return this.baseUrl + `products/download?fileName=` + fileName;
     }
@@ -21,8 +25,16 @@ export default class Services {
       return this.baseUrl + `events/download?fileName=` + fileName;
     }
 
+    static getBlogImageDownloadUrl(fileName){
+      return this.baseUrl + `blogs/download?fileName=` + fileName;
+    }
+
     static uploadHighlightImage(requestData){
         return axios.post(`/highlight/uploadImage`, requestData)
+    }
+
+    static uploadBlogImage(requestData){
+        return axios.post(`/blogs/uploadImage`, requestData)
     }
 
     static signIn(requestData) {
@@ -98,6 +110,24 @@ export default class Services {
         return axios.post(`/highlight/edit`, requestData)
     }
 
+    static getBlogList(requestData) {
+        return axios.get(`/blogs/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertBlog(requestData) {
+        return axios.post(`/blogs/insert`, requestData)
+    }
+
+    static async deleteBlog(requestData) {
+        return axios.post(`/blogs/delete`, requestData)
+    }
+
+    static async editBlog(requestData) {
+        return axios.post(`/blogs/edit`, requestData)
+    }
+
     static getProductCategoryList(requestData) {
         return axios.get(`/productCategory/list`, requestData)
     }
@@ -130,7 +160,47 @@ export default class Services {
         return axios.post(`/users/insert`, requestData)
     }
 
-    static async insertUser(requestData) {
-        return axios.get(`/products/download`, requestData)
+    static async editUser(requestData) {
+        return axios.post(`/users/edit`, requestData)
+    }
+
+    static async deleteUser(requestData) {
+        return axios.post(`/users/delete`, requestData)
+    }
+
+    static getBrandList(requestData) {
+        return axios.get(`/brands/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertBrand(requestData) {
+        return axios.post(`/brands/insert`, requestData)
+    }
+
+    static async editBrand(requestData) {
+        return axios.post(`/brands/edit`, requestData)
+    }
+
+    static async deleteBrand(requestData) {
+        return axios.post(`/brands/delete`, requestData)
+    }
+
+    static getFactorList(requestData) {
+        return axios.get(`/factor/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertFactor(requestData) {
+        return axios.post(`/factor/insert`, requestData)
+    }
+
+    static async editFactor(requestData) {
+        return axios.post(`/factor/edit`, requestData)
+    }
+
+    static async deleteFactor(requestData) {
+        return axios.post(`/factor/delete`, requestData)
     }
 }

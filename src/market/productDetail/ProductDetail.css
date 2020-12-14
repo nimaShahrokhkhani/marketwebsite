@@ -1,48 +1,62 @@
 .productDetail-container {
-    background-image:url("../image/product-detail-bg.jpg");
-    background-repeat: no-repeat;
     background-size: 100% 100%;
     margin-top: 100px;
 }
 
-.logo{
+.logo {
     margin-right: 100px;
     transform: translateY(30px);
 }
+
 .logo img {
     margin-right: 0 !important;
     margin-top: 0 !important;
     height: 50px;
 }
-.T{
+
+.T {
     transform: translateY(180px);
     margin-right: 40px;
     line-height: 1.2;
 
 }
-.sale{
+
+.sale {
     margin-right: 300px;
     transform: translate(10px, 10px);
     position: relative !important;
 }
-.productDetail-image{
+
+.productDetail-image {
     margin-right: 100px;
 }
-.text1{
+
+.text1 {
     float: left;
-    margin-top: -450px;
-    margin-left: 200px;
-    color: white;
+    margin-top: -350px;
+    margin-left: 410px;
+    color: black;
     line-height: 3.3;
     font-family: IRANSans-Light;
     font-size: 16px;
     letter-spacing: 0.5px;
 }
-.text1 p1{
+
+.star-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.text1 p1 {
     color: #8dc8d0;
 }
 
-.text2{
+.text1 p {
+    font-family: IRANSans-Light;
+}
+
+.text2 {
     margin-left: 100px;
     margin-top: 10px;
     color: white;
@@ -50,17 +64,174 @@
     font-family: IRANSans-Light;
     font-size: 16px;
 }
-.text3{
+
+.text3 {
     float: left;
     margin-top: 60px;
     margin-left: -470px;
     font-family: IRANSans-Light;
     font-size: 16px;
 }
-.text4{
+
+.text4 {
     float: left;
     margin-top: 125px;
     margin-left: -360px;
     font-family: IRANSans-Light;
     font-size: 16px;
+}
+
+.iMnhxj {
+    border: 0px solid #ddd !important;
+    border-radius: 2px;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    margin: 0 auto;
+    display: block;
+}
+
+.iMnhxj div ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #14213D;
+    direction: rtl;
+}
+
+.iMnhxj li {
+    float: right;
+    border-right: 1px solid #bbb;
+    direction: rtl;
+}
+
+.iMnhxj li a {
+    display: block;
+    color: white !important;
+    text-align: center;
+    padding: 15px 55px;
+    text-decoration: none;
+    cursor: default;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.iMnhxj li a:hover:not(.active) {
+    background-color: #4CAF51;
+}
+
+.iMnhxj .selected {
+    background-color: #4CAF51;
+}
+
+.iMnhxj .selected a {
+    font-family: IRANSansMobileFaNum-Bold;
+
+}
+
+.product-price-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.properties-container {
+    padding: 20px 60px;
+    background-color: #f9fafb;
+    border-radius: 20px;
+    margin: 10px 10px;
+}
+
+.properties-container p {
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: #000;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+.color-picker {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+.color-picker-container {
+    margin: 30px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.specifies-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.specifies-td, .specifies-th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.specifies-row:nth-child(even) {
+    background-color: #dddddd;
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.comment-container {
+    padding: 40px 10px;
+    background-color: #f9fafb;
+    border-radius: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-input {
+    width: 70%;
+    height: 50px;
+    direction: rtl;
+    padding: 0px 20px;
+    border-radius: 10px;
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.comment-title {
+    width: 70%;
+    margin: 20px;
+    font-family: IRANSansMobileFaNum-Bold;
+}
+
+.comment-container Button {
+    width: 300px;
+    margin: 20px;
+    font-family: IRANSansMobileFaNum-Light;
+}
+
+.exist-comment {
+    width: 70%;
+    background-color: #FFFFFF;
+    padding: 20px 20px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.exist-comment-body {
+    font-family: IRANSansMobileFaNum-Light !important;
+    margin: 20px;
+}
+
+.exist-comment-username {
+    font-family: IRANSansMobileFaNum-Bold !important;
+    margin: 20px;
 }

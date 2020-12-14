@@ -2,6 +2,7 @@ export const SET_STATE = 'SET_STATE'; // action types
 export const SET_USER = 'SET_USER'; // action types
 export const ADD_PRODUCT = 'ADD_PRODUCT'; // action types
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'; // action types
+export const DELETE_PRODUCTS = 'DELETE_PRODUCTS'; // action types
 export const DECREASE_PRODUCT = 'DECREASE_PRODUCT'; // action types
 export const INCREASE_PRODUCT = 'INCREASE_PRODUCT'; // action types
 
@@ -23,6 +24,13 @@ export function addProduct(product) {
     return({
         type: ADD_PRODUCT,
             product     // action payload
+    })
+}
+
+export function deleteAllProducts() {
+    return({
+        type: DELETE_PRODUCTS
+        // action payload
     })
 }
 

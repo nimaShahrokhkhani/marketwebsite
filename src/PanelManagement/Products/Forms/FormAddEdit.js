@@ -25,10 +25,12 @@ class AddEditForm extends React.Component {
             totalCount: 0,
             existCount: 0,
             rate: [],
-            properties: '',
+            properties: [],
+            property: '',
             isBestSeller: false,
             productColor: '#fff',
-            productCategories: []
+            productCategories: [],
+            brands: []
         };
     }
 
@@ -121,6 +123,14 @@ class AddEditForm extends React.Component {
         }).catch((error) => {
             console.log('error', error)
         });
+
+        Services.getBrandList().then((response) => {
+            this.setState({
+                brands: response.data
+            });
+        }).catch((error) => {
+            console.log('error', error)
+        });
         // if item exists, populate the state with proper data
         if (this.props.item) {
             const {
@@ -156,7 +166,7 @@ class AddEditForm extends React.Component {
                 colors: colors ? colors.split(",") : [],
                 totalCount: totalCount ? totalCount : 0,
                 existCount: existCount ? existCount : 0,
-                properties: properties ? properties : '',
+                properties: properties ? properties.split(",") : [],
                 isBestSeller: isBestSeller ? (isBestSeller === 'true') : false
             })
         }
@@ -171,6 +181,14 @@ class AddEditForm extends React.Component {
         }
         return [];
     }
+
+    onPropertyAddClick = () => {
+        let properties = [...this.state.properties, this.state.property];
+      this.setState({
+          properties: properties,
+          property: ''
+      })
+    };
 
     render() {
         return (
@@ -237,8 +255,12 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="brand">Brand</Label>
-                    <Input type="text" name="brand" id="brand" onChange={this.onChange}
-                           value={this.state.brand}/>
+                    <select name="brand" id="brand" onChange={this.onChange} value={this.state.brand}>
+                        <option value=''/>
+                        {this.state.brands && this.state.brands.map(function (item) {
+                            return <option value={item.name}> {item.name} </option>
+                        })}
+                    </select>
                 </FormGroup>
                 <FormGroup>
                     <Label for="colors">Colors</Label>
@@ -276,8 +298,16 @@ class AddEditForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="properties">Properties</Label>
-                    <Input type="text" name="properties" id="properties" onChange={this.onChange}
-                           value={this.state.properties}/>
+                    <div style={{display: 'flex'}}>
+                        <Input type="text" name="property" id="property" onChange={this.onChange}
+                               value={this.state.property}/>
+                        <Button onClick={this.onPropertyAddClick}>Add</Button>
+                    </div>
+                    {this.state.properties && this.state.properties.map(function (property) {
+                        return(
+                            <p>{property}</p>
+                        )
+                    })}
                 </FormGroup>
                 <FormGroup>
                     <Label for="isBestSeller">IsBestSeller</Label>

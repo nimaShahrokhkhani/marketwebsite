@@ -6,29 +6,36 @@ import Products from "./products/Products";
 import ProductDetail from "./productDetail/ProductDetail";
 import ShoppingCart from "./shoppingCart/ShoppingCart";
 import ContactUs from "./contactUs/ContactUs.js";
+import ContinuePaymentProcess from "./continuePaymentProcess/ContinuePaymentProcess.js";
+import FinalPaymentProcess from "./finalPaymentProcess/FinalPaymentProcess.js";
 import AccountInfo from "./acountInfo/AccountInfo";
 import EditInfo from "./editInfo/EditInfo";
 
 
 import history from '../history';
+import ScrollToTop from "./ScrollToTop";
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
-                <Switch>
+                <ScrollToTop>
+                    <Switch>
                     <Route path="/Market" exact component={Home} />
                     <Route path="/Market/Highlight" component={HighlightScreen} />
                     <Route path="/Market/Products" component={Products} />
                     <Route path="/Market/ProductDetail" component={ProductDetail} />
                     <Route path="/Market/ShoppingCart" component={ShoppingCart} />
                     <Route path="/Market/ContactUs" component={ContactUs} />
+                    <Route path="/Market/ContinuePaymentProcess" component={ContinuePaymentProcess} />
+                    <Route path="/Market/FinalPaymentProcess" component={FinalPaymentProcess} />
                     <Route path="/Market/AccountInfo" component={AccountInfo} />
                     <Route path="/Market/EditInfo" component={EditInfo} />
 
 
 
                 </Switch>
+                </ScrollToTop>
             </Router>
         )
     }

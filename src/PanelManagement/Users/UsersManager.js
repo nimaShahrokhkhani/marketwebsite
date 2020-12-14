@@ -8,13 +8,17 @@ import Services from "../../utils/Services";
 import ScreenLoading from "../../components/screenLoading/ScreenLoading";
 
 class UsersManager extends Component {
-    state = {
-        items: [],
-        isLoading: false,
-        isDone: true
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            isLoading: false,
+            isDone: true
+        }
     }
 
-    getItems(){
+    getItems = () => {
         this.setState({
             isLoading: true,
             isDone: false
@@ -39,7 +43,7 @@ class UsersManager extends Component {
                 });
             }, 2000);
         })
-    }
+    };
 
     addItemToState = (item) => {
         item.id = this.state.items.length + 1;
@@ -61,9 +65,13 @@ class UsersManager extends Component {
         this.setState({ items: newArray })
     }
 
-    deleteItemFromState = (id) => {
-        const updatedItems = this.state.items.filter(item => item.id !== id)
-        this.setState({ items: updatedItems })
+    deleteItemFromState = (username) => {
+        Services.deleteUser({username: username}).then((response) => {
+            const updatedItems = this.state.items.filter(item => item.username !== username)
+            this.setState({items: updatedItems})
+        }).catch((error) => {
+            console.log('error is:', error)
+        });
     }
 
     componentDidMount(){
@@ -83,7 +91,9 @@ class UsersManager extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                <DataTable items={this.state.items} updateState={this.updateState} deleteItemFromState={this.deleteItemFromState} />
+                                <DataTable items={this.state.items} updateState={this.updateState}
+                                           deleteItemFromState={this.deleteItemFromState}
+                                           getItems={this.getItems}/>
                             </Col>
                         </Row>
                         <Row>
@@ -96,7 +106,7 @@ class UsersManager extends Component {
                                     data={this.state.items}>
                                     Download CSV
                                 </CSVLink>
-                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
+                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState} getItems={this.getItems}/>
                             </Col>
                         </Row>
                     </Container>

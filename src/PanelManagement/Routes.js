@@ -6,8 +6,10 @@ import Companies from "./Companies/CompaniesScreen";
 import history from '../history';
 import ProductCategoriesManager from "./ProductCategories/ProductCategoriesManager";
 import ProductsManager from "./Products/ProductsManager";
-import HighlightsManager from "./Highlights/HighlightsManager";
+import HighlightsManager from "./Highlights/HighlightManager";
 import EventsManager from "./Events/EventsManager";
+import BrandManager from "./Brand/BrandManager";
+import BlogManager from "./Blogs/BlogManager";
 
 export default class Routes extends Component {
     render() {
@@ -20,6 +22,8 @@ export default class Routes extends Component {
                     <Route path="/PanelManagement/Products" component={ProductsManager} />
                     <Route path="/PanelManagement/Highlights" component={HighlightsManager} />
                     <Route path="/PanelManagement/EventsManager" component={EventsManager} />
+                    <Route path="/PanelManagement/BrandManager" component={BrandManager} />
+                    <Route path="/PanelManagement/BlogManager" component={BlogManager} />
                 </Switch>
             </Router>
         )

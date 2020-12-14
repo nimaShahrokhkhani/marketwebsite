@@ -9,34 +9,42 @@ import './style/responsive.css';
 import Services from "../../utils/Services";
 import ScreenLoading from "../../components/screenLoading/ScreenLoading";
 import {Container, Row, Col} from "react-bootstrap";
-import {makeStyles} from '@material-ui/core/styles';
+import Collapsible from 'react-collapsible';
 import Slider from '@material-ui/core/Slider';
 import connect from "react-redux/es/connect/connect";
 import {addProduct, setState} from "../../components/redux/actions";
+import Pagination from "react-js-pagination";
 
 class Products extends React.Component {
 
     constructor(props) {
         super(props);
         let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
+        this.totalItemsShowOnScreen = 3;
         this.state = {
             isLoading: false,
             isDone: false,
             productList: [],
-            fromRangeValue: 20,
-            toRangeValue: 37
+            totalProductsCount: 0,
+            brandList: [],
+            fromRangeValue: 0,
+            toRangeValue: 1000000,
+            search: '',
+            brand: '',
+            productCategoryList: [],
+            activePage: 0
         }
     }
 
-    getItems = () => {
+    getItems = (offset, length) => {
         this.setState({
             isLoading: true,
             isDone: false
         }, () => {
-            //setTimeout(() => {
-            Services.getProductsList().then((response) => {
+            Services.getProductsList({offset: offset, length: length}).then((response) => {
                 this.setState({
-                    productList: response.data,
+                    productList: response.data.data,
+                    totalProductsCount: response.data.totalCount,
                     isLoading: false
                 });
                 setTimeout(() => {
@@ -51,7 +59,6 @@ class Products extends React.Component {
                 }, 1000);
                 console.log('error', error)
             });
-            //}, 2000);
         })
     };
 
@@ -64,7 +71,6 @@ class Products extends React.Component {
 
     componentDidMount() {
         let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
-        console.log(this.props.location.state)
         isFromSearch ?
             this.setState({
                 isLoading: true,
@@ -77,7 +83,21 @@ class Products extends React.Component {
                 setTimeout(() => {
                     this.setState({isDone: true});
                 }, 1000);
-            }) : this.getItems();
+            }) : this.getItems(0, this.totalItemsShowOnScreen);
+        Services.getBrandList().then(response => {
+            this.setState({
+                brandList: response.data
+            });
+        }).catch(error => {
+            console.log('error', error);
+        });
+        Services.getProductCategoryList().then(response => {
+            this.setState({
+                productCategoryList: response.data
+            })
+        }).catch(error => {
+            console.log('error', error);
+        });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -96,6 +116,74 @@ class Products extends React.Component {
         })
     };
 
+    handleSearchChange = (e) => {
+        this.setState({search: e.target.value});
+    };
+
+    _handleSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            Services.searchProductsList({name: this.state.search}).then((response) => {
+                this.props.history.push({
+                    pathname: '/Market/Products',
+                    state: {
+                        products: response.data,
+                        isFromSearch: true
+                    }
+                });
+            })
+        }
+    };
+
+    handleBrandSearchChange = (e) => {
+        this.setState({brand: e.target.value});
+    };
+
+    _handleBrandSearchKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            Services.searchProductsList({brand: this.state.brand}).then((response) => {
+                this.props.history.push({
+                    pathname: '/Market/Products',
+                    state: {
+                        products: response.data,
+                        isFromSearch: true
+                    }
+                });
+            })
+        }
+    };
+
+    handlePageChange = (pageNumber) => {
+        this.setState({
+            activePage: pageNumber
+        }, () => {
+            this.getItems((pageNumber - 1) * this.totalItemsShowOnScreen, this.totalItemsShowOnScreen);
+        });
+    };
+
+    onBrandClick = (brandName) => {
+        Services.searchProductsList({brand: brandName}).then((response) => {
+            this.props.history.push({
+                pathname: '/Market/Products',
+                state: {
+                    products: response.data,
+                    isFromSearch: true
+                }
+            });
+        })
+    };
+
+    onSubTypeClick = (subType) => {
+        Services.searchProductsList({subType: subType}).then((response) => {
+            this.props.history.push({
+                pathname: '/Market/Products',
+                state: {
+                    products: response.data,
+                    isFromSearch: true
+                }
+            });
+        })
+    };
+
     addToShoppingCart = (event, product) => {
         event.stopPropagation();
         this.props.addProduct(product)
@@ -103,7 +191,7 @@ class Products extends React.Component {
 
     render() {
         const {t} = this.props;
-        let {isLoading, isDone, productList} = this.state;
+        let {isLoading, isDone, productList, brandList, productCategoryList} = this.state;
         return (
             <div style={{
                 marginTop: 150,
@@ -131,14 +219,16 @@ class Products extends React.Component {
                                                                     <div className="single-products"
                                                                          onClick={() => this.onProductClick(product)}>
                                                                         <div className="productinfo text-center">
-                                                                            <img
-                                                                                src={Services.getProductImageDownloadUrl(product.image)}
-                                                                                alt=""/>
-                                                                            <div className='price-container'>
-                                                                                <h2 className='product-price'>{product.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
-                                                                                <h2 className='product-currency'>{t('currency')}</h2>
+                                                                            <div className='category-block-item'>
+                                                                                <img
+                                                                                    src={Services.getProductImageDownloadUrl(product.image)}/>
+                                                                                <p className='product-name'>{product.name}</p>
+                                                                                <div className='price-container'>
+                                                                                    <p className='product-price'>{product.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+                                                                                    <p className='product-currency'>{t('currency')}</p>
+                                                                                </div>
+                                                                                <p className='product-brand'>{product.brand}</p>
                                                                             </div>
-                                                                            <p className='product-name'>{product.name}</p>
                                                                             <a onClick={(event) => this.addToShoppingCart(event, product)}
                                                                                className="btn btn-default add-to-cart"><i
                                                                                 className="fa fa-shopping-cart"></i>افزودن
@@ -183,108 +273,53 @@ class Products extends React.Component {
                                         </Container>
 
 
-                                        <ul class="pagination">
-                                            <li class="active"><a href="">1</a></li>
-                                            <li><a href="">2</a></li>
-                                            <li><a href="">3</a></li>
-                                            <li><a href="">&raquo;</a></li>
-                                        </ul>
+                                        <div class="products-pagination">
+                                            <Pagination
+                                                hideDisabled
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={3}
+                                                totalItemsCount={this.state.totalProductsCount}
+                                                pageRangeDisplayed={5}
+                                                onChange={this.handlePageChange}
+                                                totalRecords={this.state.totalProductsCount}/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="left-sidebar">
-                                        <h2>دسته بندی محصولات لب</h2>
-                                        <div class="panel-group category-products" id="accordian">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordian"
-                                                           href="#sportswear">
-                                                            <span class="badge pull-right"><i
-                                                                class="fa fa-plus"></i></span>
-                                                            لوازم آرایشی
-                                                        </a>
-                                                    </h4>
+                                        <h2>دسته بندی محصولات</h2>
+                                        <div class="category-products-list" id="accordian">
 
-                                                </div>
-                                                <div id="sportswear" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul>
-                                                            <li><a href="">چشم </a></li>
-                                                            <li><a href="">رژ لب </a></li>
-                                                            <li><a href="">مداد </a></li>
-                                                            <li><a href="">ناخن</a></li>
-                                                            <li><a href="">قلم مو </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                                            <span class="badge pull-right"><i
-                                                                class="fa fa-plus"></i></span>
-                                                            رژ لب مایع
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="mens" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul>
-                                                            <li><a href="">سفید</a></li>
-                                                            <li><a href="">آبی</a></li>
-                                                            <li><a href="">قهوه ای</a></li>
-                                                            <li><a href="">قرمز</a></li>
-                                                            <li><a href="">صورتی</a></li>
-                                                            <li><a href="">بنفش</a></li>
-                                                            <li><a href="">خاکستری</a></li>
-                                                            <li><a href="">الماسی</a></li>
-                                                            <li><a href="">ارغوانی</a></li>
-                                                            <li><a href="">انابی</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-parent="#accordian"
-                                                           href="#womens">
-                                                            <span class="badge pull-right"><i
-                                                                class="fa fa-plus"></i></span>
-                                                            مداد لب
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="womens" class="panel-collapse collapse">
-                                                    <div class="panel-body">
-                                                        <ul>
-                                                            <li><a href="">قرمز</a></li>
-                                                            <li><a href="">آبی</a></li>
-                                                            <li><a href="">صورتی</a></li>
-                                                            <li><a href="">سفید</a></li>
-                                                            <li><a href="">مشکی</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title"><a href="#">رژ لب مدادی</a></h4>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h4 class="panel-title"><a href="#">رژ لب جامد</a></h4>
-                                                </div>
-                                            </div>
+                                            {
+                                                productCategoryList && productCategoryList.map(productCategory => {
+                                                    return (
+                                                        <Collapsible trigger={
+                                                            <div className='category-parent-row'>
+                                                                <p>{productCategory.type}</p>
+                                                                <img width='50px' height='50px'
+                                                                     src={Services.getProductCategoryImageDownloadUrl(productCategory.image)}/>
+                                                            </div>
+                                                        } className='product-category-parent'>
+                                                            {
+                                                                productCategory.subTypes && productCategory.subTypes.split(',').map(subType => {
+                                                                    return (
+                                                                        <p onClick={() => this.onSubTypeClick(subType)}
+                                                                           className='collapsible-child'>{subType}</p>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </Collapsible>
+                                                    )
+                                                })
+                                            }
 
                                         </div>
                                         <h2>جستجو</h2>
                                         <div class="search_box pull-right">
-                                            <input type="text" placeholder="نام محصول یا برند مورد نظر"/>
+                                            <input type="text" placeholder="نام محصول یا برند مورد نظر"
+                                                   value={this.state.search} onChange={(e) => {
+                                                this.handleSearchChange(e)
+                                            }} onKeyDown={this._handleSearchKeyDown}/>
                                         </div>
 
                                         <br/><br/>
@@ -293,20 +328,26 @@ class Products extends React.Component {
 
                                             <h2>برند</h2>
                                             <div class="search_box pull-right">
-                                                <input type="text" placeholder="جستجوی نام برند"/>
+                                                <input type="text" placeholder="جستجوی نام برند"
+                                                       value={this.state.brand} onChange={(e) => {
+                                                    this.handleBrandSearchChange(e)
+                                                }} onKeyDown={this._handleBrandSearchKeyDown}/>
                                             </div>
                                             <br/><br/>
                                             <div class="brands-name">
-                                                <ul class="nav nav-pills nav-stacked">
+                                                <ul class="nav nav-pills nav-stacked brand-list">
 
-                                                    <li><a href=""> <span class="pull-right"></span>Heduabcuty</a></li>
-                                                    <li><a href=""> <span class="pull-right"></span></a></li>
-                                                    <li><a href=""> <span class="pull-right"></span>My</a></li>
-                                                    <li><a href=""> <span class="pull-right"></span>Inly</a></li>
-                                                    <li><a href=""> <span class="pull-right"></span>Oddmolly</a></li>
-                                                    <li><a href=""> <span class="pull-right"></span>Boudestijn</a></li>
-                                                    <li><a href=""> <span class="pull-right"></span>Rösch creative
-                                                        culture</a></li>
+                                                    {
+                                                        brandList && brandList.map((brand, i) => {
+                                                            return (
+                                                                <li onClick={() => this.onBrandClick(brand.name)}
+                                                                    className='brand-row'><img width='50px'
+                                                                                               height='30px'
+                                                                                               src={Services.getBrandImageDownloadUrl(brand.image)}/>
+                                                                    <p>{brand.name}</p></li>
+                                                            )
+                                                        })
+                                                    }
                                                 </ul>
                                             </div>
                                         </div>
@@ -319,6 +360,9 @@ class Products extends React.Component {
                                                     onChange={this.handleChange}
                                                     valueLabelDisplay="auto"
                                                     aria-labelledby="range-slider"
+                                                    min={1000}
+                                                    max={1000000}
+                                                    marks={false}
                                                 /><br/>
                                                 <b></b> <b class="pull-right"></b>
                                             </div>
