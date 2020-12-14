@@ -144,6 +144,22 @@ export default class Services {
         return axios.post(`/productCategory/delete`, requestData)
     }
 
+    static getMasterCategoryList(requestData) {
+        return axios.get(`/MasterCategory/list`, requestData)
+    }
+
+    static async insertMasterCategory(requestData) {
+        return axios.post(`/MasterCategory/insert`, requestData)
+    }
+
+    static async editMasterCategory(requestData) {
+        return axios.post(`/MasterCategory/edit`, requestData)
+    }
+
+    static async deleteMasterCategory(requestData) {
+        return axios.post(`/MasterCategory/delete`, requestData)
+    }
+
     static getCompaniesList(requestData) {
         return axios.get(`/companies/list`, requestData)
     }

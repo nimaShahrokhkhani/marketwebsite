@@ -20,19 +20,7 @@ class DataTable extends Component {
             return (
                 <tr key={item.id}>
                     <td>
-                        <div className='table-cell'>{item.type}</div>
-                    </td>
-                    <td>
-                        <div className='table-cell'>{item.masterCategory}</div>
-                    </td>
-                    <td>
-                        <div className='table-cell'>{item.subTypes}</div>
-                    </td>
-                    <td>
-                        <div className='table-cell'>{item.description}</div>
-                    </td>
-                    <td>
-                        <div className='table-cell'>{item.moreInformation}</div>
+                        <div className='table-cell'>{item.name}</div>
                     </td>
                     <td>
                         <div className='table-cell'>{item.image &&
@@ -61,7 +49,7 @@ class DataTable extends Component {
                                 <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}
                                            getItems={this.props.getItems}/>
                                 {' '}
-                                <Button color="danger" onClick={() => this.deleteItem(item.type)}>Del</Button>
+                                <Button color="danger" onClick={() => this.deleteItem(item.name)}>Del</Button>
                             </div>
                         </div>
                     </td>
@@ -73,11 +61,7 @@ class DataTable extends Component {
             <Table responsive hover>
                 <thead>
                 <tr>
-                    <th>Type</th>
-                    <th>MasterType</th>
-                    <th>SubTypes</th>
-                    <th>Description</th>
-                    <th>MoreInformation</th>
+                    <th>Name</th>
                     <th>Image</th>
                     <th>Is Candidate</th>
                     <th>Actions</th>
