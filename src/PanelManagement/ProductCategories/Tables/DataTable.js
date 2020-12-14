@@ -23,6 +23,9 @@ class DataTable extends Component {
                         <div className='table-cell'>{item.type}</div>
                     </td>
                     <td>
+                        <div className='table-cell'>{item.masterCategory}</div>
+                    </td>
+                    <td>
                         <div className='table-cell'>{item.subTypes}</div>
                     </td>
                     <td>
@@ -71,6 +74,8 @@ class DataTable extends Component {
                 <thead>
                 <tr>
                     <th>Type</th>
+                    <th>MasterType</th>
+                    <th>SubTypes</th>
                     <th>Description</th>
                     <th>MoreInformation</th>
                     <th>Image</th>

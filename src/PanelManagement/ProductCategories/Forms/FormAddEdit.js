@@ -11,8 +11,10 @@ class AddEditForm extends React.Component {
             type: '',
             description: '',
             moreInformation: '',
+            masterCategory: '',
             image: '',
             isCandidate: false,
+            masterCategories: [],
             subTypes: [],
             subType: ''
         };
@@ -43,6 +45,7 @@ class AddEditForm extends React.Component {
         const data = new FormData();
         data.append('file', this.state.image);
         data.append('type', this.state.type);
+        data.append('masterCategory', this.state.masterCategory);
         data.append('description', this.state.description);
         data.append('moreInformation', this.state.moreInformation);
         data.append('isCandidate', this.state.isCandidate);
@@ -60,6 +63,7 @@ class AddEditForm extends React.Component {
         const data = new FormData();
         this.state.image && data.append('file', this.state.image);
         data.append('type', this.state.type);
+        data.append('masterCategory', this.state.masterCategory);
         data.append('description', this.state.description);
         data.append('moreInformation', this.state.moreInformation);
         data.append('isCandidate', this.state.isCandidate);
@@ -84,10 +88,18 @@ class AddEditForm extends React.Component {
     };
 
     componentDidMount() {
+        Services.getMasterCategoryList().then((response) => {
+            this.setState({
+                masterCategories: response.data
+            });
+        }).catch((error) => {
+            console.log('error', error)
+        });
         // if item exists, populate the state with proper data
         if (this.props.item) {
             const {
                 type,
+                masterCategory,
                 description,
                 moreInformation,
                 isCandidate,
@@ -95,6 +107,7 @@ class AddEditForm extends React.Component {
             } = this.props.item;
             this.setState({
                 type: type ? type : '',
+                masterCategory: masterCategory ? masterCategory : '',
                 description: description ? description : '',
                 moreInformation: moreInformation ? moreInformation : '',
                 subTypes: subTypes ? subTypes.split(',') : [],
@@ -112,6 +125,15 @@ class AddEditForm extends React.Component {
                     <Input type="text" name="type" id="type" onChange={this.onChange} value={this.state.type}/>
                 </FormGroup>
                 <FormGroup>
+                    <Label for="masterCategory">MasterType</Label>
+                    <select name="masterCategory" id="masterCategory" onChange={this.onChange} value={this.state.masterCategory}>
+                        <option value=''/>
+                        {this.state.masterCategories && this.state.masterCategories.map(function (item) {
+                            return <option value={item.name}> {item.name} </option>
+                        })}
+                    </select>
+                </FormGroup>
+                <FormGroup>
                     <Label for="image">Image</Label>
                     <Input type="file" name="image" id="image" onChange={this.onChangeImage}
                            defaultValue={this.state.image === null ? '' : this.state.image} placeholder="image, logo"/>
@@ -120,11 +142,6 @@ class AddEditForm extends React.Component {
                     <Label for="description">Description</Label>
                     <Input type="text" name="description" id="description" onChange={this.onChange}
                            value={this.state.description === null ? '' : this.state.description}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label for="moreInformation">MoreInformation</Label>
-                    <Input type="text" name="moreInformation" id="moreInformation" onChange={this.onChange}
-                           value={this.state.moreInformation === null ? '' : this.state.moreInformation}/>
                 </FormGroup>
                 <FormGroup>
                     <Label for="moreInformation">MoreInformation</Label>

@@ -12,6 +12,7 @@ const Navigation = (props) => {
                 <Nav className="mr-auto">
                     <Nav.Link href="/PanelManagement" active={pathname.endsWith('/PanelManagement')}>Users</Nav.Link>
                     <Nav.Link href="/PanelManagement/Companies" active={pathname.startsWith('/PanelManagement/Companies')}>Companies</Nav.Link>
+                    <Nav.Link href="/PanelManagement/MasterCategories" active={pathname.startsWith('/PanelManagement/MasterCategories')}>Master Categories</Nav.Link>
                     <Nav.Link href="/PanelManagement/ProductCategories" active={pathname.startsWith('/PanelManagement/ProductCategories')}>Product Categories</Nav.Link>
                     <Nav.Link href="/PanelManagement/Products" active={pathname.startsWith('/PanelManagement/Products')}>Products</Nav.Link>
                     <Nav.Link href="/PanelManagement/Highlights" active={pathname.startsWith('/PanelManagement/Highlights')}>Highlights</Nav.Link>
