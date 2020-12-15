@@ -3,17 +3,47 @@ import './Navbar.css';
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import {withTranslation, Trans} from 'react-i18next'
+import Services from "../../utils/Services";
+import AwesomeSlider from "react-awesome-slider";
 
 class Navigation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            masterCategories: [],
+            categoryList: []
         }
+    }
+
+    getCategoryList() {
+        Services.getProductCategoryList().then(response => {
+            this.setState({
+                categoryList: response.data
+            })
+        }).catch(error => {
+
+        })
+    }
+
+    getMasterCategories() {
+        Services.getMasterCategoryList().then(response => {
+            this.getCategoryList();
+            this.setState({
+                masterCategories: response.data
+            })
+        }).catch(error => {
+
+        })
+    }
+
+    componentDidMount() {
+        this.getMasterCategories();
     }
 
     render() {
         const pathname = this.props.location.pathname;
         const {t} = this.props;
+        const {masterCategories, categoryList} = this.state;
         return (
             <div className="ruby-menu-demo-header">
                 <div className="ruby-wrapper">
@@ -23,7 +53,52 @@ class Navigation extends React.Component {
                     <ul className="ruby-menu" style={{display: 'flex',
                         flexDirection: 'row-reverse',
                         justifyContent: 'flex-start'}}>
-                        <li className="ruby-active-menu-item"><a href="#">Home</a></li>
+                        <li className="ruby-active-menu-item"><a href="#">خانه</a></li>
+
+                        <li className="ruby-menu-mega-shop"><a href="#">محصولات</a>
+                            <div style={{height: 500, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'flex-end'}} className="">
+                                <div style={{height: 500}}>
+                                    <AwesomeSlider className='saleSlider'>
+                                        <div>
+                                            <img style={{height: 500}} src={require('../image/takhfif1.jpg')}/>
+                                        </div>
+                                        <div>
+                                            <img style={{height: 500}} src={require('../image/takhfif2.jpg')}/>
+                                        </div>
+                                        <div>
+                                            <img style={{height: 500}} src={require('../image/takhfif3.jpg')}/>
+                                        </div>
+                                    </AwesomeSlider>
+                                </div>
+
+                                <ul>
+                                    {masterCategories && masterCategories.map((masterCategory, index) => (
+                                        <li><a href="#">{masterCategory.name}</a>
+                                            <div className="ruby-grid ruby-grid-lined">
+                                                <div className="ruby-row ruby-row-products">
+                                                    {categoryList && categoryList.filter(category => category.masterCategory === masterCategory.name).map(categoryItem => (
+                                                        <div className="ruby-col-3">
+                                                            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                                                                <h3 className="ruby-list-heading"
+                                                                    style={{marginTop: 16}}>{categoryItem.type}</h3>
+                                                                <img style={{width: 50, height: 50, borderRadius: 25, marginRight: 5, marginLeft: 5}} src={Services.getProductCategoryImageDownloadUrl(categoryItem.image)}/>
+                                                            </div>
+
+                                                            <ul>
+                                                                {categoryItem.subTypes && categoryItem.subTypes.split(',').map(subType => (
+                                                                    <li><a href="#">{subType}</a></li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <span className="ruby-dropdown-toggle"></span></li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <span className="ruby-dropdown-toggle"></span></li>
+
                         <li><a href="#">Classic</a>
                             <ul className="">
                                 <li><a href="#">2nd Level #1</a></li>
@@ -401,224 +476,6 @@ class Navigation extends React.Component {
                                                             href="#">10 Freaking Facts About Being An airline pilot</a></span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ruby-dropdown-toggle"></span></li>
-                                </ul>
-                            </div>
-                            <span className="ruby-dropdown-toggle"></span></li>
-
-                        <li className="ruby-menu-mega-shop"><a href="#">Shop</a>
-                            <div style={{height: 263}} className="">
-                                <ul>
-                                    <li className="ruby-active-menu-item"><a href="#">Clothing</a>
-                                        <div className="ruby-grid ruby-grid-lined">
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-2">
-                                                    <h3 className="ruby-list-heading">TOPS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-2">
-                                                    <img src="img/outerwear-2.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-2">
-                                                    <h3 className="ruby-list-heading">BOTTOM</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-2">
-                                                    <h3 className="ruby-list-heading">NIGHTWEAR</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-2">
-                                                    <img src="img/outerwear-3.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-2">
-                                                    <h3 className="ruby-list-heading">SWIMWEAR</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ruby-dropdown-toggle"></span></li>
-                                    <li><a href="#">Outerwear</a>
-                                        <div className="ruby-grid ruby-grid-lined">
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-3">
-                                                    <img src="img/outerwear.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <h3 className="ruby-list-heading">COATS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                        <li><a href="#">Menu Item #6</a></li>
-                                                        <li><a href="#">Menu Item #7</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <h3 className="ruby-list-heading">JACKETS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                        <li><a href="#">Menu Item #6</a></li>
-                                                        <li><a href="#">Menu Item #7</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <h3 className="ruby-list-heading">LEATHER</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                        <li><a href="#">Menu Item #6</a></li>
-                                                        <li><a href="#">Menu Item #7</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ruby-dropdown-toggle"></span></li>
-                                    <li><a href="#">Bags &amp; Shoes</a>
-                                        <div className="ruby-grid ruby-grid-lined">
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-3">
-                                                    <img src="img/bags.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <h3 className="ruby-list-heading">BAGS</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <h3 className="ruby-list-heading">SHOES</h3>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item #1</a></li>
-                                                        <li><a href="#">Menu Item #2</a></li>
-                                                        <li><a href="#">Menu Item #3</a></li>
-                                                        <li><a href="#">Menu Item #4</a></li>
-                                                        <li><a href="#">Menu Item #5</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/shoes.jpg"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ruby-dropdown-toggle"></span></li>
-                                    <li><a href="#">Accessories</a>
-                                        <div className="ruby-grid ruby-grid-lined">
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-3">
-                                                    <img src="img/eyewear.jpg"/>
-                                                        <h3 className="ruby-list-heading"
-                                                            style={{marginTop: 16}}>EYEWEAR</h3>
-                                                        <ul>
-                                                            <li><a href="#">Menu Item #1</a></li>
-                                                            <li><a href="#">Menu Item #2</a></li>
-                                                            <li><a href="#">Menu Item #3</a></li>
-                                                            <li><a href="#">Menu Item #4</a></li>
-                                                        </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/jewellery.jpg"/>
-                                                        <h3 className="ruby-list-heading"
-                                                            style={{marginTop: 16}}>JEWELLERY</h3>
-                                                        <ul>
-                                                            <li><a href="#">Menu Item #1</a></li>
-                                                            <li><a href="#">Menu Item #2</a></li>
-                                                            <li><a href="#">Menu Item #3</a></li>
-                                                            <li><a href="#">Menu Item #4</a></li>
-                                                        </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/watches.jpg"/>
-                                                        <h3 className="ruby-list-heading"
-                                                            style={{marginTop: 16}}>WATCHES</h3>
-                                                        <ul>
-                                                            <li><a href="#">Menu Item #1</a></li>
-                                                            <li><a href="#">Menu Item #2</a></li>
-                                                            <li><a href="#">Menu Item #3</a></li>
-                                                            <li><a href="#">Menu Item #4</a></li>
-                                                        </ul>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/textile.jpg"/>
-                                                        <h3 className="ruby-list-heading"
-                                                            style={{marginTop: 16}}>OTHERS</h3>
-                                                        <ul>
-                                                            <li><a href="#">Menu Item #1</a></li>
-                                                            <li><a href="#">Menu Item #2</a></li>
-                                                            <li><a href="#">Menu Item #3</a></li>
-                                                            <li><a href="#">Menu Item #4</a></li>
-                                                        </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span className="ruby-dropdown-toggle"></span></li>
-                                    <li><a href="#">Collections</a>
-                                        <div className="ruby-grid ruby-grid-lined">
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-accessori.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-bridal.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-cube.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-elegante.jpg"/>
-                                                </div>
-                                            </div>
-                                            <div className="ruby-row">
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-maxmara.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-sfilata.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-shine.jpg"/>
-                                                </div>
-                                                <div className="ruby-col-3">
-                                                    <img src="img/collection-s-maxmara.jpg"/>
                                                 </div>
                                             </div>
                                         </div>
