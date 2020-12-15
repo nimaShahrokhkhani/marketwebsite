@@ -57,7 +57,6 @@ class Navigation extends React.Component {
 
                         <li className="ruby-menu-mega-shop"><a href="#">محصولات</a>
                             <div style={{height: 500, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'flex-end'}} className="">
-                                <div style={{height: 500}}>
                                     <AwesomeSlider className='saleSlider'>
                                         <div>
                                             <img style={{height: 500}} src={require('../image/takhfif1.jpg')}/>
@@ -69,11 +68,10 @@ class Navigation extends React.Component {
                                             <img style={{height: 500}} src={require('../image/takhfif3.jpg')}/>
                                         </div>
                                     </AwesomeSlider>
-                                </div>
 
                                 <ul>
                                     {masterCategories && masterCategories.map((masterCategory, index) => (
-                                        <li><a href="#">{masterCategory.name}</a>
+                                        <li><a href="#" style={{fontFamily: 'IRANSansMobile-Bold'}}>{masterCategory.name}</a>
                                             <div className="ruby-grid ruby-grid-lined">
                                                 <div className="ruby-row ruby-row-products">
                                                     {categoryList && categoryList.filter(category => category.masterCategory === masterCategory.name).map(categoryItem => (
@@ -86,7 +84,7 @@ class Navigation extends React.Component {
 
                                                             <ul>
                                                                 {categoryItem.subTypes && categoryItem.subTypes.split(',').map(subType => (
-                                                                    <li><a href="#">{subType}</a></li>
+                                                                    <li><a href="#" style={{fontFamily:'IRANSansMobile-Light'}}>{subType}</a></li>
                                                                 ))}
                                                             </ul>
                                                         </div>

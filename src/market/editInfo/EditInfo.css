@@ -1,7 +1,8 @@
 
 .account1-main{
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    margin-top: 110px;
 }
 .mediaViewInfo {
     --web-view-name: Web 1280 – 2;
@@ -521,11 +522,11 @@
     fill: rgba(20,33,61,1);
 }
 .image_here_Image {
-    width: 237.623px;
+    width: 230px;
     height: 305.444px;
     position: absolute;
     overflow: visible;
-    transform: translate(-4397.623px, -669.102px) matrix(1,0,0,1,4449.4158,637.8392) rotate(269deg);
+    transform: translate(-4600.623px, -669.102px) matrix(1,0,0,1,4449.4158,637.8392) rotate(269deg);
     transform-origin: center;
 }
 #image_here_Image_bk {
@@ -588,7 +589,7 @@
 }
 
 .switch input {
-    opacity: 0;
+    opacity: 1;
     width: 0;
     height: 0;
 }
@@ -597,54 +598,9 @@
     width: 0;
     height: 0;
 }
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    transform: translateX(235px);
 
-}
-.slider1 {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    transform: translateX(180px);
 
-}
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-.slider1:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
+
 input:checked + .slider {
     background-color: #1CF20A;
 }

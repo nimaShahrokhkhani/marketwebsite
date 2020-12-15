@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Services from "../../utils/Services";
+import Checkbox from "../components/checkBox/CheckBox";
 
 class EditInfo extends React.Component {
     constructor(props) {
@@ -179,6 +180,7 @@ class EditInfo extends React.Component {
                         </div>
                         <label className="switch">
                             <input type="checkbox" checked/>
+                            <Checkbox/>
                             <span className="slider round"></span>
                         </label>
 
@@ -186,7 +188,8 @@ class EditInfo extends React.Component {
                             <span>مایل به دریافت پیشنهادات ویژه از<br/>گریماس هستم</span>
                         </div>
                         <label className="switch1">
-                            <input type="checkbox" checked/>
+                            <input  type="checkbox" checked/>
+                            <Checkbox/>
                             <span className="slider1 round"></span>
                         </label>
                     </div>

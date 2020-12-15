@@ -1,6 +1,7 @@
 .account_main{
     display: flex;
     flex-direction: row;
+    margin-top: 110px;
 }
 .mediaViewInfo {
     --web-view-name: Web 1280 – 2;
@@ -163,7 +164,7 @@
     top: 66.529px;
     transform: matrix(1,0,0,1,0,0);
 }
-#_1 {
+#birth {
     left: 526px;
     top: 165px;
     position: absolute;
@@ -191,12 +192,12 @@
     font-size: 24px;
     color: rgba(20,33,61,1);
 }
-#___r {
+#circle1 {
     left: 680px;
     top: 330px;
     position: absolute;
     overflow: visible;
-    width: 81px;
+    width: 150px;
     white-space: nowrap;
     text-align: right;
     font-family: IRANSans;
@@ -205,12 +206,12 @@
     font-size: 24px;
     color: rgba(20,33,61,1);
 }
-#____r {
+#circle2 {
     left: 410px;
     top:330px;
     position: absolute;
     overflow: visible;
-    width: 81px;
+    width: 150px;
     white-space: nowrap;
     text-align: right;
     font-family: IRANSans;
@@ -219,12 +220,12 @@
     font-size: 24px;
     color: rgba(20,33,61,1);
 }
-#_____r {
+#circle3 {
     left: 150px;
     top: 330px;
     position: absolute;
     overflow: visible;
-    width: 81px;
+    width: 150px;
     white-space: nowrap;
     text-align: right;
     font-family: IRANSans;
@@ -343,7 +344,7 @@
     font-size: 13px;
     color: rgba(20,33,61,1);
 }
-#_ba {
+#level{
     left: 486px;
     top: 631px;
     position: absolute;
@@ -399,7 +400,7 @@
     font-size: 13px;
     color: rgba(20,33,61,1);
 }
-#_be {
+#detail_123 {
     left: 96px;
     top: 631px;
     position: absolute;
@@ -413,7 +414,7 @@
     font-size: 13px;
     color: rgba(20,33,61,1);
 }
-#___ba {
+#list_adress {
     left: 710px;
     top: 878px;
     position: absolute;
@@ -689,4 +690,5 @@
 #bf1 a{
     text-decoration: none;
     color:#13213c;
+    cursor: grab;
 }

@@ -1413,7 +1413,10 @@ h3.ruby-list-heading {
     font-size: 14px;
     line-height: 24px;
     font-weight: 700;
-    margin: 0
+    margin: 0;
+    font-family: IRANSansMobile-Bold;
+
+
 }
 
 ul.ruby-menu > li.ruby-menu-mega > div ul,ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li > div ul {
@@ -1587,9 +1590,17 @@ span.ruby-c-content {
         opacity: 0
     }
 
-    ul.ruby-menu > li.ruby-menu-mega:hover > div,ul.ruby-menu > li.ruby-menu-mega-blog:hover > div,ul.ruby-menu > li.ruby-menu-mega-shop:hover > div {
-        visibility: visible;
-        opacity: 1
+    ul.ruby-menu > li.ruby-menu-mega:hover > div,ul.ruby-menu > li.ruby-menu-mega-blog:hover > div,ul.ruby-menu > li.ruby-menu-mega-shop > div > div > div > div > div {
+        visibility: hidden !important;
+        z-index: 2;
+        transform: translate3d(0, 0, 0);
+    }
+
+    ul.ruby-menu > li.ruby-menu-mega:hover > div,ul.ruby-menu > li.ruby-menu-mega-blog:hover > div,ul.ruby-menu > li.ruby-menu-mega-shop:hover > div,ul.ruby-menu > li.ruby-menu-mega-shop:hover > div > div > div > div > div {
+        visibility: visible !important;
+        transition: 0.5s;
+
+        opacity: 1;
     }
 
     ul.ruby-menu > li.ruby-menu-mega-blog > div > ul.ruby-menu-mega-blog-nav > li > div {

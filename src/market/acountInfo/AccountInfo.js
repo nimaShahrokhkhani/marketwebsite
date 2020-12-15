@@ -16,6 +16,12 @@ class AccountInfo extends React.Component {
     componentDidMount() {
     }
 
+    onEditInfoClick = () => {
+        this.props.history.push({
+            pathname: '/Market/EditInfo'
+        });
+    };
+
     render() {
         const {t} = this.props;
         return (
@@ -62,20 +68,20 @@ class AccountInfo extends React.Component {
                         <path id="Line_70" d="M 0 0 L 0.322998046875 151.9713745117188">
                         </path>
                     </svg>
-                    <div id="_1">
+                    <div id="birth">
                         <span>:تاریخ تولد</span>
                     </div>
 
                     <div id="__r">
                         <span>فعالیت ها</span>
                     </div>
-                    <div id="___r">
+                    <div id="circle1">
                         <span><img src={require("../image/circule.jpg")}/></span>
                     </div>
-                    <div id="____r">
+                    <div id="circle2">
                         <span><img src={require("../image/circule.jpg")}/></span>
                     </div>
-                    <div id="_____r">
+                    <div id="circle3">
                         <span><img src={require("../image/circule.jpg")}/></span>
                     </div>
                     <div id="____s">
@@ -104,7 +110,7 @@ class AccountInfo extends React.Component {
                     <div id="__z">
                         <span>جمع کل</span>
                     </div>
-                    <div id="_ba">
+                    <div id="level">
                         <span>مرحله</span>
                     </div>
                     <div id="_bb">
@@ -116,10 +122,10 @@ class AccountInfo extends React.Component {
                     <div id="_bd">
                         <span>پرداخت</span>
                     </div>
-                    <div id="_be">
+                    <div id="detail_123">
                         <span>جزئیات</span>
                     </div>
-                    <div id="___ba">
+                    <div id="list_adress">
                         <span>لیست آدرس ها</span>
                     </div>
                     <div id="____ba">
@@ -135,10 +141,10 @@ class AccountInfo extends React.Component {
                         <span>:ایمیل</span>
                     </div>
                     <div id="__bf">
-                        <span><img src={require("../image/Capture.jpg")}/></span>
+                        <span><img src={require("../image/capture_edit1.PNG")}/></span>
                     </div>
                     <div id="bf1">
-                        <a href="#"><span>ویرایش اطلاعات کاربری</span></a>
+                        <a onClick={this.onEditInfoClick}><span>ویرایش اطلاعات کاربری</span></a>
                     </div>
 
 

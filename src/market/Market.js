@@ -194,64 +194,64 @@ class Market extends React.Component {
         const {t} = this.props;
         return (
             <footer>
-                <div id="Web_1280__2">
-                    <div id="Group_37">
-                        <svg className="Path_5" viewBox="-48.339 -12.608 469.056 917.597">
-                            <path id="Path_5"
+                <div id="footer11">
+                    <div id="Group_377">
+                        <svg className="Path_556" viewBox="-48.339 -12.608 469.056 917.597">
+                            <path id="Path_556"
                                   d="M 420.7168579101562 179.0343475341797 L 289.4585876464844 -12.60771179199219 L -48.33911514282227 772.6537475585938 L 27.98006439208984 904.9890747070312 L 420.7168579101562 179.0343475341797 Z">
                             </path>
                         </svg>
-                        <div id="Group_31">
-                            <div id="Group_28">
-                                <svg className="Path_2" viewBox="-20.46 -17.094 479.11 674.538">
-                                    <path id="Path_2"
+                        <div id="Group_311">
+                            <div id="Group_288">
+                                <svg className="Path_221" viewBox="-20.46 -17.094 479.11 674.538">
+                                    <path id="Path_221"
                                           d="M -18.01109504699707 657.4430541992188 L 458.649658203125 310.2049865722656 L 392.4698486328125 -17.0944881439209 L -20.46020698547363 327.0364990234375 L -18.01109504699707 657.4430541992188 Z">
                                     </path>
                                 </svg>
                             </div>
-                            <div id="Group_29">
-                                <img id="Rectangle_609" src="Rectangle_609.png/"
+                            <div id="Group_299">
+                                <img id="Rectangle_6099" src="Rectangle_609.png/"
                                      srcSet="Rectangle_609.png 1x, Rectangle_609@2x.png 2x"/>
                             </div>
                         </div>
-                        <svg className="Path_6" viewBox="-20.46 -17.094 479.11 674.538">
-                            <path id="Path_6"
+                        <svg className="Path_667" viewBox="-20.46 -17.094 479.11 674.538">
+                            <path id="Path_667"
                                   d="M -18.01109504699707 657.4430541992188 L 458.649658203125 310.2049865722656 L 392.4698486328125 -17.0944881439209 L -20.46020698547363 327.0364990234375 L -18.01109504699707 657.4430541992188 Z">
                             </path>
                         </svg>
                     </div>
-                    <svg className="Path_7" viewBox="0 0 317.302 156.288">
-                        <path id="Path_7"
+                    <svg className="Path_777" viewBox="0 0 317.302 156.288">
+                        <path id="Path_777"
                               d="M 10.81177806854248 156.2881164550781 L 317.3016967773438 7.62939453125e-06 L 0 41.3046875 L 10.81177806854248 156.2881164550781 Z">
                         </path>
                     </svg>
-                    <div id="Group_38">
-                        <svg className="Path_5_q" viewBox="10.818 5.336 504.027 969.101">
-                            <path id="Path_5_q"
+                    <div id="Group_388">
+                        <svg className="Path_555_q" viewBox="10.818 5.336 504.027 969.101">
+                            <path id="Path_555_q"
                                   d="M 514.8448486328125 207.3044738769531 L 374.6290283203125 5.336058616638184 L 10.81780052185059 834.9383544921875 L 92.29682159423828 974.4375 L 514.8448486328125 207.3044738769531 Z">
                             </path>
                         </svg>
-                        <div id="Group_31_r">
-                            <div id="Group_28_s">
-                                <svg className="Path_2_t" viewBox="0 0 570.937 687.278">
-                                    <path id="Path_2_t"
+                        <div id="Group_311_r">
+                            <div id="Group_288_s">
+                                <svg className="Path_222_t" viewBox="0 0 570.937 687.278">
+                                    <path id="Path_222_t"
                                           d="M 0 687.2783203125 L 570.9365844726562 326.7905883789062 L 501.135986328125 0 L 5.442733764648438 355.7625732421875 L 0 687.2783203125 Z">
                                     </path>
                                 </svg>
                             </div>
-                            <div id="Group_29_u">
+                            <div id="Group_299_u">
                                 <img id="Rectangle_609_v" src="Rectangle_609_v.png"
                                      srcSet="Rectangle_609_v.png 1x, Rectangle_609_v@2x.png 2x"/>
                             </div>
                         </div>
-                        <svg className="Path_6_w" viewBox="9.337 6.808 510.85 679.158">
-                            <path id="Path_6_w"
+                        <svg className="Path_666_w" viewBox="9.337 6.808 510.85 679.158">
+                            <path id="Path_666_w"
                                   d="M 9.336938858032227 685.966064453125 L 520.1865844726562 333.9230346679688 L 452.6936645507812 6.808124542236328 L 9.749782562255859 355.1572570800781 L 9.336938858032227 685.966064453125 Z">
                             </path>
                         </svg>
                     </div>
-                    <svg className="Path_8" viewBox="0 0 317.302 156.288">
-                        <path id="Path_8"
+                    <svg className="Path_888" viewBox="0 0 317.302 156.288">
+                        <path id="Path_888"
                               d="M 10.81177806854248 156.2881164550781 L 317.3016967773438 7.62939453125e-06 L 0 41.3046875 L 10.81177806854248 156.2881164550781 Z">
                         </path>
                     </svg>
@@ -259,7 +259,7 @@ class Market extends React.Component {
                         <rect id="Rectangle_623" rx="0" ry="0" x="0" y="0" width="1096" height="397">
                         </rect>
                     </svg>
-                    <div id="_">
+                    <div id="intro">
                         <span>معرفی گریماس</span>
                     </div>
                     <div id="Group_182">
@@ -283,7 +283,7 @@ class Market extends React.Component {
                     <div id="__bs">
                         <span>آخرین نظرات</span>
                     </div>
-                    <div id="__">
+                    <div id="-us-">
                         <span>تماس با ما</span>
                     </div>
 
