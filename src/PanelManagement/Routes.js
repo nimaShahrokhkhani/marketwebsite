@@ -11,6 +11,7 @@ import EventsManager from "./Events/EventsManager";
 import BrandManager from "./Brand/BrandManager";
 import BlogManager from "./Blogs/BlogManager";
 import MasterCategoriesManager from "./masterCategories/MasterCategoriesManager";
+import SliderManager from "./Sliders/SliderManager";
 
 export default class Routes extends Component {
     render() {
@@ -26,6 +27,7 @@ export default class Routes extends Component {
                     <Route path="/PanelManagement/EventsManager" component={EventsManager} />
                     <Route path="/PanelManagement/BrandManager" component={BrandManager} />
                     <Route path="/PanelManagement/BlogManager" component={BlogManager} />
+                    <Route path="/PanelManagement/SliderManager" component={SliderManager} />
                 </Switch>
             </Router>
         )
