@@ -29,6 +29,10 @@ export default class Services {
       return this.baseUrl + `blogs/download?fileName=` + fileName;
     }
 
+    static getSliderImageDownloadUrl(fileName){
+      return this.baseUrl + `sliders/download?fileName=` + fileName;
+    }
+
     static uploadHighlightImage(requestData){
         return axios.post(`/highlight/uploadImage`, requestData)
     }
@@ -50,6 +54,18 @@ export default class Services {
         })
     }
 
+    static getBannerSliderList(requestData) {
+        return axios.get(`/sliders/banner/list`, {
+            params: requestData
+        })
+    }
+
+    static getSaleSliderList(requestData) {
+        return axios.get(`/sliders/sale/list`, {
+            params: requestData
+        })
+    }
+
     static searchProductsList(requestData) {
         return axios.get(`/products/search`, {
             params: requestData
@@ -60,6 +76,22 @@ export default class Services {
         return axios.get(`/products/newCollection`, {
             params: requestData
         })
+    }
+
+    static async insertBannerSlider(requestData) {
+        return axios.post(`/sliders/banner/insert`, requestData)
+    }
+
+    static async deleteBannerSlider(requestData) {
+        return axios.post(`/sliders/banner/delete`, requestData)
+    }
+
+    static async insertSaleSlider(requestData) {
+        return axios.post(`/sliders/sale/insert`, requestData)
+    }
+
+    static async deleteSaleSlider(requestData) {
+        return axios.post(`/sliders/sale/delete`, requestData)
     }
 
     static async insertProduct(requestData) {
