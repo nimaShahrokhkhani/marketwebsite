@@ -124,6 +124,24 @@ export default class Services {
         return axios.post(`/events/edit`, requestData)
     }
 
+    static getEventTypeList(requestData) {
+        return axios.get(`/events/type/list`, {
+            params: requestData
+        })
+    }
+
+    static async insertEventType(requestData) {
+        return axios.post(`/events/type/insert`, requestData)
+    }
+
+    static async deleteEventType(requestData) {
+        return axios.post(`/events/type/delete`, requestData)
+    }
+
+    static async editEventType(requestData) {
+        return axios.post(`/events/type/edit`, requestData)
+    }
+
     static getHighlightList(requestData) {
         return axios.get(`/highlight/list`, {
             params: requestData

@@ -18,7 +18,8 @@ class AddEditForm extends React.Component {
             eventDate: '',
             eventTitle: '',
             eventDescription: '',
-            eventLocation: ''
+            eventLocation: '',
+            eventType: ''
         };
     }
 
@@ -42,6 +43,7 @@ class AddEditForm extends React.Component {
         data.append('company', this.state.company);
         data.append('description', this.state.description);
         data.append('dateModify', this.state.dateModify);
+        data.append('type', this.state.eventType);
         data.append('isCandidate', this.state.isCandidate);
         data.append('events', JSON.stringify(this.state.events));
         Services.insertEvent(data).then((response) => {
@@ -60,6 +62,7 @@ class AddEditForm extends React.Component {
         data.append('company', this.state.company);
         data.append('description', this.state.description);
         data.append('dateModify', this.state.dateModify);
+        data.append('type', this.state.eventType);
         data.append('isCandidate', this.state.isCandidate);
         data.append('events', JSON.stringify(this.state.events));
         Services.editEvent(data).then((response) => {
@@ -79,6 +82,7 @@ class AddEditForm extends React.Component {
                 description,
                 image,
                 dateModify,
+                type,
                 events,
                 isCandidate
             } = this.props.item;
@@ -88,6 +92,7 @@ class AddEditForm extends React.Component {
                 description: description ? description : '',
                 image,
                 dateModify: dateModify ? dateModify : '',
+                type: type ? type : '',
                 isCandidate: isCandidate ? (isCandidate === 'true') : false
             })
         }
@@ -171,6 +176,15 @@ class AddEditForm extends React.Component {
                     <Input type="text" placeholder="Event Location" name="eventLocation" id="eventLocation" onChange={this.onChange}
                            value={this.state.eventLocation}/>
                     <Button onClick={this.onAddEventClick}>Add Event</Button>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="eventType">EventType</Label>
+                    <select name="eventType" id="eventType" onChange={this.onChange} value={this.state.eventType}>
+                        <option value=''/>
+                        {this.props.eventTypeList && this.props.eventTypeList.map(function (item) {
+                            return <option value={item.name}> {item.name} </option>
+                        })}
+                    </select>
                 </FormGroup>
                 <FormGroup>
                     <Label for="isCandidate">IsCandidate</Label>
