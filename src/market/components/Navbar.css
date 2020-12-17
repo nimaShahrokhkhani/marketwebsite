@@ -719,7 +719,8 @@ ul.ruby-menu > li.ruby-menu-mega > div ul.ruby-list-with-images li span.ruby-lis
 }
 
 span.ruby-c-title,span.ruby-c-title a {
-    color: #222
+    color: #222;
+    font-family: IRANSansMobileFaNum-Bold;
 }
 
 span.ruby-c-title a:hover,span.ruby-c-category,span.ruby-c-category a,span.ruby-c-date,span.ruby-c-date a {
@@ -963,7 +964,7 @@ div.ruby-wrapper {
     width: 100%;
     height: 50px;
     margin: 0 auto;
-    background: #333
+    background: #13213C
 }
 
 div.ruby-wrapper ul {
@@ -1184,7 +1185,7 @@ ul.ruby-menu > li.ruby-menu-mega > div,ul.ruby-menu > li.ruby-menu-mega-blog > d
 
 ul.ruby-menu > li.ruby-menu-mega-blog > div > ul.ruby-menu-mega-blog-nav {
     position: relative;
-    width: 200px;
+    width: 100%;
     height: 100%;
     left: 0;
     top: 0;
@@ -1210,10 +1211,9 @@ ul.ruby-menu > li.ruby-menu-mega-blog > div > ul.ruby-menu-mega-blog-nav > li.ru
 
 ul.ruby-menu > li.ruby-menu-mega-blog > div > ul.ruby-menu-mega-blog-nav > li > div {
     position: absolute;
-    width: 780px;
+    width: 100%;
     height: auto;
     min-height: 100%;
-    left: 200px;
     top: 0;
     background: #fff
 }
@@ -1325,7 +1325,7 @@ div.ruby-grid > div.ruby-row::after {
 
 div.ruby-grid > div.ruby-row [class^="ruby-col"] {
     position: relative;
-    float: left;
+    float: right;
     height: auto
 }
 
@@ -1393,9 +1393,9 @@ div.ruby-grid.ruby-grid-lined > div.ruby-row > div[class^="ruby-col"]:after {
     content: "";
     position: absolute;
     top: 0;
-    width: 1px;
+    width: 0;
     height: 100%;
-    right: 0;
+    left: 0;
     background: -webkit-linear-gradient(top,rgba(204,204,204,0) 0%,rgba(204,204,204,0.48) 24%,rgba(204,204,204,1) 50%,rgba(204,204,204,0.42) 79%,rgba(204,204,204,0) 100%)
 }
 
@@ -1507,7 +1507,7 @@ span.ruby-c-category a:hover,span.ruby-c-date a:hover {
 }
 
 div.ruby-c-inline {
-    display: block;
+    display: flex;
     position: relative;
     height: 14px;
     margin: 7px 0
@@ -1532,7 +1532,9 @@ span.ruby-c-content {
     top: 7px;
     font-size: 12px;
     line-height: 18px;
-    text-align: justify
+    text-align: right;
+    direction: rtl;
+    font-family: IRANSansMobileFaNum-Light;
 }
 
 .ruby-wrapper .visible-xs {
@@ -2232,4 +2234,24 @@ span.ruby-c-content {
         font-stretch: condensed;
         color: #666
     }
+}
+.brandItem {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    text-decoration: none !important;
+}
+
+.brandItem p {
+    visibility: hidden;
+    font-size: 10px;
+    color: #13213C;
+}
+
+.brandItem:hover p {
+    visibility: visible;
+    font-size: 10px;
+    color: #13213C;
 }

@@ -603,3 +603,8 @@ td.rdtYear:hover {
     justify-content: center;
     align-items: flex-start;
 }
+.event_type_list {
+    width: 100%;
+    padding: 20px;
+    background-color: #f0f0f0;
+}

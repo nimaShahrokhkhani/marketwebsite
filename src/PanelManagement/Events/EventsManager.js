@@ -13,10 +13,21 @@ class EventsManager extends Component {
         this.state = {
             items: [],
             isLoading: false,
-            isDone: true
+            isDone: true,
+            eventTypeList: [],
+            eventTypeName: ''
         }
     }
 
+    getEventTypes() {
+        Services.getEventTypeList().then(response => {
+            this.setState({
+                eventTypeList: response.data
+            })
+        }).catch(error => {
+            console.log('error', error)
+        })
+    }
 
     getItems = () => {
         this.setState({
@@ -75,13 +86,66 @@ class EventsManager extends Component {
     }
 
     componentDidMount() {
-        this.getItems()
+        this.getItems();
+        this.getEventTypes();
     }
 
+    onChangeEventType = e => {
+        this.setState({[e.target.name]: e.target.value})
+    };
+
+    addEventType = () => {
+        Services.insertEventType({name: this.state.eventTypeName}).then(response => {
+            window.location.reload();
+        }).catch(error => {
+
+        })
+    };
+
+    removeEventType = (eventType) => {
+        Services.deleteEventType({name: eventType.name}).then(response => {
+            window.location.reload();
+        }).catch(error => {
+
+        })
+    };
+
     render() {
-        let {isLoading, isDone} = this.state;
+        let {isLoading, isDone, eventTypeList} = this.state;
         return (
             <>
+                <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <p style={{marginTop: 100, fontSize: 25, color: '#100f8a'}}>Event Types</p>
+                    <div className="sliderForm">
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                            <input type="text" className="bannerName" name="eventTypeName" placeholder="Event type name"
+                                   onChange={this.onChangeEventType}/>
+                        </div>
+                        <button onClick={this.addEventType} className="todo_button">
+                            <i className="fas fa-plus-square"> + </i>
+                        </button>
+                    </div>
+                    <div className="todo_container event_type_list">
+                        <ul className="todo_list" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            {eventTypeList.length > 0 && eventTypeList.map(eventType => (
+                                <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', margin: 20}}>
+                                    <button style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={() => this.removeEventType(eventType)}>
+                                        <img style={{
+                                            width: 20,
+                                            height: 20
+                                        }} src={require('../../market/image/delete.png')}/>
+                                    </button>
+                                    <p>{eventType.name}</p>
+                                </div>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
                 {isDone && !isLoading ?
                     <Container className="AppContainer">
                         <Row>
@@ -93,6 +157,7 @@ class EventsManager extends Component {
                             <Col>
                                 <DataTable items={this.state.items} updateState={this.updateState}
                                            deleteItemFromState={this.deleteItemFromState}
+                                           eventTypeList={this.state.eventTypeList}
                                            getItems={this.getItems}/>
                             </Col>
                         </Row>
@@ -106,7 +171,8 @@ class EventsManager extends Component {
                                     data={this.state.items}>
                                     Download CSV
                                 </CSVLink>
-                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState} getItems={this.getItems}/>
+                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}
+                                           getItems={this.getItems}/>
                             </Col>
                         </Row>
                     </Container>
@@ -119,5 +185,6 @@ class EventsManager extends Component {
         )
     }
 }
+
 
 export default EventsManager

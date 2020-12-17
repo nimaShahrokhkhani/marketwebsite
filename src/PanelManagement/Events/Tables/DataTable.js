@@ -36,6 +36,9 @@ class DataTable extends Component {
                         <div className='table-cell'>{item.dateModify}</div>
                     </td>
                     <td>
+                        <div className='table-cell'>{item.type}</div>
+                    </td>
+                    <td>
                         <div className='table-cell'>
                             <div>
                                 <Input style={{position: 'relative'}}
@@ -55,6 +58,7 @@ class DataTable extends Component {
                                 alignItems: "center"
                             }}>
                                 <ModalForm buttonLabel="Edit" item={item} updateState={this.props.updateState}
+                                           eventTypeList={this.props.eventTypeList}
                                            getItems={this.props.getItems}/>
                                 {' '}
                                 <Button color="danger" onClick={() => this.deleteItem(item.id)}>Del</Button>
@@ -74,6 +78,7 @@ class DataTable extends Component {
                     <th>description</th>
                     <th>image</th>
                     <th>dateModify</th>
+                    <th>type</th>
                     <th>isCandidate</th>
                     <th>Actions</th>
                 </tr>
