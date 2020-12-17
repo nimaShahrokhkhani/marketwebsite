@@ -53,7 +53,7 @@ class Home extends React.Component {
                 <NewCollection/>
                 <Highlight history={this.props.history}/>
                 <Events/>
-                <Blog/>
+                {/*<Blog/>*/}
             </div>
         );
     }

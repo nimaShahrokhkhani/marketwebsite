@@ -250,6 +250,8 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
+                        <li><a href="#">بلاگ</a></li>
+
                         <li><a href="#">تماس با ما</a></li>
 
                     </ul>
