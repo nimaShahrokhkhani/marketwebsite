@@ -17,7 +17,8 @@ class Navigation extends React.Component {
             highlightList: [],
             blogList: [],
             eventTypeList: [],
-            eventList: []
+            eventList: [],
+            saleSliderList: []
         }
     }
 
@@ -74,7 +75,6 @@ class Navigation extends React.Component {
 
     getEventTypeList() {
         Services.getEventTypeList().then(response => {
-            console.log('eventType', response.data)
             this.setState({
                 eventTypeList: response.data
             })
@@ -85,9 +85,18 @@ class Navigation extends React.Component {
 
     getEventList() {
         Services.getEventList().then(response => {
-            console.log('event', response.data)
             this.setState({
                 eventList: response.data
+            })
+        }).catch(error => {
+
+        })
+    }
+
+    getSaleSliderImages() {
+        Services.getSaleSliderList().then(response => {
+            this.setState({
+                saleSliderList: response.data
             })
         }).catch(error => {
 
@@ -101,6 +110,7 @@ class Navigation extends React.Component {
         this.getBlogList();
         this.getEventTypeList();
         this.getEventList();
+        this.getSaleSliderImages();
     }
 
     renderBrandMenu() {
@@ -135,7 +145,7 @@ class Navigation extends React.Component {
     render() {
         const pathname = this.props.location.pathname;
         const {t} = this.props;
-        const {masterCategories, categoryList, highlightList, eventTypeList, eventList, blogList} = this.state;
+        const {masterCategories, categoryList, highlightList, eventTypeList, eventList, blogList, saleSliderList} = this.state;
         return (
             <div className="ruby-menu-demo-header">
                 <div className="ruby-wrapper">
@@ -150,15 +160,11 @@ class Navigation extends React.Component {
                         <li className="ruby-menu-mega-shop"><a href="#">محصولات</a>
                             <div style={{height: 500, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'flex-end'}} className="">
                                     <AwesomeSlider className='saleSlider'>
-                                        <div>
-                                            <img style={{height: 500}} src={require('../image/takhfif1.jpg')}/>
-                                        </div>
-                                        <div>
-                                            <img style={{height: 500}} src={require('../image/takhfif2.jpg')}/>
-                                        </div>
-                                        <div>
-                                            <img style={{height: 500}} src={require('../image/takhfif3.jpg')}/>
-                                        </div>
+                                        {saleSliderList && saleSliderList.map(saleSlider => (
+                                            <div>
+                                                <img style={{height: 500}} src={Services.getSliderImageDownloadUrl(saleSlider.image)}/>
+                                            </div>
+                                        ))}
                                     </AwesomeSlider>
 
                                 <ul>

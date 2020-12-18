@@ -10,13 +10,15 @@ import NewCollection from "../newCollection/NewCollection";
 import Events from "../events/Events";
 import Blog from "../blog/Blog";
 import ShopByCategory from "../shopByCategory/ShopByCategory";
+import Services from "../../utils/Services";
 
 class Home extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            value: "en"
+            value: "en",
+            bannerSliderList: []
         }
     }
 
@@ -37,16 +39,31 @@ class Home extends React.Component {
         )
     };
 
+    getBannerSliderList() {
+        Services.getBannerSliderList().then(response => {
+            this.setState({
+                bannerSliderList: response.data
+            })
+        }).catch(error => {
+
+        })
+    }
+
+    componentDidMount() {
+        this.getBannerSliderList();
+    }
+
     render() {
-        const {t} = this.props
+        const {t} = this.props;
+        let {bannerSliderList} = this.state;
         return (
             <div style={{marginTop: 110}}>
                 <AwesomeSlider className='awesomeSlider'>
-                    <div data-src="/images/slide1.jpg"/>
-                    <div data-src="/images/slide2.jpg"/>
-                    <div data-src="/images/slide6.jpg"/>
-                    <div data-src="/images/slide4.jpg"/>
-                    <div data-src="/images/slide5.jpg"/>
+                    {bannerSliderList && bannerSliderList.map(bannerSlider => (
+                        <div>
+                            <img src={Services.getSliderImageDownloadUrl(bannerSlider.image)}/>
+                        </div>
+                    ))}
                 </AwesomeSlider>
                 <BestSeller history={this.props.history}/>
                 <ShopByCategory/>
