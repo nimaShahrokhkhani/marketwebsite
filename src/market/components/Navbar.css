@@ -1405,8 +1405,8 @@ div.ruby-grid.ruby-grid-lined > div.ruby-row > div[class^="ruby-col"]:last-child
 div.ruby-grid img {
     position: relative;
     max-width: 100%;
-    height: auto;
-    display: block
+    display: block;
+    height: 150px;
 }
 
 h3.ruby-list-heading {

@@ -15,6 +15,7 @@ class Navigation extends React.Component {
             categoryList: [],
             brandList: [],
             highlightList: [],
+            blogList: [],
             eventTypeList: [],
             eventList: []
         }
@@ -61,6 +62,16 @@ class Navigation extends React.Component {
         })
     }
 
+    getBlogList() {
+        Services.getBlogList().then(response => {
+            this.setState({
+                blogList: response.data && response.data.length > 5 ? response.data.slice(Math.max(response.data.length - 5, 0)) : response.data
+            })
+        }).catch(error => {
+
+        })
+    }
+
     getEventTypeList() {
         Services.getEventTypeList().then(response => {
             console.log('eventType', response.data)
@@ -87,6 +98,7 @@ class Navigation extends React.Component {
         this.getMasterCategories();
         this.getBrandList();
         this.getHighlightList();
+        this.getBlogList();
         this.getEventTypeList();
         this.getEventList();
     }
@@ -123,7 +135,7 @@ class Navigation extends React.Component {
     render() {
         const pathname = this.props.location.pathname;
         const {t} = this.props;
-        const {masterCategories, categoryList, highlightList, eventTypeList, eventList} = this.state;
+        const {masterCategories, categoryList, highlightList, eventTypeList, eventList, blogList} = this.state;
         return (
             <div className="ruby-menu-demo-header">
                 <div className="ruby-wrapper">
@@ -250,7 +262,34 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li><a href="#">بلاگ</a></li>
+                        <li className="ruby-menu-mega-blog"><a href="#">بلاگ</a>
+                            <div style={{height: 269.359}} className="">
+                                <ul className="ruby-menu-mega-blog-nav">
+
+                                    <li className="ruby-active-menu-item">
+                                        <div className="ruby-grid ruby-grid-lined" style={{height: 264.359}}>
+                                            <div className="ruby-row">
+                                                {blogList && blogList.map(blog => (
+                                                    <div className="ruby-col-3">
+                                                        <img src={blog.contentImage}/>
+                                                        <div className="ruby-c-inline">
+                                                            <span className="ruby-c-category"><a
+                                                                href="#">بلاگ</a></span>
+                                                            <span className="ruby-c-date"><a
+                                                                href="#">05/01/2017</a></span>
+                                                        </div>
+                                                        <span className="ruby-c-title ruby-margin-10"><a href="#">{blog.title}</a></span>
+                                                        <span className="ruby-c-content">{renderHTML(blog.summeryContent)}</span>
+                                                    </div>
+                                                ))
+                                                }
+                                            </div>
+                                        </div>
+                                        <span className="ruby-dropdown-toggle"></span></li>
+
+                                </ul>
+                            </div>
+                            <span className="ruby-dropdown-toggle"></span></li>
 
                         <li><a href="#">تماس با ما</a></li>
 

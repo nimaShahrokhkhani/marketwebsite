@@ -92,7 +92,7 @@ class AddEditForm extends React.Component {
                 description: description ? description : '',
                 image,
                 dateModify: dateModify ? dateModify : '',
-                type: type ? type : '',
+                eventType: type ? type : '',
                 isCandidate: isCandidate ? (isCandidate === 'true') : false
             })
         }

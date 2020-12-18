@@ -14,7 +14,8 @@ html, body, root {
 }
 
 .App .container{
-    align-content: center
+    align-content: center;
+    margin-top: 50px;
 }
 
 .top-content{
