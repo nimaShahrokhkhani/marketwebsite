@@ -32,16 +32,18 @@ class Products extends React.Component {
             search: '',
             brand: '',
             productCategoryList: [],
-            activePage: 0
+            activePage: 0,
+            activeQuickFilter: ''
         }
     }
 
     getItems = (offset, length) => {
+        let {masterCategory, type, subType} = this.props.location.state ? this.props.location.state : {};
         this.setState({
             isLoading: true,
             isDone: false
         }, () => {
-            Services.getProductsList({offset: offset, length: length}).then((response) => {
+            Services.getProductsList({offset: offset, length: length, masterCategory, type, subType}).then((response) => {
                 this.setState({
                     productList: response.data.data,
                     totalProductsCount: response.data.totalCount,
@@ -70,7 +72,7 @@ class Products extends React.Component {
     };
 
     componentDidMount() {
-        let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
+        let {products, isFromSearch, masterCategory} = this.props.location.state ? this.props.location.state : {};
         isFromSearch ?
             this.setState({
                 isLoading: true,
@@ -91,7 +93,7 @@ class Products extends React.Component {
         }).catch(error => {
             console.log('error', error);
         });
-        Services.getProductCategoryList().then(response => {
+        Services.getProductCategoryList({masterCategory}).then(response => {
             this.setState({
                 productCategoryList: response.data
             })
@@ -189,9 +191,13 @@ class Products extends React.Component {
         this.props.addProduct(product)
     };
 
+    onQuickFilterClick = (filter) => {
+        this.setState({activeQuickFilter: filter})
+    };
+
     render() {
         const {t} = this.props;
-        let {isLoading, isDone, productList, brandList, productCategoryList} = this.state;
+        let {isLoading, isDone, productList, brandList, productCategoryList, activeQuickFilter} = this.state;
         return (
             <div style={{
                 marginTop: 150,
@@ -208,6 +214,27 @@ class Products extends React.Component {
                                 <div class="col-sm-9 padding-right">
                                     <div class="features_items">
                                         <h2 class="title text-center">محصولات</h2>
+                                        <div className="filter_container">
+                                            <p>مرتب سازی :</p>
+                                            <div className={activeQuickFilter === "جدیدترین" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('جدیدترین')}>جدیدترین</a>
+                                            </div>
+                                            <div className={activeQuickFilter === "بیشترین تخفیف" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین تخفیف')}>بیشترین تخفیف</a>
+                                            </div>
+                                            <div className={activeQuickFilter === "کمترین تخفیف" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('کمترین تخفیف')}>کمترین تخفیف</a>
+                                            </div>
+                                            <div className={activeQuickFilter === "کمترین قیمت" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('کمترین قیمت')}>کمترین قیمت</a>
+                                            </div>
+                                            <div className={activeQuickFilter === "بیشترین قیمت" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین قیمت')}>بیشترین قیمت</a>
+                                            </div>
+                                            <div className={activeQuickFilter === "بیشترین فروش" && "active"}>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین فروش')}>بیشترین فروش</a>
+                                            </div>
+                                        </div>
                                         <Container>
                                             <Row>
 

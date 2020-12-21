@@ -183,7 +183,9 @@ export default class Services {
     }
 
     static getProductCategoryList(requestData) {
-        return axios.get(`/productCategory/list`, requestData)
+        return axios.get(`/productCategory/list`, {
+            params: requestData
+        })
     }
 
     static async insertProductCategory(requestData) {

@@ -117,9 +117,9 @@ class Market extends React.Component {
                                     alt="World"/></a>
                                 <NavDropdown disabled={this.state.changeLanguageMenuActive} title=""
                                              id="collasible-nav-dropdown">
-                                    <NavDropdown.Item onClick={() => this.onLanguageHandle('fa')}
+                                    <NavDropdown.Item  style={{fontFamily: 'IRANSansMobileFaNum-Light'}} onClick={() => this.onLanguageHandle('fa')}
                                                       href="#action/3.1">fa</NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => this.onLanguageHandle('en')}
+                                    <NavDropdown.Item style={{fontFamily: 'IRANSansMobileFaNum-Light'}} onClick={() => this.onLanguageHandle('en')}
                                                       href="#action/3.2">en</NavDropdown.Item>
                                 </NavDropdown>
                             </div>
@@ -129,7 +129,7 @@ class Market extends React.Component {
                                 style={{alignItems: 'flex-end', display: 'flex'}} href="#">
                                 <MuiThemeProvider>
                                     <div style={style}>
-                                        <p style={{color: 'black', fontSize: 15}}>{t('topBar.search')}</p>
+                                        <p style={{color: 'black', fontSize: 15, fontFamily: 'IRANSansMobileFaNum-Light'}}>{t('topBar.search')}</p>
                                         <ExpandingSearchBox
                                             onQueryUpdate={this.onQueryUpdate}
                                             query={this.state.query}
@@ -150,7 +150,8 @@ class Market extends React.Component {
                                                                  })}>
                                     <p style={{
                                         color: 'black',
-                                        fontSize: 15
+                                        fontSize: 15,
+                                        fontFamily: 'IRANSansMobileFaNum-Light'
                                     }}>{(this.props.user && this.props.user.username) ? this.props.user.username : t('topBar.userLogin')}</p>
                                     <img style={{width: 20, height: 20, marginLeft: 10}}
                                          src={require("../market/image/user.png")}
