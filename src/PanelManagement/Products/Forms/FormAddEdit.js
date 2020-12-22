@@ -16,6 +16,7 @@ class AddEditForm extends React.Component {
             image: '',
             price: '',
             discount: '',
+            masterCategory: '',
             type: '',
             subType: '',
             dateModify: '',
@@ -29,6 +30,7 @@ class AddEditForm extends React.Component {
             property: '',
             isBestSeller: false,
             productColor: '#fff',
+            productMasterCategories: [],
             productCategories: [],
             brands: []
         };
@@ -67,6 +69,7 @@ class AddEditForm extends React.Component {
         data.append('description', this.state.description);
         data.append('price', this.state.price);
         data.append('discount', this.state.discount);
+        data.append('masterCategory', this.state.masterCategory);
         data.append('type', this.state.type);
         data.append('subType', this.state.subType);
         data.append('dateModify', this.state.dateModify);
@@ -96,6 +99,7 @@ class AddEditForm extends React.Component {
         data.append('description', this.state.description);
         data.append('price', this.state.price);
         data.append('discount', this.state.discount);
+        data.append('masterCategory', this.state.masterCategory);
         data.append('type', this.state.type);
         data.append('subType', this.state.subType);
         data.append('dateModify', this.state.dateModify);
@@ -116,12 +120,19 @@ class AddEditForm extends React.Component {
     };
 
     componentDidMount() {
-        Services.getProductCategoryList().then((response) => {
+        Services.getMasterCategoryList().then(response => {
             this.setState({
-                productCategories: response.data
+                productMasterCategories: response.data
             });
-        }).catch((error) => {
-            console.log('error', error)
+            Services.getProductCategoryList().then((response) => {
+                this.setState({
+                    productCategories: response.data
+                });
+            }).catch((error) => {
+                console.log('error', error)
+            });
+        }).catch(error => {
+
         });
 
         Services.getBrandList().then((response) => {
@@ -141,6 +152,7 @@ class AddEditForm extends React.Component {
                 image,
                 price,
                 discount,
+                masterCategory,
                 type,
                 subType,
                 dateModify,
@@ -159,6 +171,7 @@ class AddEditForm extends React.Component {
                 image,
                 price: price ? price : 0,
                 discount: discount ? discount : 0,
+                masterCategory: masterCategory ? masterCategory : '',
                 type: type ? type : '',
                 subType: subType ? subType : '',
                 dateModify: dateModify ? dateModify : '',
@@ -173,7 +186,7 @@ class AddEditForm extends React.Component {
     }
 
     getSubTypesFromProductCategory(type) {
-        if (this.state.productCategories && this.state.productCategories.length > 0) {
+        if (this.state.masterCategory !== '' && this.state.type !== '' && this.state.productCategories && this.state.productCategories.length > 0) {
             let productCategory = this.state.productCategories.filter(product => product.type === this.state.type);
             if (productCategory && productCategory.length > 0 && productCategory[0].subTypes) {
                 return productCategory[0].subTypes.split(',')
@@ -229,14 +242,25 @@ class AddEditForm extends React.Component {
                            value={this.state.discount}/>
                 </FormGroup>
                 <FormGroup>
+                    <Label for="masterCategory">MasterCategory</Label>
+                    <select name="masterCategory" id="masterCategory" onChange={this.onChange} value={this.state.masterCategory}>
+                        <option value=''/>
+                        {this.state.productMasterCategories && this.state.productMasterCategories.map(function (item) {
+                            return <option value={item.name}> {item.name} </option>
+                        })}
+                    </select>
+                </FormGroup>
+                {this.state.masterCategory !== '' &&
+                <FormGroup>
                     <Label for="type">Type</Label>
                     <select name="type" id="type" onChange={this.onChange} value={this.state.type}>
                         <option value=''/>
-                        {this.state.productCategories && this.state.productCategories.map(function (item) {
+                        {this.state.productCategories.filter(item => item.masterCategory === this.state.masterCategory) && this.state.productCategories.filter(item => item.masterCategory === this.state.masterCategory).map(function (item) {
                             return <option value={item.type}> {item.type} </option>
                         })}
                     </select>
                 </FormGroup>
+                }
                 {this.getSubTypesFromProductCategory(this.state.type).length > 0 &&
                 <FormGroup>
                     <Label for="subType">Sub Type</Label>

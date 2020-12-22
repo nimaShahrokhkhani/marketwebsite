@@ -113,6 +113,36 @@ class Navigation extends React.Component {
         this.getSaleSliderImages();
     }
 
+    onMasterCategoryClick = (masterCategory) => {
+        this.props.history.push({
+            pathname: '/Market/Products',
+            state: {
+                masterCategory
+            }
+        });
+    };
+
+    onTypeClick = (masterCategory, type) => {
+        this.props.history.push({
+            pathname: '/Market/Products',
+            state: {
+                masterCategory,
+                type
+            }
+        });
+    };
+
+    onSubCategoryClick = (masterCategory, type, subType) => {
+        this.props.history.push({
+            pathname: '/Market/Products',
+            state: {
+                masterCategory,
+                type,
+                subType
+            }
+        });
+    };
+
     renderBrandMenu() {
         const {brandList} = this.state;
         let resultView = [];
@@ -155,7 +185,7 @@ class Navigation extends React.Component {
                     <ul className="ruby-menu" style={{display: 'flex',
                         flexDirection: 'row-reverse',
                         justifyContent: 'flex-start'}}>
-                        <li className="ruby-active-menu-item"><a href="#">خانه</a></li>
+                        <li className="ruby-active-menu-item"><a href="/Market">خانه</a></li>
 
                         <li className="ruby-menu-mega-shop"><a href="#">محصولات</a>
                             <div style={{height: 500, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'flex-end'}} className="">
@@ -169,20 +199,20 @@ class Navigation extends React.Component {
 
                                 <ul>
                                     {masterCategories && masterCategories.map((masterCategory, index) => (
-                                        <li><a href="#" style={{fontFamily: 'IRANSansMobile-Bold'}}>{masterCategory.name}</a>
+                                        <li><a onClick={() => this.onMasterCategoryClick(masterCategory.name)} style={{fontFamily: 'IRANSansMobile-Bold', cursor: 'pointer'}}>{masterCategory.name}</a>
                                             <div className="ruby-grid ruby-grid-lined">
                                                 <div className="ruby-row ruby-row-products">
                                                     {categoryList && categoryList.filter(category => category.masterCategory === masterCategory.name).map(categoryItem => (
                                                         <div className="ruby-col-3">
                                                             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
                                                                 <h3 className="ruby-list-heading"
-                                                                    style={{marginTop: 16}}>{categoryItem.type}</h3>
+                                                                    style={{marginTop: 16}}><a style={{cursor: 'pointer'}} onClick={() => this.onTypeClick(masterCategory.name, categoryItem.type)}>{categoryItem.type}</a></h3>
                                                                 <img style={{width: 50, height: 50, borderRadius: 25, marginRight: 5, marginLeft: 5}} src={Services.getProductCategoryImageDownloadUrl(categoryItem.image)}/>
                                                             </div>
 
                                                             <ul>
                                                                 {categoryItem.subTypes && categoryItem.subTypes.split(',').map(subType => (
-                                                                    <li><a href="#" style={{fontFamily:'IRANSansMobile-Light'}}>{subType}</a></li>
+                                                                    <li><a onClick={() => this.onSubCategoryClick(masterCategory.name, categoryItem.type, subType)} style={{fontFamily:'IRANSansMobile-Light', cursor: 'pointer'}}>{subType}</a></li>
                                                                 ))}
                                                             </ul>
                                                         </div>
@@ -297,7 +327,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="/Market/ContactUs">تماس با ما</a></li>
 
                     </ul>
                 </div>

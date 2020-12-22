@@ -27,6 +27,7 @@ class DataTable extends Component {
                     <img width='50px' height='50px' src={Services.getProductImageDownloadUrl(item.image)}/>}</div></td>
                     <td><div className='table-cell'>{item.price}</div></td>
                     <td><div className='table-cell'>{item.discount}</div></td>
+                    <td><div className='table-cell'>{item.masterCategory}</div></td>
                     <td><div className='table-cell'>{item.type}</div></td>
                     <td><div className='table-cell'>{item.subType}</div></td>
                     <td><div className='table-cell'>{item.dateModify}</div></td>
@@ -77,6 +78,7 @@ class DataTable extends Component {
                     <th>image</th>
                     <th>price</th>
                     <th>discount</th>
+                    <th>masterCategory</th>
                     <th>type</th>
                     <th>subType</th>
                     <th>dateModify</th>

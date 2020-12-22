@@ -33,12 +33,12 @@ export default class ScreenLoading extends React.Component {
                 {!this.props.done && (
                     <FadeIn>
                         <div class="d-flex justify-content-center align-items-center">
-                            <h1>fetching data</h1>
                             {this.props.loading ? (
                                 <Lottie options={defaultOptions} height={120} width={120} />
                             ) : (
                                 <Lottie options={defaultOptions2} height={120} width={120} />
                             )}
+                            <h1>در حال بارگیری</h1>
                         </div>
                     </FadeIn>
                 )}

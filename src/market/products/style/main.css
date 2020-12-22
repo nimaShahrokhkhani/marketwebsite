@@ -70,6 +70,7 @@ h6 {
 ******* Home ******
 **************************/
 .search_box input{
+    font-family: IRANSansMobileFaNum-Light;
     background: #F0F0E9;
     color: #000000;
     font-size: 12px;
@@ -179,7 +180,7 @@ h6 {
 .left-sidebar h2,
 .brands_products h2 {
     color: #13213c;
-    font-family: 'Roboto', sans-serif;
+    font-family: IRANSansMobile-Bold;
     font-size: 18px;
     font-weight: 700;
     margin: 0 auto 30px;
@@ -356,7 +357,7 @@ h2.title:before {
 
 h2.title {
     color: #13213c;
-    font-family: 'Roboto', sans-serif;
+    font-family: IRANSansMobile-Bold;
     font-size: 18px;
     font-weight: 700;
     margin: 0 15px;
