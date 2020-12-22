@@ -1,0 +1,30 @@
+.blog_item_main {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.blog_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #a0a0a0;
+}
+
+.blog_Image_container {
+    border-bottom: 5px;
+    margin-left: 50px;
+}
+
+.blog_Image_container img {
+    width: 300px;
+    height: 200px;
+    margin-top: 100px;
+}
+
+.blog_content_container {
+    display: flex;
+    flex-direction: column;
+}

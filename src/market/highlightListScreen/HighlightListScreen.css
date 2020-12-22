@@ -1,0 +1,30 @@
+.highlight_item_main {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.highlight_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid #a0a0a0;
+}
+
+.highlight_Image_container {
+    border-bottom: 5px;
+    margin-left: 50px;
+}
+
+.highlight_Image_container img {
+    width: 300px;
+    height: 200px;
+    margin-top: 100px;
+}
+
+.highlight_content_container {
+    display: flex;
+    flex-direction: column;
+}

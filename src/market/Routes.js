@@ -10,6 +10,7 @@ import ContinuePaymentProcess from "./continuePaymentProcess/ContinuePaymentProc
 import FinalPaymentProcess from "./finalPaymentProcess/FinalPaymentProcess.js";
 import AccountInfo from "./acountInfo/AccountInfo";
 import EditInfo from "./editInfo/EditInfo";
+import BlogListScreen from "./blogListScreen/BlogListScreen";
 
 
 import history from '../history';
@@ -31,6 +32,8 @@ export default class Routes extends Component {
                     <Route path="/Market/FinalPaymentProcess" component={FinalPaymentProcess} />
                     <Route path="/Market/AccountInfo" component={AccountInfo} />
                     <Route path="/Market/EditInfo" component={EditInfo} />
+                    <Route path="/Market/BlogListScreen" component={BlogListScreen} />
+
 
 
 
