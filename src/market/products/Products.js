@@ -20,7 +20,7 @@ class Products extends React.Component {
     constructor(props) {
         super(props);
         let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
-        this.totalItemsShowOnScreen = 3;
+        this.totalItemsShowOnScreen = 36;
         this.state = {
             isLoading: false,
             isDone: false,
