@@ -125,12 +125,12 @@ class Navigation extends React.Component {
             document.getElementById("highlightMenu").className = document.getElementById("highlightMenu").className.replace(/no-hover/g, '');
             document.getElementById("blogMenu").className = document.getElementById("blogMenu").className.replace(/no-hover/g, '');
             document.getElementById("eventMenu").className = document.getElementById("eventMenu").className.replace(/no-hover/g, '');
-        }, 1000);
+        }, 1500);
     }
 
     onMasterCategoryClick = (masterCategory) => {
         this.closeMegaMenu();
-        this.props.history.push({
+        this.props.history.replace({
             pathname: '/Market/Products',
             state: {
                 masterCategory
@@ -140,7 +140,7 @@ class Navigation extends React.Component {
 
     onTypeClick = (masterCategory, type) => {
         this.closeMegaMenu();
-        this.props.history.push({
+        this.props.history.replace({
             pathname: '/Market/Products',
             state: {
                 masterCategory,
@@ -151,7 +151,7 @@ class Navigation extends React.Component {
 
     onSubCategoryClick = (masterCategory, type, subType) => {
         this.closeMegaMenu();
-        this.props.history.push({
+        this.props.history.replace({
             pathname: '/Market/Products',
             state: {
                 masterCategory,

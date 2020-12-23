@@ -37,8 +37,7 @@ class Products extends React.Component {
         }
     }
 
-    getItems = (offset, length) => {
-        let {masterCategory, type, subType} = this.props.location.state ? this.props.location.state : {};
+    getItems = (offset, length, masterCategory, type, subType) => {
         this.setState({
             isLoading: true,
             isDone: false
@@ -78,7 +77,7 @@ class Products extends React.Component {
     };
 
     componentDidMount() {
-        let {products, isFromSearch, masterCategory} = this.props.location.state ? this.props.location.state : {};
+        let {products, isFromSearch, masterCategory, type, subType} = this.props.location.state ? this.props.location.state : {};
         isFromSearch ?
             this.setState({
                 isLoading: true,
@@ -91,7 +90,7 @@ class Products extends React.Component {
                 setTimeout(() => {
                     this.setState({isDone: true});
                 }, 1000);
-            }) : this.getItems(0, this.totalItemsShowOnScreen);
+            }) : this.getItems(0, this.totalItemsShowOnScreen, masterCategory, type, subType);
         Services.getBrandList().then(response => {
             this.setState({
                 brandList: response.data
@@ -99,6 +98,10 @@ class Products extends React.Component {
         }).catch(error => {
             console.log('error', error);
         });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let {products, masterCategory} = this.props.location.state ? this.props.location.state : {};
         Services.getProductCategoryList({masterCategory}).then(response => {
             this.setState({
                 productCategoryList: response.data
@@ -106,10 +109,6 @@ class Products extends React.Component {
         }).catch(error => {
             console.log('error', error);
         });
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let {products, isFromSearch} = this.props.location.state ? this.props.location.state : {};
         if (products && products !== this.state.productList) {
             this.setState({
                 productList: products
@@ -161,10 +160,11 @@ class Products extends React.Component {
     };
 
     handlePageChange = (pageNumber) => {
+        let {masterCategory, type, subType} = this.props.location.state ? this.props.location.state : {};
         this.setState({
             activePage: pageNumber
         }, () => {
-            this.getItems((pageNumber - 1) * this.totalItemsShowOnScreen, this.totalItemsShowOnScreen);
+            this.getItems((pageNumber - 1) * this.totalItemsShowOnScreen, this.totalItemsShowOnScreen, masterCategory, type, subType);
         });
     };
 
@@ -182,36 +182,12 @@ class Products extends React.Component {
 
     onTypeClick = (type) => {
         let {masterCategory} = this.props.location.state ? this.props.location.state : {};
-        this.props.history.push({
-            pathname: '/Market/Products',
-            state: {
-                masterCategory,
-                type,
-                isFromSearch: true
-            }
-        });
+        this.getItems(0, this.totalItemsShowOnScreen, masterCategory, type);
     };
 
     onSubTypeClick = (type, subType) => {
         let {masterCategory} = this.props.location.state ? this.props.location.state : {};
-        /*Services.searchProductsList({subType: subType}).then((response) => {
-                    this.props.history.push({
-                        pathname: '/Market/Products',
-                        state: {
-                            products: response.data,
-                            isFromSearch: true
-                        }
-                    });
-                })*/
-        this.props.history.push({
-            pathname: '/Market/Products',
-            state: {
-                masterCategory,
-                type,
-                subType,
-                isFromSearch: true
-            }
-        });
+        this.getItems(0, this.totalItemsShowOnScreen, masterCategory, type, subType);
     };
 
     addToShoppingCart = (event, product) => {
@@ -225,6 +201,7 @@ class Products extends React.Component {
 
     render() {
         const {t} = this.props;
+        let {masterCategory, type, subType} = this.props.location.state ? this.props.location.state : {};
         let {isLoading, isDone, productList, brandList, productCategoryList, activeQuickFilter} = this.state;
         return (
             <div style={{
@@ -353,7 +330,7 @@ class Products extends React.Component {
                                             {
                                                 productCategoryList && productCategoryList.map(productCategory => {
                                                     return (
-                                                        <Collapsible trigger={
+                                                        <Collapsible open={type === productCategory.type} trigger={
                                                             <div className='category-parent-row'>
                                                                 <p onClick={() => this.onTypeClick(productCategory.type)}
                                                                    style={{cursor: 'pointer'}}>{productCategory.type}</p>
@@ -362,10 +339,10 @@ class Products extends React.Component {
                                                             </div>
                                                         } className='product-category-parent'>
                                                             {
-                                                                productCategory.subTypes && productCategory.subTypes.split(',').map(subType => {
+                                                                productCategory.subTypes && productCategory.subTypes.split(',').map(subTypeItem => {
                                                                     return (
-                                                                        <p onClick={() => this.onSubTypeClick(productCategory.type, subType)}
-                                                                           className='collapsible-child'>{subType}</p>
+                                                                        <p style={{backgroundColor: subType === subTypeItem && 'rgb(1 249 180 / 35%)'}} onClick={() => this.onSubTypeClick(productCategory.type, subTypeItem)}
+                                                                           className='collapsible-child'>{subTypeItem}</p>
                                                                     )
                                                                 })
                                                             }
