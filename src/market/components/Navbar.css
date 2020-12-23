@@ -1605,6 +1605,10 @@ span.ruby-c-content {
         opacity: 1;
     }
 
+    .no-hover {
+        pointer-events: none;
+    }
+
     ul.ruby-menu > li.ruby-menu-mega-blog > div > ul.ruby-menu-mega-blog-nav > li > div {
         visibility: hidden;
         opacity: 0

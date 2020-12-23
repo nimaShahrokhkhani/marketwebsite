@@ -114,6 +114,10 @@ class Navigation extends React.Component {
     }
 
     onMasterCategoryClick = (masterCategory) => {
+        document.getElementById("productsMenu").className += " no-hover";
+        setTimeout(() => {
+            document.getElementById("productsMenu").className = document.getElementById("productsMenu").className.replace(/no-hover/g, '');
+        }, 1000);
         this.props.history.push({
             pathname: '/Market/Products',
             state: {
@@ -187,7 +191,7 @@ class Navigation extends React.Component {
                         justifyContent: 'flex-start'}}>
                         <li className="ruby-active-menu-item"><a href="/Market">خانه</a></li>
 
-                        <li className="ruby-menu-mega-shop"><a href="#">محصولات</a>
+                        <li id="productsMenu" className="ruby-menu-mega-shop"><a href="#">محصولات</a>
                             <div style={{height: 500, display: 'flex', flexDirection: 'column-reverse', justifyContent: 'flex-end'}} className="">
                                     <AwesomeSlider className='saleSlider'>
                                         {saleSliderList && saleSliderList.map(saleSlider => (
