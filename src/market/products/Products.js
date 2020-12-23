@@ -43,7 +43,13 @@ class Products extends React.Component {
             isLoading: true,
             isDone: false
         }, () => {
-            Services.getProductsList({offset: offset, length: length, masterCategory, type, subType}).then((response) => {
+            Services.getProductsList({
+                offset: offset,
+                length: length,
+                masterCategory,
+                type,
+                subType
+            }).then((response) => {
                 this.setState({
                     productList: response.data.data,
                     totalProductsCount: response.data.totalCount,
@@ -174,16 +180,38 @@ class Products extends React.Component {
         })
     };
 
-    onSubTypeClick = (subType) => {
-        Services.searchProductsList({subType: subType}).then((response) => {
-            this.props.history.push({
-                pathname: '/Market/Products',
-                state: {
-                    products: response.data,
-                    isFromSearch: true
-                }
-            });
-        })
+    onTypeClick = (type) => {
+        let {masterCategory} = this.props.location.state ? this.props.location.state : {};
+        this.props.history.push({
+            pathname: '/Market/Products',
+            state: {
+                masterCategory,
+                type,
+                isFromSearch: true
+            }
+        });
+    };
+
+    onSubTypeClick = (type, subType) => {
+        let {masterCategory} = this.props.location.state ? this.props.location.state : {};
+        /*Services.searchProductsList({subType: subType}).then((response) => {
+                    this.props.history.push({
+                        pathname: '/Market/Products',
+                        state: {
+                            products: response.data,
+                            isFromSearch: true
+                        }
+                    });
+                })*/
+        this.props.history.push({
+            pathname: '/Market/Products',
+            state: {
+                masterCategory,
+                type,
+                subType,
+                isFromSearch: true
+            }
+        });
     };
 
     addToShoppingCart = (event, product) => {
@@ -220,19 +248,24 @@ class Products extends React.Component {
                                                 <a onClick={() => this.onQuickFilterClick('جدیدترین')}>جدیدترین</a>
                                             </div>
                                             <div className={activeQuickFilter === "بیشترین تخفیف" && "active"}>
-                                                <a onClick={() => this.onQuickFilterClick('بیشترین تخفیف')}>بیشترین تخفیف</a>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین تخفیف')}>بیشترین
+                                                    تخفیف</a>
                                             </div>
                                             <div className={activeQuickFilter === "کمترین تخفیف" && "active"}>
-                                                <a onClick={() => this.onQuickFilterClick('کمترین تخفیف')}>کمترین تخفیف</a>
+                                                <a onClick={() => this.onQuickFilterClick('کمترین تخفیف')}>کمترین
+                                                    تخفیف</a>
                                             </div>
                                             <div className={activeQuickFilter === "کمترین قیمت" && "active"}>
-                                                <a onClick={() => this.onQuickFilterClick('کمترین قیمت')}>کمترین قیمت</a>
+                                                <a onClick={() => this.onQuickFilterClick('کمترین قیمت')}>کمترین
+                                                    قیمت</a>
                                             </div>
                                             <div className={activeQuickFilter === "بیشترین قیمت" && "active"}>
-                                                <a onClick={() => this.onQuickFilterClick('بیشترین قیمت')}>بیشترین قیمت</a>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین قیمت')}>بیشترین
+                                                    قیمت</a>
                                             </div>
                                             <div className={activeQuickFilter === "بیشترین فروش" && "active"}>
-                                                <a onClick={() => this.onQuickFilterClick('بیشترین فروش')}>بیشترین فروش</a>
+                                                <a onClick={() => this.onQuickFilterClick('بیشترین فروش')}>بیشترین
+                                                    فروش</a>
                                             </div>
                                         </div>
                                         <Container>
@@ -322,7 +355,8 @@ class Products extends React.Component {
                                                     return (
                                                         <Collapsible trigger={
                                                             <div className='category-parent-row'>
-                                                                <p>{productCategory.type}</p>
+                                                                <p onClick={() => this.onTypeClick(productCategory.type)}
+                                                                   style={{cursor: 'pointer'}}>{productCategory.type}</p>
                                                                 <img width='50px' height='50px'
                                                                      src={Services.getProductCategoryImageDownloadUrl(productCategory.image)}/>
                                                             </div>
@@ -330,7 +364,7 @@ class Products extends React.Component {
                                                             {
                                                                 productCategory.subTypes && productCategory.subTypes.split(',').map(subType => {
                                                                     return (
-                                                                        <p onClick={() => this.onSubTypeClick(subType)}
+                                                                        <p onClick={() => this.onSubTypeClick(productCategory.type, subType)}
                                                                            className='collapsible-child'>{subType}</p>
                                                                     )
                                                                 })

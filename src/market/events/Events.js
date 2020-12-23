@@ -42,14 +42,6 @@ class Events extends React.Component {
         };
         return (
             <div className='events-container'>
-                <div className="title-container">
-                    <div className='line'/>
-                    <div className='image-container'>
-                        <p>Events</p>
-                    </div>
-                    <div className='line'/>
-                </div>
-
                 <div className='event-container'>
                     {event && event.image && <img width='70%' height='400px' src={Services.getEventImageDownloadUrl(event.image)}/>}
                     {event && event.events && JSON.parse(event.events).length > 0 ?

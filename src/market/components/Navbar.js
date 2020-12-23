@@ -113,11 +113,23 @@ class Navigation extends React.Component {
         this.getSaleSliderImages();
     }
 
-    onMasterCategoryClick = (masterCategory) => {
+    closeMegaMenu() {
         document.getElementById("productsMenu").className += " no-hover";
+        document.getElementById("brandMenu").className += " no-hover";
+        document.getElementById("highlightMenu").className += " no-hover";
+        document.getElementById("blogMenu").className += " no-hover";
+        document.getElementById("eventMenu").className += " no-hover";
         setTimeout(() => {
             document.getElementById("productsMenu").className = document.getElementById("productsMenu").className.replace(/no-hover/g, '');
+            document.getElementById("brandMenu").className = document.getElementById("brandMenu").className.replace(/no-hover/g, '');
+            document.getElementById("highlightMenu").className = document.getElementById("highlightMenu").className.replace(/no-hover/g, '');
+            document.getElementById("blogMenu").className = document.getElementById("blogMenu").className.replace(/no-hover/g, '');
+            document.getElementById("eventMenu").className = document.getElementById("eventMenu").className.replace(/no-hover/g, '');
         }, 1000);
+    }
+
+    onMasterCategoryClick = (masterCategory) => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/Products',
             state: {
@@ -127,6 +139,7 @@ class Navigation extends React.Component {
     };
 
     onTypeClick = (masterCategory, type) => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/Products',
             state: {
@@ -137,6 +150,7 @@ class Navigation extends React.Component {
     };
 
     onSubCategoryClick = (masterCategory, type, subType) => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/Products',
             state: {
@@ -148,18 +162,21 @@ class Navigation extends React.Component {
     };
 
     onHighlightMenuClick = () => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/HighlightListScreen'
         });
     };
 
     onBlogMenuClick = () => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/BlogListScreen'
         });
     };
 
     onHighlightReadMoreClick = (highlight) => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/Highlight',
             state: {highlight: highlight}
@@ -167,6 +184,7 @@ class Navigation extends React.Component {
     };
 
     onBlogReadMoreClick = (blog) => {
+        this.closeMegaMenu();
         this.props.history.push({
             pathname: '/Market/Blog',
             state: {blog: blog}
@@ -255,7 +273,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega"><a href="#">برند ها</a>
+                        <li id="brandMenu" className="ruby-menu-mega"><a href="#">برند ها</a>
                             <div className="ruby-grid ruby-grid-lined">
                                 <div className="ruby-row">
                                     <div className="ruby-col-5">
@@ -265,7 +283,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega-blog"><a onClick={this.onHighlightMenuClick}>هایلایت</a>
+                        <li id="highlightMenu" className="ruby-menu-mega-blog"><a onClick={this.onHighlightMenuClick}>هایلایت</a>
                             <div style={{height: 269.359}} className="">
                                 <ul className="ruby-menu-mega-blog-nav">
 
@@ -294,7 +312,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega-blog"><a href="#">رویدادها</a>
+                        <li id="eventMenu" className="ruby-menu-mega-blog"><a href="#">رویدادها</a>
                             <div style={{height: 269.359}} className="">
                                 <ul className="ruby-menu-mega-blog-nav" style={{width: 200}}>
 
@@ -328,7 +346,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega-blog"><a onClick={this.onBlogMenuClick}>بلاگ</a>
+                        <li id="blogMenu" className="ruby-menu-mega-blog"><a onClick={this.onBlogMenuClick}>بلاگ</a>
                             <div style={{height: 269.359}} className="">
                                 <ul className="ruby-menu-mega-blog-nav">
 

@@ -50,7 +50,6 @@ class BestSeller extends React.Component {
         };
         return (
             <div className="Bestseller-pic">
-                <img src={require("../image/bestSellerTitle.jpg")}/>
                 {this.state.items.length > 0 ?
                     <div className='slider-container'>
                         <Slider {...settings}>

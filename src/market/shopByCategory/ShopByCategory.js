@@ -29,7 +29,6 @@ class ShopByCategory extends React.Component {
     render() {
         return (
             <div className="category-container">
-                <img src={require("../image/shopByCategory.jpg")}/>
                 <div className='category-groups'>
                     <div className='category-groups-child'>
                         {this.state.categoryList[0] &&

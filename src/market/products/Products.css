@@ -45,6 +45,7 @@
     font-family: IRANSansMobileFaNum-Light;
     padding: 5px 40px;
     border-top: 0.1px solid #F7F7F0;
+    cursor: pointer;
 }
 
 .category-products-list {

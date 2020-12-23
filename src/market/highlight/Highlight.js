@@ -32,9 +32,6 @@ class Highlight extends React.Component {
         let {highlight} = this.state;
         return (
             <div className='highlight-container'>
-                <div className="highlight-pic1">
-                    <img src={require("../image/highlightTitle.jpg")}/>
-                </div>
                 {highlight &&
                 <>
                     <div className="highlight-pic2">

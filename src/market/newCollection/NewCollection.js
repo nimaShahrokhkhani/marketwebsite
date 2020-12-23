@@ -33,13 +33,6 @@ class NewCollection extends React.Component {
         const {t} = this.props;
         return (
             <div className='newcollection-container'>
-                <div className="title-container">
-                    <div className='line'/>
-                    <div className='image-container'>
-                        <p>New Collection</p>
-                    </div>
-                    <div className='line'/>
-                </div>
 
                 <div className='collection-container'>
                     <AwesomeSlider className='collectionSlider'>
