@@ -226,7 +226,7 @@ img{
     width: 312px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -296,7 +296,7 @@ img{
     width: 168px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -430,7 +430,7 @@ img{
     width: 497px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -444,7 +444,7 @@ img{
     width: 207px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
@@ -476,7 +476,7 @@ img{
     width: 198px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -558,7 +558,7 @@ img{
     width: 473px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
@@ -572,7 +572,7 @@ img{
     width: 156px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
@@ -586,7 +586,7 @@ img{
     width: 184px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
@@ -600,7 +600,7 @@ img{
     width: 214px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: bold;
     font-size: 35px;
@@ -622,7 +622,7 @@ img{
     width: 181px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 25px;
@@ -1938,7 +1938,7 @@ hr.solid {
     width: 135px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Bold;
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
@@ -1964,7 +1964,7 @@ hr.solid {
     width: 116px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -2026,7 +2026,7 @@ hr.solid {
     width: 225px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -2044,7 +2044,7 @@ hr.solid {
     width: 121px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -2059,7 +2059,7 @@ hr.solid {
     width: 279px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -2073,7 +2073,7 @@ hr.solid {
     width: 116px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Bold;
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
@@ -2087,7 +2087,7 @@ hr.solid {
     width: 98px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Bold;
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
@@ -2110,7 +2110,7 @@ hr.solid {
     width: 95px;
     white-space: nowrap;
     text-align: right;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -2151,7 +2151,7 @@ hr.solid {
     outline: none;
     color: #9DBFAF;
     direction: rtl;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
 }
 
 .searchTerm:focus{
@@ -2168,5 +2168,5 @@ hr.solid {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
-    font-family: IRANSans;
+    font-family: IRANSansMobileFaNum-Light;
 }

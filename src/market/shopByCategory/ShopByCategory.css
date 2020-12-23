@@ -53,3 +53,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+.category-title {
+    font-family: IRANSansMobileFaNum-Bold;
+    font-size: 15px;
+}

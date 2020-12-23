@@ -11,6 +11,7 @@ import Events from "../events/Events";
 import Blog from "../blog/Blog";
 import ShopByCategory from "../shopByCategory/ShopByCategory";
 import Services from "../../utils/Services";
+import BestBrands from "../bestBrands/BestBrands";
 
 class Home extends React.Component {
 
@@ -57,7 +58,7 @@ class Home extends React.Component {
         return(
             <div style={{marginTop: 100, paddingRight: 50, display: 'flex', alignItems: 'center',backgroundColor: '#fff'}}>
                 <div style={{border: '1px solid #c0c0c0', height: 1, flex: 1}}/>
-                <p style={{fontFamily: 'IRANSansMobile-Bold', padding: 20}}>{title}</p>
+                <p style={{fontFamily: 'IRANSansMobile-Bold', padding: 20, fontSize: 20, color: '#14213c'}}>{title}</p>
             </div>
         )
     }
@@ -78,6 +79,8 @@ class Home extends React.Component {
                 <BestSeller history={this.props.history}/>
                 {this.renderTitle('دسته بندی محصولات')}
                 <ShopByCategory/>
+                {this.renderTitle('برندهای برتر')}
+                <BestBrands history={this.props.history}/>
                 {this.renderTitle('محصولات جدید')}
                 <NewCollection/>
                 {this.renderTitle('هایلایت')}

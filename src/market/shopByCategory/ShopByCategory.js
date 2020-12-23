@@ -35,7 +35,7 @@ class ShopByCategory extends React.Component {
                         <div className='item-container'>
                             <img src={Services.getProductCategoryImageDownloadUrl(this.state.categoryList[0].image)}/>
                             <div className='name-container'>
-                                <p>{this.state.categoryList[0].type}</p>
+                                <p className='category-title'>{this.state.categoryList[0].type}</p>
                             </div>
                         </div>
                         }
@@ -43,7 +43,7 @@ class ShopByCategory extends React.Component {
                         <div className='item-container'>
                             <img src={Services.getProductCategoryImageDownloadUrl(this.state.categoryList[1].image)}/>
                             <div className='name-container'>
-                                <p>{this.state.categoryList[1].type}</p>
+                                <p className='category-title'>{this.state.categoryList[1].type}</p>
                             </div>
                         </div>
                         }
@@ -53,7 +53,7 @@ class ShopByCategory extends React.Component {
                         <div className='item-container'>
                             <img src={Services.getProductCategoryImageDownloadUrl(this.state.categoryList[2].image)}/>
                             <div className='name-container'>
-                                <p>{this.state.categoryList[2].type}</p>
+                                <p className='category-title'>{this.state.categoryList[2].type}</p>
                             </div>
                         </div>
                         }
@@ -63,7 +63,7 @@ class ShopByCategory extends React.Component {
                         <div className='item-container'>
                             <img src={Services.getProductCategoryImageDownloadUrl(this.state.categoryList[3].image)}/>
                             <div className='name-container'>
-                                <p>{this.state.categoryList[3].type}</p>
+                                <p className='category-title'>{this.state.categoryList[3].type}</p>
                             </div>
                         </div>
                         }
@@ -71,7 +71,7 @@ class ShopByCategory extends React.Component {
                         <div className='item-container'>
                             <img src={Services.getProductCategoryImageDownloadUrl(this.state.categoryList[4].image)}/>
                             <div className='name-container'>
-                                <p>{this.state.categoryList[4].type}</p>
+                                <p className='category-title'>{this.state.categoryList[4].type}</p>
                             </div>
                         </div>
                         }

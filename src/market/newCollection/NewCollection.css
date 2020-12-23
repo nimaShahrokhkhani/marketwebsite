@@ -67,6 +67,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: IRANSansMobileFaNum-Light;
 }
 
 .new-collection-block-item img {
