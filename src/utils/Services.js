@@ -5,6 +5,10 @@ export default class Services {
 
     static baseUrl = 'http://79.127.101.158:3500/';
 
+    static getCompanyImageDownloadUrl(fileName){
+      return this.baseUrl + `companies/download?fileName=` + fileName;
+    }
+
     static getBrandImageDownloadUrl(fileName){
       return this.baseUrl + `brands/download?fileName=` + fileName;
     }
@@ -222,6 +226,14 @@ export default class Services {
 
     static async insertCompany(requestData) {
         return axios.post(`/companies/insert`, requestData)
+    }
+
+    static async editCompany(requestData) {
+        return axios.post(`/companies/edit`, requestData)
+    }
+
+    static async deleteCompany(requestData) {
+        return axios.post(`/companies/delete`, requestData)
     }
 
     static getUsersList(requestData) {

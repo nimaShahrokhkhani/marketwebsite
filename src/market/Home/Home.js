@@ -12,6 +12,7 @@ import Blog from "../blog/Blog";
 import ShopByCategory from "../shopByCategory/ShopByCategory";
 import Services from "../../utils/Services";
 import BestBrands from "../bestBrands/BestBrands";
+import BestCompanies from "../bestCompanies/BestCompanies";
 
 class Home extends React.Component {
 
@@ -87,6 +88,8 @@ class Home extends React.Component {
                 <Highlight history={this.props.history}/>
                 {this.renderTitle('رویدادها')}
                 <Events/>
+                {this.renderTitle('شرکت های برتر')}
+                <BestCompanies history={this.props.history}/>
             </div>
         );
     }

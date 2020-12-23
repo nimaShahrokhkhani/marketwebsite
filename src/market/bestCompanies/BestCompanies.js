@@ -1,12 +1,12 @@
 import React from "react";
 import {withTranslation} from "react-i18next";
-import './BestBrands.css';
+import './BestCompanies.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Services from "../../utils/Services";
 
-class BestBrands extends React.Component {
+class BestCompanies extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ class BestBrands extends React.Component {
     }
 
     getItems() {
-        Services.getBrandList().then((response) => {
+        Services.getCompaniesList().then((response) => {
             this.setState({
                 items: response.data,
             });
@@ -49,13 +49,14 @@ class BestBrands extends React.Component {
                     <div className='slider-container'>
                         <Slider {...settings}>
                             {
-                                this.state.items.map((brand, i) => {
+                                this.state.items.map((company, i) => {
                                     return (
-                                        <div data-index={i} key={i} className='brand-block-item' onClick={() => this.onBrandClick(brand)}>
+                                        <div data-index={i} key={i} className='brand-block-item' onClick={() => this.onBrandClick(company)}>
                                             <div>
                                                 <img
-                                                    src={Services.getBrandImageDownloadUrl(brand.image)}/>
+                                                    src={Services.getCompanyImageDownloadUrl(company.logo)}/>
                                             </div>
+                                            <p className='product-name'>{company.name}</p>
                                         </div>
                                     )
                                 })
@@ -98,4 +99,4 @@ function SamplePrevArrow(props) {
 }
 
 
-export default withTranslation()(BestBrands);
+export default withTranslation()(BestCompanies);

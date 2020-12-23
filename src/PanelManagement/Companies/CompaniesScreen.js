@@ -1,21 +1,24 @@
-import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap'
+import React, {Component} from 'react'
+import {Container, Row, Col} from 'reactstrap'
 import ModalForm from './Modals/Modal'
 import DataTable from './Tables/DataTable'
-import { CSVLink } from "react-csv"
+import {CSVLink} from "react-csv"
 import './Companies.css';
 import Services from "../../utils/Services";
 import Products from "../Products/Products";
 import ScreenLoading from "../../components/screenLoading/ScreenLoading";
 
 class CompaniesScreen extends Component {
-    state = {
-        items: [],
-        isLoading: false,
-        isDone: true
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            isLoading: false,
+            isDone: true
+        }
     }
 
-    getItems(){
+    getItems = () => {
         this.setState({
             isLoading: true,
             isDone: false
@@ -40,7 +43,7 @@ class CompaniesScreen extends Component {
                 });
             }, 2000);
         })
-    }
+    };
 
     addItemToState = (item) => {
         item.id = this.state.items.length + 1;
@@ -50,7 +53,7 @@ class CompaniesScreen extends Component {
     }
 
     updateState = (item) => {
-        const itemIndex = this.state.items.findIndex(data => data.id === item.id)
+        const itemIndex = this.state.items.findIndex(data => data.companyId === item.companyId)
         const newArray = [
             // destructure all items from beginning to the indexed item
             ...this.state.items.slice(0, itemIndex),
@@ -59,15 +62,19 @@ class CompaniesScreen extends Component {
             // add the rest of the items to the array from the index after the replaced item
             ...this.state.items.slice(itemIndex + 1)
         ]
-        this.setState({ items: newArray })
+        this.setState({items: newArray})
     }
 
-    deleteItemFromState = (id) => {
-        const updatedItems = this.state.items.filter(item => item.id !== id)
-        this.setState({ items: updatedItems })
+    deleteItemFromState = (companyId) => {
+        Services.deleteCompany({companyId: companyId}).then((response) => {
+            const updatedItems = this.state.items.filter(item => item.companyId !== companyId)
+            this.setState({items: updatedItems})
+        }).catch((error) => {
+            console.log('error is:', error)
+        });
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getItems()
     }
 
@@ -84,7 +91,8 @@ class CompaniesScreen extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                <DataTable items={this.state.items} updateState={this.updateState} deleteItemFromState={this.deleteItemFromState} />
+                                <DataTable items={this.state.items} updateState={this.updateState}
+                                           deleteItemFromState={this.deleteItemFromState} getItems={this.getItems}/>
                             </Col>
                         </Row>
                         <Row>
@@ -97,7 +105,8 @@ class CompaniesScreen extends Component {
                                     data={this.state.items}>
                                     Download CSV
                                 </CSVLink>
-                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}/>
+                                <ModalForm buttonLabel="Add Item" addItemToState={this.addItemToState}
+                                           getItems={this.getItems}/>
                             </Col>
                         </Row>
                     </Container>

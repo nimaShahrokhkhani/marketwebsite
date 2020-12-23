@@ -39,7 +39,6 @@ class AddEditForm extends Component {
     };
 
     onSummeryEditorStateChange = (editorState) => {
-        console.log('summeryyyyyyy:', editorState)
         this.setState({
             summeryEditorState: editorState,
             summeryMarkup: draftToHtml(
@@ -72,7 +71,6 @@ class AddEditForm extends Component {
     componentDidMount() {
         this.getItems();
         if (this.props.item) {
-            console.log('itemmmmmm:', this.props.item)
             const summeryBlocksFromHtml = htmlToDraft(this.props.item.summeryContent);
             const summeryContentState = ContentState.createFromBlockArray(summeryBlocksFromHtml.contentBlocks, summeryBlocksFromHtml.entityMap);
             const summeryEditorState = EditorState.createWithContent(summeryContentState);

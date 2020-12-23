@@ -207,14 +207,14 @@ class Navigation extends React.Component {
                     <li><a className='brandItem' style={{fontFamily: 'IRANSansMobileFaNum-Bold'}} href="#"><img style={{width: 50, height: 50}} src={Services.getBrandImageDownloadUrl(brandList[i + 2].image)}/><p>{brandList[i + 2].name}</p></a></li>
                     }
                     {brandList[i + 3] &&
-                    <li><a className='brandItem' style={{fontFamily: 'IRANSansMobileFaNum-Bold'}} href="#"><img style={{width: 50, height: 50}} src={Services.getBrandImageDownloadUrl(brandList[i + 3].image)}/>{brandList[i + 3].name}</a></li>
+                    <li><a className='brandItem' style={{fontFamily: 'IRANSansMobileFaNum-Bold'}} href="#"><img style={{width: 50, height: 50}} src={Services.getBrandImageDownloadUrl(brandList[i + 3].image)}/><p>{brandList[i + 3].name}</p></a></li>
                     }
                 </ul>
             </div>;
             resultView.push(view)
         }
         return(
-            <div className="ruby-row">
+            <div style={{display: 'flex'}} className="ruby-row">
                 {resultView}
             </div>
         );
@@ -276,7 +276,7 @@ class Navigation extends React.Component {
                         <li id="brandMenu" className="ruby-menu-mega"><a href="#">برند ها</a>
                             <div className="ruby-grid ruby-grid-lined">
                                 <div className="ruby-row">
-                                    <div className="ruby-col-5">
+                                    <div className="ruby-col-12">
                                         {this.renderBrandMenu()}
                                     </div>
                                 </div>
