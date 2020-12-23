@@ -147,6 +147,32 @@ class Navigation extends React.Component {
         });
     };
 
+    onHighlightMenuClick = () => {
+        this.props.history.push({
+            pathname: '/Market/HighlightListScreen'
+        });
+    };
+
+    onBlogMenuClick = () => {
+        this.props.history.push({
+            pathname: '/Market/BlogListScreen'
+        });
+    };
+
+    onHighlightReadMoreClick = (highlight) => {
+        this.props.history.push({
+            pathname: '/Market/Highlight',
+            state: {highlight: highlight}
+        });
+    };
+
+    onBlogReadMoreClick = (blog) => {
+        this.props.history.push({
+            pathname: '/Market/Blog',
+            state: {blog: blog}
+        });
+    };
+
     renderBrandMenu() {
         const {brandList} = this.state;
         let resultView = [];
@@ -207,11 +233,11 @@ class Navigation extends React.Component {
                                             <div className="ruby-grid ruby-grid-lined">
                                                 <div className="ruby-row ruby-row-products">
                                                     {categoryList && categoryList.filter(category => category.masterCategory === masterCategory.name).map(categoryItem => (
-                                                        <div className="ruby-col-3">
-                                                            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-                                                                <h3 className="ruby-list-heading"
-                                                                    style={{marginTop: 16}}><a style={{cursor: 'pointer'}} onClick={() => this.onTypeClick(masterCategory.name, categoryItem.type)}>{categoryItem.type}</a></h3>
+                                                        <div className="ruby-col-12">
+                                                            <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', borderBottom: '1px solid #c0c0c0'}}>
                                                                 <img style={{width: 50, height: 50, borderRadius: 25, marginRight: 5, marginLeft: 5}} src={Services.getProductCategoryImageDownloadUrl(categoryItem.image)}/>
+                                                                <h3 className="ruby-list-heading"
+                                                                    style={{marginTop: 5}}><a style={{cursor: 'pointer'}} onClick={() => this.onTypeClick(masterCategory.name, categoryItem.type)}>{categoryItem.type}</a></h3>
                                                             </div>
 
                                                             <ul>
@@ -239,7 +265,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega-blog"><a href="#">هایلایت</a>
+                        <li className="ruby-menu-mega-blog"><a onClick={this.onHighlightMenuClick}>هایلایت</a>
                             <div style={{height: 269.359}} className="">
                                 <ul className="ruby-menu-mega-blog-nav">
 
@@ -255,7 +281,7 @@ class Navigation extends React.Component {
                                                             <span className="ruby-c-date"><a
                                                                 href="#">05/01/2017</a></span>
                                                         </div>
-                                                        <span className="ruby-c-title ruby-margin-10"><a href="#">{highlight.title}</a></span>
+                                                        <span className="ruby-c-title ruby-margin-10"><a style={{cursor: 'pointer'}} onClick={() => this.onHighlightReadMoreClick(highlight)}>{highlight.title}</a></span>
                                                         <span className="ruby-c-content">{renderHTML(highlight.summeryContent)}</span>
                                                     </div>
                                                 ))
@@ -302,7 +328,7 @@ class Navigation extends React.Component {
                             </div>
                             <span className="ruby-dropdown-toggle"></span></li>
 
-                        <li className="ruby-menu-mega-blog"><a href="#">بلاگ</a>
+                        <li className="ruby-menu-mega-blog"><a onClick={this.onBlogMenuClick}>بلاگ</a>
                             <div style={{height: 269.359}} className="">
                                 <ul className="ruby-menu-mega-blog-nav">
 
@@ -318,7 +344,7 @@ class Navigation extends React.Component {
                                                             <span className="ruby-c-date"><a
                                                                 href="#">05/01/2017</a></span>
                                                         </div>
-                                                        <span className="ruby-c-title ruby-margin-10"><a href="#">{blog.title}</a></span>
+                                                        <span className="ruby-c-title ruby-margin-10"><a  style={{cursor: 'pointer'}} onClick={() => this.onBlogReadMoreClick(blog)}>{blog.title}</a></span>
                                                         <span className="ruby-c-content">{renderHTML(blog.summeryContent)}</span>
                                                     </div>
                                                 ))

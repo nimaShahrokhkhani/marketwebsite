@@ -115,6 +115,7 @@ img{
     height: 60px;
     width: 100%;
     flex-direction: row;
+    background-color: #f16b7d33;
 }
 .top-start-bar{
     height: 100%;

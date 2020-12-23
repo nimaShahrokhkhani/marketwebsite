@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import Home from "./Home/Home.js";
+import BlogScreen from "./blogScreen/BlogScreen";
 import HighlightScreen from "./highlightScreen/HighlightScreen";
 import Products from "./products/Products";
 import ProductDetail from "./productDetail/ProductDetail";
@@ -11,6 +12,7 @@ import FinalPaymentProcess from "./finalPaymentProcess/FinalPaymentProcess.js";
 import AccountInfo from "./acountInfo/AccountInfo";
 import EditInfo from "./editInfo/EditInfo";
 import BlogListScreen from "./blogListScreen/BlogListScreen";
+import HighlightListScreen from "./highlightListScreen/HighlightListScreen";
 
 
 import history from '../history';
@@ -23,6 +25,7 @@ export default class Routes extends Component {
                 <ScrollToTop>
                     <Switch>
                     <Route path="/Market" exact component={Home} />
+                    <Route path="/Market/Blog" component={BlogScreen} />
                     <Route path="/Market/Highlight" component={HighlightScreen} />
                     <Route path="/Market/Products" component={Products} />
                     <Route path="/Market/ProductDetail" component={ProductDetail} />
@@ -33,6 +36,7 @@ export default class Routes extends Component {
                     <Route path="/Market/AccountInfo" component={AccountInfo} />
                     <Route path="/Market/EditInfo" component={EditInfo} />
                     <Route path="/Market/BlogListScreen" component={BlogListScreen} />
+                    <Route path="/Market/HighlightListScreen" component={HighlightListScreen} />
 
 
 

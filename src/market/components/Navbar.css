@@ -990,11 +990,12 @@ ul.ruby-menu > li > a {
     display: block;
     line-height: 50px;
     padding: 0 25px 0 15px;
-    color: #efefef;
+    color: #efefef !important;
     text-decoration: none;
     font-family: IRANSansMobile-Light;
     font-weight: 700;
-    text-transform: uppercase
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 ul.ruby-menu > li > a:only-child {
@@ -1242,7 +1243,8 @@ ul.ruby-menu > li.ruby-menu-mega-shop > div > ul {
 
 ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li {
     display: inline-block;
-    margin: 0
+    margin: 0;
+    width: 10%;
 }
 
 ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li > a {
@@ -1262,7 +1264,8 @@ ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li:hover > a,ul.ruby-menu > l
 ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li > a {
     position: relative;
     text-decoration: none;
-    display: inline-block
+    display: inline-block;
+    font-size: 17px;
 }
 
 ul.ruby-menu > li.ruby-menu-mega-shop > div > ul > li > div {
@@ -1306,7 +1309,6 @@ div.ruby-grid > div.ruby-row div.ruby-row:first-of-type [class^="ruby-col"] {
 
 div.ruby-grid.ruby-grid-lined > div.ruby-row:after {
     content: "";
-    width: 100%;
     height: 1px;
     left: 0;
     bottom: 0;
@@ -1429,7 +1431,7 @@ ul.ruby-menu > li.ruby-menu-mega > div ul li,ul.ruby-menu > li.ruby-menu-mega-sh
     font-size: 14px;
     line-height: 28px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%
 }
 

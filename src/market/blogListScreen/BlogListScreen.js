@@ -38,7 +38,8 @@ class BlogListScreen extends React.Component {
 
                         <div className="blog_content_container">
                             <h1>{blog.title}</h1>
-                        <p>{renderHTML(blog.summeryContent)}</p>
+                            <p className="summery-text">{renderHTML(blog.summeryContent)}</p>
+                            <a className="read-more-container"><p>ادامه مطلب</p></a>
 
                         </div>
                         <div className="blog_Image_container">
