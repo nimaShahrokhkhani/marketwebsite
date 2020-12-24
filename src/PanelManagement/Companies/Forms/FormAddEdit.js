@@ -12,7 +12,8 @@ class AddEditForm extends React.Component {
       country: '',
       ownerName: '',
       logo: '',
-      description: ''
+      description: '',
+      companyId: ''
     };
   }
 
@@ -44,10 +45,10 @@ class AddEditForm extends React.Component {
   submitFormEdit = e => {
     e.preventDefault();
     const data = new FormData();
-    this.state.image && data.append('file', this.state.logo);
+    this.state.logo && data.append('file', this.state.logo);
     data.append('name', this.state.name);
     data.append('country', this.state.country);
-    data.append('companyId', 'company' + Math.floor((Math.random() * 10000000000) + 1));
+    data.append('companyId', this.state.companyId);
     data.append('ownerName', this.state.ownerName);
     data.append('description', this.state.description);
     Services.editCompany(data).then((response) => {
@@ -65,12 +66,14 @@ class AddEditForm extends React.Component {
         country,
         ownerName,
         description,
+        companyId,
       } = this.props.item;
       this.setState({
         name: name ? name : '',
         country: country ? country : '',
         ownerName: ownerName ? ownerName : '',
         description: description ? description : '',
+        companyId: companyId ? companyId : '',
       })
     }
   }

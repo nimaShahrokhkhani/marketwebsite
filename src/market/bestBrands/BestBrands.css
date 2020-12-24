@@ -33,7 +33,7 @@
 }
 
 .slick-slide :hover {
-    background-color: #fff;
+    background-color: #fbfbfd !important;
     z-index: 100;
 }
 
